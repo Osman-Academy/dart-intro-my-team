@@ -1,2 +1,56 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/KFbJh-eN)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=21260238&assignment_repo_type=AssignmentRepo)
+# Flutter Projects by Aizhan Aitpaeva
+
+В этой ветке (`aizhan-aitpaeva`) находятся три отдельных проекта на Dart/Flutter:
+
+---
+
+## 1️⃣ Cart Logic
+- Папка: cart_logic
+- Описание: Логика корзины с категориями и товарами.  
+- Особенности:
+  - Добавление и удаление товаров
+  - Подсчёт общей стоимости
+  - Вывод содержимого корзины
+- Пример вывода в терминале:
+  
+            Apple added to cart.
+            Juice added to cart.
+            🛒 Cart items:
+            
+            Apple : $1.2
+            Juice : $2.0
+            
+            Total: $3.2
+
+---
+
+## 2️⃣ Dynamic Square
+- Папка: `dynamic_square`
+- Описание: Визуальный квадрат, который динамически сжимается и расширяется.  
+- Особенности:
+  - Методы `shrink()` и `expand()`
+  - Пример использования в `main()`
+
+---
+
+## 3️⃣ Auth Repository
+- Папка: `auth_repository`
+- Описание: Репозиторий для логики авторизации.  
+- Особенности:
+  - Проверка логина/пароля
+  - Метод logout
+  - Пример использования в `main()`
+- Пример вывода в терминале:
+  
+    ✅ Login successful for user@example.com
+  
+    ❌ Login failed for wrong@example.com
+  
+    👋 user@example.com
+  
+     logged out
+  
+---
+
+Все три проекта можно запустить через **VS Code** или **Dart CLI**.
+
