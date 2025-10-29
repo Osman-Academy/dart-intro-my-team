@@ -1,21 +1,55 @@
-import 'package:dynamic_square/interactive_square_demo.dart';
+import 'package:dynamic_square/repositories/auth_repository.dart';
+import 'package:dynamic_square/ui/auth/auth-screen.dart';
+import 'package:dynamic_square/ui/interactive-square/interactive_square_demo.dart';
 import 'package:flutter/material.dart';
 
 class InteractiveSquareDemoState extends State<InteractiveSquareDemo> {
   double _sideLength = 150.0;
   final double _maxSideLength = 300.0;
   final double _minSideLength = 20.0;
+  final _authRepo = AuthRepository();
+  String _username = '';
 
   double get _area => _sideLength * _sideLength;
   double get _perimeter => _sideLength * 4;
 
   @override
+  void initState() {
+    super.initState();
+    _loadUsername();
+  }
+
+  Future<void> _loadUsername() async {
+    final username = await _authRepo.getCurrentUsername();
+    setState(() {
+      _username = username ?? 'User';
+    });
+  }
+
+  Future<void> _handleLogout() async {
+    await _authRepo.logout();
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const AuthScreen()),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Interactive Square Area'),
+        title: Text('Welcome, $_username'),
         backgroundColor: Colors.deepPurple,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: _handleLogout,
+            tooltip: 'Logout',
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -64,9 +98,9 @@ class InteractiveSquareDemoState extends State<InteractiveSquareDemo> {
                 width: 320,
                 height: 320,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.white, width: 2),
+                  border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
                 ),
                 child: Center(
                   child: AnimatedContainer(
@@ -83,6 +117,13 @@ class InteractiveSquareDemoState extends State<InteractiveSquareDemo> {
                         ],
                       ),
                       borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
                     ),
                     child: Center(
                       child: Text(
@@ -137,9 +178,9 @@ class InteractiveSquareDemoState extends State<InteractiveSquareDemo> {
                     SliderTheme(
                       data: SliderThemeData(
                         activeTrackColor: Colors.cyan,
-                        inactiveTrackColor: Colors.white,
+                        inactiveTrackColor: Colors.white.withOpacity(0.3),
                         thumbColor: Colors.white,
-                        overlayColor: Colors.cyan,
+                        overlayColor: Colors.cyan.withOpacity(0.3),
                         thumbShape: const RoundSliderThumbShape(
                           enabledThumbRadius: 12,
                         ),
@@ -195,6 +236,13 @@ class InteractiveSquareDemoState extends State<InteractiveSquareDemo> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
