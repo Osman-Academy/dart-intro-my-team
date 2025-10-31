@@ -2,29 +2,31 @@ class User {
   final String username;
   final String password;
 
-  User(this.username, this.password);
+  const User({required this.username, required this.password});
 }
 
 class AuthRepository {
-  final List<User> _users = [
-    User('admin', '1234'),
-    User('user', 'abcd'),
+  final List<User> _registeredUsers = [
+    User(username: 'admin', password: '1234'),
+    User(username: 'user', password: 'abcd'),
   ];
 
+  User? _currentUser;
+
   bool login(String username, String password) {
-    for (var user in _users) {
-      if (user.username == username && user.password == password) {
-        print(' Login successful for $username');
-        return true;
-      }
+    final user = _registeredUsers.firstWhere(
+      (u) => u.username == username && u.password == password,
+      orElse: () => const User(username: '', password: ''),
+    );
+
+    if (user.username.isNotEmpty) {
+      _currentUser = user;
+      return true;
     }
-    print(' Login failed: wrong credentials');
     return false;
   }
-}
 
-void main() {
-  final repo = AuthRepository();
-  repo.login('admin', '1234'); 
-  repo.login('user', 'wrong');
+  void logout() => _currentUser = null;
+
+  User? get currentUser => _currentUser;
 }
