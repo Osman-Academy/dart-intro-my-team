@@ -1,0 +1,223 @@
+
+
+class Category {
+  final String id;
+  final String name;
+  final String icon;
+
+  Category({required this.id, required this.name, required this.icon});
+
+  @override
+  String toString() => 'Category(id: $id, name: $name)';
+}
+
+class Product {
+  final String id;
+  final String name;
+  final double price;
+  final String categoryId;
+  final String imageUrl;
+  final String description;
+
+  Product({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.categoryId,
+    required this.imageUrl,
+    required this.description,
+  });
+
+  @override
+  String toString() => 'Product(id: $id, name: $name, price: $price)';
+}
+
+class CartItem {
+  final Product product;
+  int quantity;
+
+  CartItem({required this.product, this.quantity = 1});
+
+  double get totalPrice => product.price * quantity;
+
+  @override
+  String toString() => 'CartItem(product: ${product.name}, quantity: $quantity, total: \$$totalPrice)';
+}
+
+class ShoppingCart {
+  final List<CartItem> _items = [];
+  final Map<String, Category> _categories = {};
+
+  List<CartItem> get items => List.unmodifiable(_items);
+  Map<String, Category> get categories => Map.unmodifiable(_categories);
+  
+  int get totalItems => _items.fold(0, (sum, item) => sum + item.quantity);
+  double get totalPrice => _items.fold(0.0, (sum, item) => sum + item.totalPrice);
+
+  void addCategory(Category category) {
+    _categories[category.id] = category;
+  }
+
+  void addProductToCart(Product product, {int quantity = 1}) {
+    if (!_categories.containsKey(product.categoryId)) {
+      throw Exception('Category ${product.categoryId} not found');
+    }
+
+    final existingItemIndex = _items.indexWhere((item) => item.product.id == product.id);
+    
+    if (existingItemIndex >= 0) {
+      _items[existingItemIndex].quantity += quantity;
+    } else {
+      _items.add(CartItem(product: product, quantity: quantity));
+    }
+  }
+
+  void removeProductFromCart(String productId) {
+    _items.removeWhere((item) => item.product.id == productId);
+  }
+
+  void updateProductQuantity(String productId, int newQuantity) {
+    if (newQuantity <= 0) {
+      removeProductFromCart(productId);
+      return;
+    }
+
+    final itemIndex = _items.indexWhere((item) => item.product.id == productId);
+    if (itemIndex >= 0) {
+      _items[itemIndex].quantity = newQuantity;
+    }
+  }
+
+  void clearCart() {
+    _items.clear();
+  }
+
+  List<CartItem> getItemsByCategory(String categoryId) {
+    return _items.where((item) => item.product.categoryId == categoryId).toList();
+  }
+
+  double getCategoryTotal(String categoryId) {
+    return _items
+        .where((item) => item.product.categoryId == categoryId)
+        .fold(0.0, (sum, item) => sum + item.totalPrice);
+  }
+
+  Map<String, List<CartItem>> getItemsGroupedByCategory() {
+    final Map<String, List<CartItem>> grouped = {};
+    
+    for (final item in _items) {
+      final categoryId = item.product.categoryId;
+      if (!grouped.containsKey(categoryId)) {
+        grouped[categoryId] = [];
+      }
+      grouped[categoryId]!.add(item);
+    }
+    
+    return grouped;
+  }
+
+  void printCartSummary() {
+    print('=== SHOPPING CART SUMMARY ===');
+    print('Total Items: $totalItems');
+    print('Total Price: \$${totalPrice.toStringAsFixed(2)}');
+    print('');
+    
+    final groupedItems = getItemsGroupedByCategory();
+    
+    for (final categoryId in groupedItems.keys) {
+      final category = _categories[categoryId];
+      final categoryItems = groupedItems[categoryId]!;
+      final categoryTotal = getCategoryTotal(categoryId);
+      
+      print('${category?.name} (${category?.icon}): \$${categoryTotal.toStringAsFixed(2)}');
+      
+      for (final item in categoryItems) {
+        print('  - ${item.product.name} x${item.quantity} = \$${item.totalPrice.toStringAsFixed(2)}');
+      }
+      print('');
+    }
+  }
+}
+
+void main() {
+  final cart = ShoppingCart();
+
+  final electronics = Category(id: '1', name: 'Electronics', icon: '📱');
+  final books = Category(id: '2', name: 'Books', icon: '📚');
+  final clothing = Category(id: '3', name: 'Clothing', icon: '👕');
+
+  cart.addCategory(electronics);
+  cart.addCategory(books);
+  cart.addCategory(clothing);
+
+  final products = [
+    Product(
+      id: '1',
+      name: 'iPhone 15',
+      price: 999.99,
+      categoryId: '1',
+      imageUrl: 'iphone15.jpg',
+      description: 'Latest iPhone model',
+    ),
+    Product(
+      id: '2',
+      name: 'MacBook Pro',
+      price: 1999.99,
+      categoryId: '1',
+      imageUrl: 'macbook.jpg',
+      description: 'Apple MacBook Pro',
+    ),
+    Product(
+      id: '3',
+      name: 'Dart Programming Guide',
+      price: 39.99,
+      categoryId: '2',
+      imageUrl: 'dart_book.jpg',
+      description: 'Learn Dart programming',
+    ),
+    Product(
+      id: '4',
+      name: 'T-Shirt',
+      price: 29.99,
+      categoryId: '3',
+      imageUrl: 'tshirt.jpg',
+      description: 'Cotton T-Shirt',
+    ),
+    Product(
+      id: '5',
+      name: 'Flutter Cookbook',
+      price: 49.99,
+      categoryId: '2',
+      imageUrl: 'flutter_book.jpg',
+      description: 'Flutter recipes',
+    ),
+  ];
+
+  cart.addProductToCart(products[0]);
+  cart.addProductToCart(products[1]);
+  cart.addProductToCart(products[2], quantity: 2);
+  cart.addProductToCart(products[3]);
+  cart.addProductToCart(products[0]);
+  cart.addProductToCart(products[4], quantity: 3);
+
+  cart.printCartSummary();
+
+  print('=== UPDATING QUANTITIES ===');
+  cart.updateProductQuantity('1', 1);
+  cart.updateProductQuantity('3', 5);
+  cart.removeProductFromCart('4');
+
+  cart.printCartSummary();
+
+  print('=== CATEGORY-SPECIFIC OPERATIONS ===');
+  final electronicsItems = cart.getItemsByCategory('1');
+  print('Electronics items: $electronicsItems');
+  
+  final electronicsTotal = cart.getCategoryTotal('1');
+  print('Electronics total: \$${electronicsTotal.toStringAsFixed(2)}');
+
+  print('\n=== FINAL CART STATE ===');
+  print('All items: ${cart.items}');
+  print('Total items count: ${cart.totalItems}');
+  print('Grand total: \$${cart.totalPrice.toStringAsFixed(2)}');
+}
