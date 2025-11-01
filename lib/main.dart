@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'managers/cart_manager.dart';
 import 'models/cart_item.dart';
+import 'widgets/shrinking_square.dart';
 
 void main() {
   runApp(
@@ -32,6 +33,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text('ORT Prep — Cart Demo')),
       body: Column(
         children: [
+          const Divider(),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Text('Interactive Square (tap to shrink)'),
+          ),
+          const SizedBox(height: 8),
+          const ShrinkingSquare(maxSize: 220, minSize: 40),
           ListTile(
             title: const Text('Sample Item (Math)'),
             subtitle: const Text('Category: Math'),
