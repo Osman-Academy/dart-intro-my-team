@@ -3,11 +3,18 @@ import 'package:provider/provider.dart';
 import 'managers/cart_manager.dart';
 import 'models/cart_item.dart';
 import 'widgets/shrinking_square.dart';
+import 'repositories/auth_repository.dart';
+import 'services/auth_service.dart';
+import 'pages/login_page.dart';
 
 void main() {
+  final authRepo = AuthRepository();
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => CartManager(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartManager()),
+        ChangeNotifierProvider(create: (_) => AuthService(authRepo)),
+      ],
       child: const MyApp(),
     ),
   );
@@ -37,6 +44,12 @@ class HomePage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0),
             child: Text('Interactive Square (tap to shrink)'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const LoginPage()),
+            ),
+            child: Text(context.watch<AuthService>().isAuthenticated ? 'Logged In' : 'Login'),
           ),
           const SizedBox(height: 8),
           const ShrinkingSquare(maxSize: 220, minSize: 40),
