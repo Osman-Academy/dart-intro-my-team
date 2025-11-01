@@ -38,11 +38,11 @@ class Cart {
 
   void printCart() {
     if (items.isEmpty) {
-      print("🛒 Your cart is empty.");
+      print("Your cart is empty.");
       return;
     }
 
-    print("🛒 Cart Contents:");
+    print("Cart Contents:");
     for (var cartItem in items) {
       print(
         "${cartItem.item.name} (${cartItem.item.category}) x${cartItem.quantity} = \$${cartItem.totalPrice.toStringAsFixed(2)}"

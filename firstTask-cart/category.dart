@@ -4,6 +4,11 @@ class Category {
   const Category(this.name);
 
   double getDiscountRate() {
+    // Discount rules:
+    // Food -> 5%
+    // Clothing -> 10%
+    // Electronics -> 15%
+    // Everything else -> 0%
     switch (name.toLowerCase()) {
       case 'food':
         return 0.05;
