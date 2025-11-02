@@ -123,10 +123,10 @@ class HomeState extends State<Home> {
           return GridView.builder(
             padding: const EdgeInsets.all(12),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // 3 КАРТОЧКИ В РЯД
+              crossAxisCount: 3,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
-              childAspectRatio: 0.7, // ОПТИМАЛЬНОЕ СООТНОШЕНИЕ
+              childAspectRatio: 0.7,
             ),
             itemCount: products.length,
             itemBuilder: (context, index) => ProductCard(
