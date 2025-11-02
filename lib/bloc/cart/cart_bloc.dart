@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final Map<int, CartItem> _items = {};
   
-  CartBloc() : super(CartLoading()) {
+  CartBloc() : super(CartLoaded({}, 0, 0)) {
     
-      on<CartAddEvent>((event, emit) {
+    on<CartAddEvent>((event, emit) {
       final productId = event.product.id!;
       
       if (_items.containsKey(productId)) {
