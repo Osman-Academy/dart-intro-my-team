@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navigation/bloc/product_bloc.dart';
-import 'package:navigation/bloc/product_event.dart';
-import 'package:navigation/bloc/product_state.dart';
+import 'package:navigation/bloc/product/product_bloc.dart';
+import 'package:navigation/bloc/product/product_event.dart';
+import 'package:navigation/bloc/product/product_state.dart';
 import 'package:navigation/models/product.dart';
 import 'package:navigation/pages/detail.dart';
+import 'package:navigation/pages/cart.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,7 +26,20 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(title: const Text("Products")),
+          appBar: AppBar(
+            title: const Text("Products"),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Cart()),
+                  );
+                },
+              ),
+            ],
+          ),
           body:
               BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
             if (state is ProductStateSuccess) {
