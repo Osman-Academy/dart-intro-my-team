@@ -1,14 +1,14 @@
-// lib/pages/home.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navigation/bloc/product_bloc.dart';
-import 'package:navigation/bloc/product_event.dart';
-import 'package:navigation/bloc/product_state.dart';
-import 'package:navigation/bloc/cart_bloc.dart';
-import 'package:navigation/models/product.dart';
-import 'package:navigation/pages/detail.dart';
-import 'package:navigation/pages/home/common/product_card.dart';
-import 'package:navigation/pages/cart_screen.dart';
+import '../bloc/product_bloc.dart';
+import '../bloc/product_event.dart';
+import '../bloc/product_state.dart';
+import '../bloc/cart_bloc.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_event.dart';
+import '../models/product.dart';
+import '../pages/detail.dart';
+import '../pages/home/common/product_card.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,14 +28,8 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text(
-          'Products',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
+        title: const Text('Products'),
         actions: [
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
@@ -47,17 +41,10 @@ class HomeState extends State<Home> {
               return Stack(
                 children: [
                   IconButton(
-                    icon: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.shopping_cart, color: Colors.blue),
-                    ),
+                    icon: const Icon(Icons.shopping_cart),
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const CartScreen())
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Cart screen coming soon')),
                       );
                     },
                   ),
@@ -71,18 +58,13 @@ class HomeState extends State<Home> {
                           color: Colors.red,
                           shape: BoxShape.circle,
                         ),
-                        constraints: const BoxConstraints(
-                          minWidth: 20,
-                          minHeight: 20,
-                        ),
                         child: Text(
-                          itemCount > 99 ? '99+' : itemCount.toString(),
+                          itemCount.toString(),
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 10,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -90,7 +72,13 @@ class HomeState extends State<Home> {
               );
             },
           ),
-          const SizedBox(width: 8),
+          
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              context.read<AuthBloc>().add(AuthLogoutEvent());
+            },
+          ),
         ],
       ),
       body: BlocConsumer<ProductBloc, ProductState>(
@@ -101,27 +89,16 @@ class HomeState extends State<Home> {
           }
           
           if (state is ProductStateLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
           
           if (products.isEmpty) {
             return const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.inventory_2, size: 64, color: Colors.grey),
-                  SizedBox(height: 16),
-                  Text('No products available', style: TextStyle(fontSize: 18)),
-                ],
-              ),
+              child: Text('No products available'),
             );
           }
           
-          // ИСПОЛЬЗУЕМ ListView ВМЕСТО GridView для одного ряда
           return ListView.builder(
-            padding: const EdgeInsets.symmetric(vertical: 8),
             itemCount: products.length,
             itemBuilder: (context, index) => ProductCard(
               product: products[index],
