@@ -3,14 +3,19 @@ import 'package:flutter/material.dart';
 class FormLogin extends StatefulWidget {
   final GlobalKey? formKey;
   final Function()? onSubmit;
+  final Function(String username, String email, String password)? onRegister;
   final TextEditingController? lognController;
   final TextEditingController? passwordController;
-  const FormLogin(
-      {super.key,
-      this.onSubmit,
-      this.lognController,
-      this.passwordController,
-      this.formKey});
+
+  const FormLogin({
+    super.key,
+    this.onSubmit,
+    this.onRegister,
+    this.lognController,
+    this.passwordController,
+    this.formKey,
+  });
+
   @override
   State<FormLogin> createState() => FormLoginState();
 }
@@ -25,19 +30,19 @@ class FormLoginState extends State<FormLogin> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 20,
           children: [
             TextFormField(
               controller: widget.lognController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "The username filed cannot be empty";
+                  return "The username field cannot be empty";
                 }
                 return null;
               },
               decoration: const InputDecoration(
                   label: Text("username"), border: OutlineInputBorder()),
             ),
+            const SizedBox(height: 16),
             TextFormField(
               controller: widget.passwordController,
               decoration: const InputDecoration(
@@ -45,11 +50,12 @@ class FormLoginState extends State<FormLogin> {
               obscureText: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "The password filed cannot be empty";
+                  return "The password field cannot be empty";
                 }
                 return null;
               },
             ),
+            const SizedBox(height: 24),
             Row(
               children: [
                 Expanded(
@@ -67,6 +73,7 @@ class FormLoginState extends State<FormLogin> {
                 ),
               ],
             ),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -78,9 +85,12 @@ class FormLoginState extends State<FormLogin> {
                 const Expanded(child: Divider(height: 1)),
               ],
             ),
+            const SizedBox(height: 16),
             Center(
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showRegisterDialog(context);
+                  },
                   child: const Text(
                     "Sign up",
                     style: TextStyle(color: Colors.blue, fontSize: 16),
@@ -89,6 +99,106 @@ class FormLoginState extends State<FormLogin> {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  void _showRegisterDialog(BuildContext context) {
+    final registerUsernameCtrl = TextEditingController();
+    final registerEmailCtrl = TextEditingController();
+    final registerPasswordCtrl = TextEditingController();
+    final registerFormKey = GlobalKey<FormState>();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Create Account"),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Form(
+                key: registerFormKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: registerUsernameCtrl,
+                      decoration: const InputDecoration(
+                        label: Text("Username"),
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Username cannot be empty";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: registerEmailCtrl,
+                      decoration: const InputDecoration(
+                        label: Text("Email"),
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Email cannot be empty";
+                        }
+                        if (!value.contains('@')) {
+                          return "Please enter a valid email";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: registerPasswordCtrl,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        label: Text("Password"),
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Password cannot be empty";
+                        }
+                        if (value.length < 6) {
+                          return "Password must be at least 6 characters";
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (registerFormKey.currentState!.validate()) {
+                if (widget.onRegister != null) {
+                  widget.onRegister!(
+                    registerUsernameCtrl.text,
+                    registerEmailCtrl.text,
+                    registerPasswordCtrl.text,
+                  );
+                }
+                registerUsernameCtrl.clear();
+                registerEmailCtrl.clear();
+                registerPasswordCtrl.clear();
+                Navigator.of(context).pop();
+              }
+            },
+            child: const Text("Register"),
+          ),
+        ],
       ),
     );
   }
