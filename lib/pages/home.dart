@@ -6,9 +6,13 @@ import 'package:navigation/bloc/product_state.dart';
 import 'package:navigation/bloc/auth_bloc.dart';
 import 'package:navigation/bloc/auth_event.dart';
 import 'package:navigation/bloc/auth_state.dart';
-import 'package:navigation/models/user.dart'; 
+import 'package:navigation/bloc/cart_bloc.dart';
+import 'package:navigation/bloc/cart_event.dart';
+import 'package:navigation/bloc/cart_state.dart';
+import 'package:navigation/models/user.dart';
 import 'package:navigation/models/product.dart';
 import 'package:navigation/pages/detail.dart';
+import 'package:navigation/pages/cart.dart';
 import 'package:navigation/pages/home/common/product_card.dart';
 
 class Home extends StatefulWidget {
@@ -40,10 +44,46 @@ class HomeState extends State<Home> {
           appBar: AppBar(
             title: const Text("Products"),
             actions: [
-              IconButton(
-                icon: const Icon(Icons.shopping_cart),
-                onPressed: () {
-                  Navigator.of(context).pushReplacementNamed("login");
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, cartState) {
+                  int itemCount = 0;
+                  if (cartState is CartStateLoaded) {
+                    itemCount = cartState.cart.totalItems;
+                  }
+                  return Stack(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.shopping_cart),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("cart");
+                        },
+                      ),
+                      if (itemCount > 0)
+                        Positioned(
+                          right: 8,
+                          top: 8,
+                          child: Container(
+                            padding: const EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            constraints: const BoxConstraints(
+                              minWidth: 16,
+                              minHeight: 16,
+                            ),
+                            child: Text(
+                              itemCount.toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
                 },
               ),
               BlocBuilder<AuthBloc, AuthState>(
@@ -143,7 +183,8 @@ class HomeState extends State<Home> {
                       Column(
                         children: List<Widget>.generate(
                           products.length,
-                          (index) => GestureDetector(
+                          (index) => ProductCard(
+                            product: products[index],
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
@@ -153,12 +194,9 @@ class HomeState extends State<Home> {
                                 ),
                               );
                             },
-                            child: ProductCard(
-                              product: products[index],
-                              onTap: () {
-                                _showAddToCartDialog(context, products[index]);
-                              },
-                            ),
+                            onAddToCart: () {
+                              _addToCart(context, products[index]);
+                            },
                           ),
                         ),
                       ),
@@ -209,13 +247,22 @@ class HomeState extends State<Home> {
           floatingActionButton: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               if (state is AuthStateAuthenticated) {
-                return FloatingActionButton.extended(
-                  onPressed: () {
-                    _showCartComingSoon(context);
+                return BlocBuilder<CartBloc, CartState>(
+                  builder: (context, cartState) {
+                    final itemCount = cartState is CartStateLoaded
+                        ? cartState.cart.totalItems
+                        : 0;
+                    return FloatingActionButton.extended(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("cart");
+                      },
+                      icon: const Icon(Icons.shopping_cart),
+                      label: itemCount > 0
+                          ? Text("Cart ($itemCount)")
+                          : const Text("Cart"),
+                      backgroundColor: Colors.blue,
+                    );
                   },
-                  icon: const Icon(Icons.shopping_cart),
-                  label: const Text("Cart"),
-                  backgroundColor: Colors.blue,
                 );
               }
               return FloatingActionButton.extended(
@@ -233,34 +280,19 @@ class HomeState extends State<Home> {
     );
   }
 
-  void _showAddToCartDialog(BuildContext context, Product product) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Add to Cart"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              product.title ?? "Unknown Product",
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text("Price: \$${product.price?.toStringAsFixed(2) ?? "0.00"}"),
-            const SizedBox(height: 16),
-            const Text("This feature will be available soon!"),
-          ],
+  void _addToCart(BuildContext context, Product product) {
+    context.read<CartBloc>().add(CartAddItemEvent(product: product));
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("${product.title} added to cart"),
+        duration: const Duration(seconds: 2),
+        action: SnackBarAction(
+          label: "View Cart",
+          onPressed: () {
+            Navigator.of(context).pushNamed("cart");
+          },
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text("OK"),
-          ),
-        ],
       ),
     );
   }
@@ -278,12 +310,23 @@ class HomeState extends State<Home> {
             _buildProfileItem("Email", user.email),
             _buildProfileItem("User ID", user.id),
             const SizedBox(height: 16),
-            const Text(
-              "Cart functionality coming soon!",
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                color: Colors.grey,
-              ),
+            BlocBuilder<CartBloc, CartState>(
+              builder: (context, cartState) {
+                final itemCount = cartState is CartStateLoaded
+                    ? cartState.cart.totalItems
+                    : 0;
+                final totalPrice = cartState is CartStateLoaded
+                    ? cartState.cart.totalPrice
+                    : 0;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildProfileItem("Items in cart", itemCount.toString()),
+                    _buildProfileItem(
+                        "Cart total", "\$${totalPrice.toStringAsFixed(2)}"),
+                  ],
+                );
+              },
             ),
           ],
         ),
@@ -304,7 +347,7 @@ class HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 80,
+            width: 100,
             child: Text(
               "$label:",
               style: const TextStyle(fontWeight: FontWeight.bold),
@@ -315,16 +358,6 @@ class HomeState extends State<Home> {
             child: Text(value ?? "Not available"),
           ),
         ],
-      ),
-    );
-  }
-
-  void _showCartComingSoon(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Shopping cart functionality coming in the next update!"),
-        duration: Duration(seconds: 3),
-        backgroundColor: Colors.blue,
       ),
     );
   }

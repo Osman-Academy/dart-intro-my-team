@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navigation/bloc/cart_event.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:navigation/bloc/product_bloc.dart';
 import 'package:navigation/bloc/auth_bloc.dart';
-import 'package:navigation/bloc/auth_event.dart'; 
+import 'package:navigation/bloc/auth_event.dart';
+import 'package:navigation/bloc/cart_bloc.dart'; 
 import 'package:navigation/pages/app.dart';
 
 void main() async {
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 AuthBloc(prefs: storage)..add(AuthCheckEvent())),
+        BlocProvider(
+            create: (context) =>
+                CartBloc(prefs: storage)..add(CartLoadEvent())),
       ],
       child: app,
     );

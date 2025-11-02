@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navigation/pages/cart.dart';
 import 'package:navigation/pages/home.dart';
 import 'package:navigation/pages/detail.dart';
 import 'package:navigation/pages/login.dart';
@@ -17,6 +18,7 @@ var app = MaterialApp(
   routes: {
     "home": (context) => const Home(),
     "product": (context) => Detail(),
-    "login": (context) => Login()
+    "login": (context) => Login(),
+    "cart": (context) => const CartPage()
   },
 );
