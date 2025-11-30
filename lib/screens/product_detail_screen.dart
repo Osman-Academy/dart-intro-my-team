@@ -2,14 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/product_provider.dart';
 import '../providers/cart_provider.dart';
+import '../providers/auth_provider.dart';
+import 'login_screen.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final String productId;
   const ProductDetailScreen({super.key, required this.productId});
 
+  Future<void> _handleOrderNow(BuildContext context) async {
+    final auth = context.read<AuthProvider>();
+    final cart = context.read<CartProvider>();
+    final product =
+        Provider.of<ProductProvider>(context, listen: false).findById(productId)!;
+
+    if (!auth.isAuthenticated) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const LoginScreen(redirectRoute: '/cart'),
+        ),
+      );
+      if (!auth.isAuthenticated) return;
+    }
+
+    cart.add(product);
+    if (context.mounted) {
+      Navigator.of(context).pushNamed('/cart');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<ProductProvider>(context, listen: false).findById(productId)!;
+    final product = Provider.of<ProductProvider>(context, listen: false)
+        .findById(productId)!;
     final cart = Provider.of<CartProvider>(context, listen: false);
     final isWide = MediaQuery.of(context).size.width >= 700;
 
@@ -19,7 +43,8 @@ class ProductDetailScreen extends StatelessWidget {
         product.imageUrl,
         fit: BoxFit.cover,
         width: double.infinity,
-        errorBuilder: (_, __, ___) => const Center(child: Icon(Icons.image_not_supported)),
+        errorBuilder: (_, __, ___) =>
+            const Center(child: Icon(Icons.image_not_supported)),
       ),
     );
 
@@ -31,12 +56,18 @@ class ProductDetailScreen extends StatelessWidget {
         children: [
           Text(
             product.name,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
           Text(
             product.brand,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.grey[600]),
           ),
           const SizedBox(height: 8),
           Row(
@@ -51,7 +82,10 @@ class ProductDetailScreen extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             '\$${product.price.toStringAsFixed(2)}',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Theme.of(context).colorScheme.primary),
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(color: Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 16),
           Text(product.description),
@@ -72,8 +106,9 @@ class ProductDetailScreen extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(12)),
-                onPressed: () => Navigator.of(context).pushNamed('/cart'),
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(12)),
+                onPressed: () => _handleOrderNow(context),
                 child: const Icon(Icons.shopping_cart),
               ),
             ],
