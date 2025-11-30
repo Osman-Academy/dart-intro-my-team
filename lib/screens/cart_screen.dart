@@ -1,9 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
+import '../providers/auth_provider.dart';
+import 'login_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
+
+  Future<void> _handleCheckout(BuildContext context) async {
+    final auth = context.read<AuthProvider>();
+    final cart = context.read<CartProvider>();
+
+    if (!auth.isAuthenticated) {
+      // Отправляем на логин, а потом возвращаемся в корзину
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const LoginScreen(redirectRoute: '/cart'),
+        ),
+      );
+
+      // После возврата проверяем, авторизовался ли пользователь
+      if (!auth.isAuthenticated) {
+        return;
+      }
+    }
+
+    cart.clear();
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Заказ оформлен')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +97,7 @@ class CartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           ElevatedButton(
-            onPressed: () {
-              cart.clear();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Заказ оформлен')),
-              );
-            },
+            onPressed: () => _handleCheckout(context),
             child: const Text('Оформить заказ'),
           )
         ],
