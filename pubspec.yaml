@@ -12,6 +12,15 @@ dependencies:
   provider: ^6.0.5
   http: ^0.13.6
 
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: fonts/NotoSans-Regular.ttf
+        - asset: fonts/NotoSans-Italic.ttf
+          style: italic
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
