@@ -40,6 +40,7 @@ class TechStoreApp extends StatelessWidget {
             }
             return const ProfileScreen();
           },
+          '/home': (_) => const HomeScreen(),
         },
         home: const HomeScreen(),
       ),

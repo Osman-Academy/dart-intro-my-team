@@ -105,7 +105,14 @@ class CartScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Cart')),
+      appBar: AppBar(title: const Text('Cart'), actions: [
+        IconButton(
+          icon: const Icon(Icons.home),
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil('/home', (r) => false);
+          },
+        ),
+      ]),
       body: items.isEmpty
           ? const Center(child: Text('Cart is empty'))
           : isWide

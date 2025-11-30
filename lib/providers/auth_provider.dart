@@ -13,7 +13,6 @@ class AuthProvider with ChangeNotifier {
   User? _user;
   String? _token;
   String? _errorMessage;
-  // Опционально: refresh token
   String? _refreshToken;
 
   AuthProvider({AuthService? service}) : _service = service ?? AuthService();
@@ -31,18 +30,11 @@ class AuthProvider with ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       final storedToken = prefs.getString('auth_token');
       final storedRefreshToken = prefs.getString('auth_refresh_token');
-      final storedUserId = prefs.getString('auth_user_id');
-      final storedEmail = prefs.getString('auth_email');
-      final storedName = prefs.getString('auth_name');
-
-      if (storedToken != null && storedUserId != null && storedName != null) {
+      if (storedToken != null && storedToken.isNotEmpty) {
         _token = storedToken;
         _refreshToken = storedRefreshToken;
-        _user = User(
-          id: storedUserId,
-          email: storedEmail ?? '',
-          name: storedName,
-        );
+        final current = await _service.fetchCurrentUser(storedToken);
+        _user = current;
         _status = AuthStatus.authenticated;
       } else {
         _status = AuthStatus.unauthenticated;
@@ -64,17 +56,13 @@ class AuthProvider with ChangeNotifier {
       final refreshToken = (result['refreshToken'] as String?) ?? '';
       final userJson = result['user'] as Map<String, dynamic>;
       final user = User.fromJson(userJson);
-
       if (token.isEmpty) {
-        final raw = result['raw'];
-        throw Exception('Сервер не вернул accessToken. Ответ: $raw');
+        throw Exception('Сервер не вернул accessToken');
       }
-
       _token = token;
       _refreshToken = refreshToken.isNotEmpty ? refreshToken : null;
       _user = user;
       _status = AuthStatus.authenticated;
-
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('auth_token', token);
       if (_refreshToken != null) {
@@ -83,6 +71,11 @@ class AuthProvider with ChangeNotifier {
       await prefs.setString('auth_user_id', user.id);
       await prefs.setString('auth_email', user.email);
       await prefs.setString('auth_name', user.name);
+      await prefs.setString('auth_username', user.username);
+      await prefs.setString('auth_first_name', user.firstName);
+      await prefs.setString('auth_last_name', user.lastName);
+      await prefs.setString('auth_gender', user.gender);
+      await prefs.setString('auth_image', user.image);
     } catch (e) {
       _status = AuthStatus.error;
       _errorMessage = e.toString();
@@ -97,12 +90,32 @@ class AuthProvider with ChangeNotifier {
     _refreshToken = null;
     _errorMessage = null;
     notifyListeners();
-
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('auth_token');
     await prefs.remove('auth_refresh_token');
     await prefs.remove('auth_user_id');
     await prefs.remove('auth_email');
     await prefs.remove('auth_name');
+    await prefs.remove('auth_username');
+    await prefs.remove('auth_first_name');
+    await prefs.remove('auth_last_name');
+    await prefs.remove('auth_gender');
+    await prefs.remove('auth_image');
+  }
+
+  Future<void> refreshUser() async {
+    if (_token == null || _token!.isEmpty) return;
+    try {
+      final current = await _service.fetchCurrentUser(_token!);
+      _user = current;
+      if (_status != AuthStatus.authenticated) {
+        _status = AuthStatus.authenticated;
+      }
+      notifyListeners();
+    } catch (e) {
+      _status = AuthStatus.error;
+      _errorMessage = e.toString();
+      notifyListeners();
+    }
   }
 }

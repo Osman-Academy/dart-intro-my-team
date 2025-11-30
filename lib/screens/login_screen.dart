@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
 
     if (auth.isAuthenticated) {
-      final route = widget.redirectRoute ?? '/';
+      final route = widget.redirectRoute ?? '/home';
       Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
     } else if (auth.status == AuthStatus.error && auth.errorMessage != null) {
       ScaffoldMessenger.of(context).showSnackBar(
