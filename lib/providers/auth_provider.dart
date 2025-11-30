@@ -13,6 +13,8 @@ class AuthProvider with ChangeNotifier {
   User? _user;
   String? _token;
   String? _errorMessage;
+  // Опционально: refresh token
+  String? _refreshToken;
 
   AuthProvider({AuthService? service}) : _service = service ?? AuthService();
 
@@ -28,12 +30,14 @@ class AuthProvider with ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       final storedToken = prefs.getString('auth_token');
+      final storedRefreshToken = prefs.getString('auth_refresh_token');
       final storedUserId = prefs.getString('auth_user_id');
       final storedEmail = prefs.getString('auth_email');
       final storedName = prefs.getString('auth_name');
 
       if (storedToken != null && storedUserId != null && storedName != null) {
         _token = storedToken;
+        _refreshToken = storedRefreshToken;
         _user = User(
           id: storedUserId,
           email: storedEmail ?? '',
@@ -56,16 +60,26 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     try {
       final result = await _service.login(username, password);
-      final token = result['token'] as String;
+      final token = (result['token'] as String?) ?? '';
+      final refreshToken = (result['refreshToken'] as String?) ?? '';
       final userJson = result['user'] as Map<String, dynamic>;
       final user = User.fromJson(userJson);
 
+      if (token.isEmpty) {
+        final raw = result['raw'];
+        throw Exception('Сервер не вернул accessToken. Ответ: $raw');
+      }
+
       _token = token;
+      _refreshToken = refreshToken.isNotEmpty ? refreshToken : null;
       _user = user;
       _status = AuthStatus.authenticated;
 
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('auth_token', token);
+      if (_refreshToken != null) {
+        await prefs.setString('auth_refresh_token', _refreshToken!);
+      }
       await prefs.setString('auth_user_id', user.id);
       await prefs.setString('auth_email', user.email);
       await prefs.setString('auth_name', user.name);
@@ -80,11 +94,13 @@ class AuthProvider with ChangeNotifier {
     _status = AuthStatus.unauthenticated;
     _user = null;
     _token = null;
+    _refreshToken = null;
     _errorMessage = null;
     notifyListeners();
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('auth_token');
+    await prefs.remove('auth_refresh_token');
     await prefs.remove('auth_user_id');
     await prefs.remove('auth_email');
     await prefs.remove('auth_name');

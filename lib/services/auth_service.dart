@@ -5,8 +5,19 @@ import 'package:http/http.dart' as http;
 
 import '../models/user.dart';
 
-/// Auth service using DummyJSON API.
-/// Docs: https://dummyjson.com/docs/auth
+/// Auth service using DummyJSON-like API.
+/// Пример ответа:
+/// {
+///   "id": 1,
+///   "username": "emilys",
+///   "email": "emily.johnson@x.dummyjson.com",
+///   "firstName": "Emily",
+///   "lastName": "Johnson",
+///   "gender": "female",
+///   "image": "https://dummyjson.com/icon/emilys/128",
+///   "accessToken": "<jwt>",
+///   "refreshToken": "<jwt>"
+/// }
 class AuthService {
   static const String _baseUrl = 'https://dummyjson.com';
 
@@ -23,42 +34,33 @@ class AuthService {
     );
 
     if (response.statusCode != 200) {
-      // DummyJSON возвращает 400 при неверных данных
-      throw Exception('Ошибка входа: ${response.statusCode}');
+      throw Exception('Ошибка входа: ${response.statusCode}: ${response.body}');
     }
 
     final Map<String, dynamic> data =
         jsonDecode(response.body) as Map<String, dynamic>;
 
-    /* Пример ответа DummyJSON:
-      {
-        "id": 1,
-        "username": "kminchelle",
-        "email": "kminchelle@qq.com",
-        "firstName": "Jeanne",
-        "lastName": "Halvorson",
-        "token": "..."
-      }
-    */
+    // Новая схема: accessToken/refreshToken
+    final accessToken = data['accessToken'] as String?;
+    final refreshToken = data['refreshToken'] as String?;
 
-    final token = data['token'] as String?;
-    if (token == null) {
-      throw Exception('Некорректный ответ сервера (нет token)');
-    }
-
-    final user = User.fromJson(data);
+    // Собираем пользователя из ответа
+    final user = User(
+      id: (data['id'] ?? '').toString(),
+      email: (data['email'] ?? '') as String,
+      name: (data['firstName'] ?? data['username'] ?? '') as String,
+    );
 
     return <String, dynamic>{
-      'token': token,
+      // Для совместимости вернём 'token' как accessToken
+      'token': accessToken ?? '',
+      'refreshToken': refreshToken ?? '',
       'user': user.toJson(),
+      'raw': data,
     };
   }
 
-  // Заглушка, если позже захочешь получать текущего пользователя по токену.
   Future<User> fetchCurrentUser(String token) async {
-    // В DummyJSON нет отдельного эндпоинта для текущего пользователя по токену,
-    // поэтому тут можно просто вернуть локально сохранённого пользователя
-    // или сделать запрос к своему backend, если он появится.
     throw UnimplementedError('fetchCurrentUser не реализован для DummyJSON');
   }
 }
