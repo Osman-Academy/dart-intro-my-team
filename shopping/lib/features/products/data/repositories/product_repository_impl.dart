@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/product.dart';
@@ -8,10 +7,9 @@ import '../datasources/product_remote_data_source.dart';
 import '../models/product_model.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
-  ProductRepositoryImpl(this._remoteDataSource, this._client);
+  ProductRepositoryImpl(this._remoteDataSource);
 
   final ProductRemoteDataSource _remoteDataSource;
-  final Dio _client;
 
   @override
   Future<Either<Failure, List<Product>>> getProducts() async {
@@ -34,16 +32,16 @@ class ProductRepositoryImpl implements ProductRepository {
 
 extension on ProductModel {
   Product toEntity() => Product(
-        id: id,
-        title: title,
-        description: description,
-        price: price,
-        discountPercentage: discountPercentage,
-        rating: rating,
-        stock: stock,
-        brand: brand,
-        category: category,
-        thumbnail: thumbnail,
-        images: images,
+        id: this.id,
+        title: this.title,
+        description: this.description,
+        price: this.price,
+        discountPercentage: this.discountPercentage,
+        rating: this.rating,
+        stock: this.stock,
+        brand: this.brand,
+        category: this.category,
+        thumbnail: this.thumbnail,
+        images: this.images,
       );
 }
