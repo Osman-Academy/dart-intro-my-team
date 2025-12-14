@@ -1,5 +1,9 @@
 import '../../domain/entities/task_entity.dart';
 import '../../domain/entities/task_status.dart';
+<<<<<<< HEAD
+=======
+import '../../domain/entities/user_entity.dart';
+>>>>>>> 4ccf46f (Updated data folder, added mappers, models, repositories, api's, and datasources.)
 import 'user_model.dart';
 
 class TaskModel {
