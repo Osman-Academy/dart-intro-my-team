@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../domain/entities/task_entity.dart';
 import '../../../domain/entities/task_status.dart';
-import '../../blocs/task_bloc/task_bloc.dart';
-import '../../blocs/task_bloc/task_event.dart';
 import 'task_card.dart';
 
 class ColumnWidget extends StatelessWidget {

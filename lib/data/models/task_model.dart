@@ -1,6 +1,5 @@
 import '../../domain/entities/task_entity.dart';
 import '../../domain/entities/task_status.dart';
-import '../../domain/entities/user_entity.dart';
 import 'user_model.dart';
 
 class TaskModel {

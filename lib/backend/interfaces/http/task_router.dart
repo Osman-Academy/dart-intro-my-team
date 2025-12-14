@@ -9,7 +9,6 @@ import '../../application/usecases/get_tasks.dart';
 import '../../application/usecases/move_task.dart';
 import '../../application/usecases/update_task.dart';
 import '../../domain/task.dart';
-import '../../domain/task_status.dart';
 import 'dto/task_dto.dart';
 
 class TaskRouter {
