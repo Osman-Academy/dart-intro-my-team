@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'auth-screen.dart'; 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,8 +50,12 @@ class HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-
-              await Supabase.instance.client.auth.signOut();
+                await Supabase.instance.client.auth.signOut();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const AuthScreen(),
+                ),
+              );
             },
           ),
         ],

@@ -1,7 +1,8 @@
 import 'package:expensetracker/common/di/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import './screens/auth-screen.dart';
+import './screens/home-screen.dart';
 import 'package:get_it/get_it.dart';
 
 
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/auth',
       routes: {
+        '/auth': (context) => AuthScreen(),
+        '/home': (context) => HomeScreen(),
       },
     );
   }
