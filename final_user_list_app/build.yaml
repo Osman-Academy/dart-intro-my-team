@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        enabled: true
+      injectable_generator:injectable_builder:
+        enabled: true
+        options:
+          auto_register: true
