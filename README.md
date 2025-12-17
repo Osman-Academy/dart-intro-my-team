@@ -106,7 +106,7 @@ The project focuses on **Project Management & Collaboration Systems**, specifica
 
 | Week | Main Tasks | Description |
 |------|-----------|------------|
-| Week 1 | Planning and Design | Define project goals, assign roles, create UI mockups in Figma, design database |
+| Week 1 | Planning and Design | Define project goals, assign roles, design database |
 | Week 2 | Development | Implement backend API, frontend interface, database integration, module connection |
 | Week 3 | Testing & Finalization | Test features, fix bugs, write documentation, prepare final presentation and demo |
 
@@ -121,7 +121,6 @@ The project focuses on **Project Management & Collaboration Systems**, specifica
 | Database | MySQL | Data storage |
 | Version Control | GitHub | Source code management |
 | Communication | Telegram | Team coordination |
-| Design | Figma | UI/UX design |
 
 ---
 
