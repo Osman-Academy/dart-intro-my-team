@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="dart-intro-my-team">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/navigation.zip!/" />
+      <root url="jar://$PROJECT_DIR$/di_example.zip!/" />
+      <root url="jar://$PROJECT_DIR$/blocitro.zip!/" />
+      <root url="jar://$PROJECT_DIR$/HelloWorld.zip!/" />
+      <root url="jar://$PROJECT_DIR$/snake-game.zip!/" />
+      <root url="jar://$PROJECT_DIR$/freezed_example.zip!/" />
+      <root url="jar://$PROJECT_DIR$/logger_sample.zip!/" />
+      <root url="jar://$PROJECT_DIR$/testing_app.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
