@@ -1,0 +1,43 @@
+name: task_manager
+description: Task Manager with Clean Architecture, BLoC, DI, Freezed and Backend
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI / State Management
+  flutter_bloc: ^8.1.6
+
+  # Dependency Injection
+  get_it: ^7.7.0
+
+  # Network
+  dio: ^5.7.0
+
+  # Freezed / Json
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+
+  # Optional (icons for iOS)
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Code generation
+  build_runner: ^2.4.11
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+
+  # Lints
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
