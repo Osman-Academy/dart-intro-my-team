@@ -19,7 +19,7 @@ dependencies:
   
   # Code Generation
   freezed_annotation: ^2.4.1
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   
   # Network
   dio: ^5.4.0
