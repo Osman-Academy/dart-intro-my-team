@@ -1,0 +1,10 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'products_event.freezed.dart';
+
+@freezed
+class ProductsEvent with _$ProductsEvent {
+  const factory ProductsEvent.started() = Started;
+  const factory ProductsEvent.refreshed() = Refreshed;
+  const factory ProductsEvent.queryChanged(String query) = QueryChanged;
+}

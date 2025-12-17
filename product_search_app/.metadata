@@ -1,0 +1,22 @@
+# This file tracks properties of this Flutter project.
+# Used by Flutter tool to know which platform/SDK revisions were used.
+version:
+  revision: "0000000000000000000000000000000000000000"
+  channel: "stable"
+
+project_type: app
+
+migration:
+  platforms:
+    - platform: root
+      create_revision: "0000000000000000000000000000000000000000"
+      base_revision: "0000000000000000000000000000000000000000"
+    - platform: android
+      create_revision: "0000000000000000000000000000000000000000"
+      base_revision: "0000000000000000000000000000000000000000"
+    - platform: web
+      create_revision: "0000000000000000000000000000000000000000"
+      base_revision: "0000000000000000000000000000000000000000"
+
+# `unmanaged_files`:
+# - 'lib/main.dart'
