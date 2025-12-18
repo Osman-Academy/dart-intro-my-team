@@ -8,3 +8,5 @@ Create (using dart) a cart loic with category and items
 Create a visual square dynamic changes area shrink
 
 Create a repository to AuthLogin logic
+
+Final assignment
