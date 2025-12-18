@@ -1,6 +1,13 @@
-part of 'character_bloc.dart';
+import '../../domain/entities/character.dart';
 
-@immutable
-sealed class CharacterState {}
+abstract class CharacterState{}
+class CharacterLoading extends CharacterState{}
+class CharacterLoaded extends CharacterState{
+  final List<Character> characters;
+  CharacterLoaded(this.characters);
+}
 
-final class CharacterInitial extends CharacterState {}
+class CharacterError extends CharacterState{
+  final String message;
+  CharacterError(this.message);
+}
