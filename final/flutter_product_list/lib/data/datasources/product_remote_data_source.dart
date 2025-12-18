@@ -12,16 +12,24 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> searchProducts(String query) async {
-    final response = await dio.get(
-      'https://dummyjson.com/products/search ',
-      queryParameters: {'q': query},
-    );
+    try {
+      final response = await dio.get(
+        'https://dummyjson.com/products/search',
+        queryParameters: {'q': query},
+      );
 
-    if (response.statusCode == 200) {
       final List data = response.data['products'];
       return data.map((json) => ProductModel.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load products');
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        throw Exception("The requested products were not found (404).");
+      } else if (e.type == DioExceptionType.connectionTimeout) {
+        throw Exception("Connection timed out.");
+      } else {
+        throw Exception("Something went wrong.");
+      }
+    } catch (e) {
+      throw Exception("An unexpected error occurred.");
     }
   }
 }

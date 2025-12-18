@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'injection_container.dart' as di;
+import 'presentation/pages/product_search_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: ProductSearchPage(),
+  ));
 }
 
 // ... rest of your MyApp widget
