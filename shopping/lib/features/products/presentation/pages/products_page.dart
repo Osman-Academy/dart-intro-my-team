@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/product.dart';
 import '../bloc/products_bloc.dart';
 import '../widgets/product_list_tile.dart';
+import '../../../cart/presentation/widgets/cart_icon.dart';
+import '../../../cart/presentation/bloc/cart_bloc.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
@@ -26,6 +28,9 @@ class _ProductsPageState extends State<ProductsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products'),
+        actions: const [
+          CartIconButton(),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(64),
           child: Padding(
@@ -91,8 +96,12 @@ class _ProductsList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           itemCount: products.length,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
-          itemBuilder: (context, index) =>
-              ProductListTile(product: products[index]),
+          itemBuilder: (context, index) => ProductListTile(
+            product: products[index],
+            onAddToCart: () => context.read<CartBloc>().add(
+                  CartEvent.add(product: products[index]),
+                ),
+          ),
         ),
         if (isLoading)
           const Positioned.fill(
