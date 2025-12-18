@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../screens/add-transaction-screen.dart';
+import '../screens/transactions-screen.dart'; 
 import 'auth-screen.dart'; 
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<TransactionsScreenState> transactionsKey = GlobalKey<TransactionsScreenState>();
   int selectedIndex = 0;
 
   late final List<Widget> screens;
@@ -18,7 +21,7 @@ class HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     screens = [
-      const Center(child: Text('Графики — в разработке')),
+      TransactionsScreen(key: transactionsKey),
       const Center(child: Text('Графики — в разработке')),
       const SizedBox(),
       const Center(child: Text('Отчёты — в разработке')),
@@ -28,8 +31,12 @@ class HomeScreenState extends State<HomeScreen> {
 
   void onBottomNavTapped(int index) async{
     if (index == 2) {
-      final result = await Navigator.of(context).push();
-      //zdes perexod dodelat
+      final result = await Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const AddTransactionScreen()),
+      );
+      if(result == true && mounted){
+        transactionsKey.currentState?.loadDataForPeriod();
+      }
       return;
     }
     setState(() {
@@ -50,10 +57,11 @@ class HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-                await Supabase.instance.client.auth.signOut();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const AuthScreen(),
+
+              await Supabase.instance.client.auth.signOut();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const AuthScreen(),
                 ),
               );
             },

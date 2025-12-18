@@ -1,0 +1,1 @@
+final List<String> transactionCurrency = ['₽', '\$', '€', '£', '¥', 'c.'];
