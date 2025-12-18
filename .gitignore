@@ -24,6 +24,7 @@ macos/
 *.ipa
 *.app
 pubspec.lock
+.metadata
 
 # IntelliJ related
 *.iml
