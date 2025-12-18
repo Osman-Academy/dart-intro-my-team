@@ -9,7 +9,6 @@ import 'presentation/bloc/product_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton<ProductRemoteDataSource>(
     () => ProductRemoteDataSourceImpl(dio: sl()),
   );

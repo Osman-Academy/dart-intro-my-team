@@ -10,7 +10,7 @@ class SearchBarWidget extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        hintText: 'Search products (e.g., iPhone)...',
+        hintText: 'Search products (e.g., iPhone, Mascara, etc)...',
         prefixIcon: const Icon(Icons.search, color: Colors.deepPurple),
         filled: true,
         fillColor: Colors.grey[100],
