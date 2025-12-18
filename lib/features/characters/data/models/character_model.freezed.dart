@@ -21,8 +21,11 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CharacterModel {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'index')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fullName')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'hogwartsHouse')
   String? get house => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
@@ -43,7 +46,12 @@ abstract class $CharacterModelCopyWith<$Res> {
     $Res Function(CharacterModel) then,
   ) = _$CharacterModelCopyWithImpl<$Res, CharacterModel>;
   @useResult
-  $Res call({String id, String name, String? house, String? image});
+  $Res call({
+    @JsonKey(name: 'index') int? id,
+    @JsonKey(name: 'fullName') String? name,
+    @JsonKey(name: 'hogwartsHouse') String? house,
+    String? image,
+  });
 }
 
 /// @nodoc
@@ -61,21 +69,21 @@ class _$CharacterModelCopyWithImpl<$Res, $Val extends CharacterModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
+    Object? id = freezed,
+    Object? name = freezed,
     Object? house = freezed,
     Object? image = freezed,
   }) {
     return _then(
       _value.copyWith(
-            id: null == id
+            id: freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            name: null == name
+                      as int?,
+            name: freezed == name
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as String?,
             house: freezed == house
                 ? _value.house
                 : house // ignore: cast_nullable_to_non_nullable
@@ -99,7 +107,12 @@ abstract class _$$CharacterModelImplCopyWith<$Res>
   ) = __$$CharacterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String? house, String? image});
+  $Res call({
+    @JsonKey(name: 'index') int? id,
+    @JsonKey(name: 'fullName') String? name,
+    @JsonKey(name: 'hogwartsHouse') String? house,
+    String? image,
+  });
 }
 
 /// @nodoc
@@ -116,21 +129,21 @@ class __$$CharacterModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
+    Object? id = freezed,
+    Object? name = freezed,
     Object? house = freezed,
     Object? image = freezed,
   }) {
     return _then(
       _$CharacterModelImpl(
-        id: null == id
+        id: freezed == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        name: null == name
+                  as int?,
+        name: freezed == name
             ? _value.name
             : name // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as String?,
         house: freezed == house
             ? _value.house
             : house // ignore: cast_nullable_to_non_nullable
@@ -148,9 +161,9 @@ class __$$CharacterModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CharacterModelImpl implements _CharacterModel {
   const _$CharacterModelImpl({
-    required this.id,
-    required this.name,
-    this.house,
+    @JsonKey(name: 'index') this.id,
+    @JsonKey(name: 'fullName') this.name,
+    @JsonKey(name: 'hogwartsHouse') this.house,
     this.image,
   });
 
@@ -158,10 +171,13 @@ class _$CharacterModelImpl implements _CharacterModel {
       _$$CharacterModelImplFromJson(json);
 
   @override
-  final String id;
+  @JsonKey(name: 'index')
+  final int? id;
   @override
-  final String name;
+  @JsonKey(name: 'fullName')
+  final String? name;
   @override
+  @JsonKey(name: 'hogwartsHouse')
   final String? house;
   @override
   final String? image;
@@ -205,9 +221,9 @@ class _$CharacterModelImpl implements _CharacterModel {
 
 abstract class _CharacterModel implements CharacterModel {
   const factory _CharacterModel({
-    required final String id,
-    required final String name,
-    final String? house,
+    @JsonKey(name: 'index') final int? id,
+    @JsonKey(name: 'fullName') final String? name,
+    @JsonKey(name: 'hogwartsHouse') final String? house,
     final String? image,
   }) = _$CharacterModelImpl;
 
@@ -215,10 +231,13 @@ abstract class _CharacterModel implements CharacterModel {
       _$CharacterModelImpl.fromJson;
 
   @override
-  String get id;
+  @JsonKey(name: 'index')
+  int? get id;
   @override
-  String get name;
+  @JsonKey(name: 'fullName')
+  String? get name;
   @override
+  @JsonKey(name: 'hogwartsHouse')
   String? get house;
   @override
   String? get image;

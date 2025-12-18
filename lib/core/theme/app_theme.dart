@@ -3,21 +3,47 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class AppTheme {
+  static const Color gold = Color(0xFFD4AF37);
+  static const Color black = Color(0xFF0B0B0F);
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: const Color(0xFF0E0EB14),
+    scaffoldBackgroundColor: black,
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xFFB89B5E),
-      secondary: Color(0xFF6A5ACD),
+      primary: gold,
+      secondary: gold,
+      background: black,
     ),
-    textTheme: GoogleFonts.cinzelTextTheme().apply(
-      bodyColor: Colors.white,
-      displayColor: Colors.white,
-    ) ,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.transparent,
+    appBarTheme: AppBarTheme(
+      backgroundColor: black,
       elevation: 0,
       centerTitle: true,
+      titleTextStyle: GoogleFonts.cinzel(
+        color: gold,
+        fontSize: 22,
+        letterSpacing: 2,
+    ),
+      iconTheme: const IconThemeData(color: gold),
+    ),
+    textTheme: GoogleFonts.cinzelTextTheme().apply(
+      bodyColor:gold,
+      displayColor: gold,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: gold.withOpacity(0.6),
+        letterSpacing: 1.5,
+      ),
+      enabledBorder:const UnderlineInputBorder(
+        borderSide: BorderSide(color: gold),
+      ),
+      focusedBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(color: gold, width: 2),
+      ),
+      prefixIconColor: gold
+    ),
+    listTileTheme: const ListTileThemeData(
+      textColor : gold,
+      iconColor:gold,
     ),
   );
 }

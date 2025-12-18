@@ -6,9 +6,9 @@ part 'character_model.g.dart';
 @freezed
 class CharacterModel with _$CharacterModel{
   const factory CharacterModel({
-    required String id,
-    required String name,
-    String? house,
+    @JsonKey(name: 'index') int? id,
+    @JsonKey(name: 'fullName')String? name,
+    @JsonKey(name: 'hogwartsHouse')String? house,
     String? image,
   })= _CharacterModel;
   factory CharacterModel.fromJson(Map<String, dynamic> json) => _$CharacterModelFromJson(json);
@@ -16,8 +16,8 @@ class CharacterModel with _$CharacterModel{
 
 extension CharacterMapper on CharacterModel{
   Character toEntity() => Character(
-    id: id,
-    name: name,
+    id: (id ?? 0).toString(),
+    name: name ?? 'Unknown',
     house: house,
     image: image,
   );

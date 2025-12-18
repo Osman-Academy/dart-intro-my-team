@@ -8,17 +8,17 @@ part of 'character_model.dart';
 
 _$CharacterModelImpl _$$CharacterModelImplFromJson(Map<String, dynamic> json) =>
     _$CharacterModelImpl(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      house: json['house'] as String?,
+      id: (json['index'] as num?)?.toInt(),
+      name: json['fullName'] as String?,
+      house: json['hogwartsHouse'] as String?,
       image: json['image'] as String?,
     );
 
 Map<String, dynamic> _$$CharacterModelImplToJson(
   _$CharacterModelImpl instance,
 ) => <String, dynamic>{
-  'id': instance.id,
-  'name': instance.name,
-  'house': instance.house,
+  'index': instance.id,
+  'fullName': instance.name,
+  'hogwartsHouse': instance.house,
   'image': instance.image,
 };
