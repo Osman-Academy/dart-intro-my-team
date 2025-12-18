@@ -18,10 +18,9 @@ class ProductModel with _$ProductModel {
     required String thumbnail,
   }) = _ProductModel;
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => 
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
 
-  // Helper method to convert Model to Entity
   static Product toEntity(ProductModel model) => Product(
         id: model.id,
         title: model.title,
