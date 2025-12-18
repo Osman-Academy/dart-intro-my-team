@@ -1,213 +1,126 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
+import 'injection/injection.dart';
+import 'presentation/pages/tasks_page.dart';
+
 
 void main() {
+  // Initialize dependency injection before the app starts.
+  setupInjection();
   runApp(const MyApp());
-}
-
-class Product {
-  final int id;
-  final String name;
-  final double price;
-  Product({required this.id, required this.name, required this.price});
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Simple Cart Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const CartDemoPage(),
-      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      home: const TasksPage(),
     );
   }
 }
 
-class CartDemoPage extends StatefulWidget {
-  const CartDemoPage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
 
   @override
-  State<CartDemoPage> createState() => _CartDemoPageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _CartDemoPageState extends State<CartDemoPage> {
-  // Predefined product catalog (4-5 products)
-  final List<Product> products = [
-    Product(id: 1, name: 'Blue T-shirt', price: 19.99),
-    Product(id: 2, name: 'Sneakers', price: 49.99),
-    Product(id: 3, name: 'Backpack', price: 34.50),
-    Product(id: 4, name: 'Cap', price: 12.00),
-    Product(id: 5, name: 'Water Bottle', price: 9.75),
-  ];
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
 
-  // Cart represented as a list of Product items (initially empty)
-  final List<Product> cart = [];
-
-  void addToCart(Product p) {
-    setState(() => cart.add(p));
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
   }
-
-  void removeFromCartAt(int index) {
-    setState(() => cart.removeAt(index));
-  }
-
-  void clearCart() {
-    setState(() => cart.clear());
-  }
-
-  double get total =>
-      cart.fold(0.0, (previousValue, element) => previousValue + element.price);
 
   @override
   Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Simple Flutter Web Cart'),
-        centerTitle: true,
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
       ),
-      body: LayoutBuilder(builder: (context, constraints) {
-        // Responsive: show side-by-side on wide screens, stacked on narrow screens
-        final bool wide = constraints.maxWidth >= 800;
-        return Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: wide
-              ? Row(
-                  children: [
-                    Expanded(flex: 3, child: productListCard()),
-                    const SizedBox(width: 12),
-                    SizedBox(width: 360, child: cartCard()),
-                  ],
-                )
-              : Column(
-                  children: [
-                    Expanded(child: productListCard()),
-                    const SizedBox(height: 12),
-                    SizedBox(height: 300, child: cartCard()),
-                  ],
-                ),
-        );
-      }),
-    );
-  }
-
-  Widget productListCard() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Products', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Expanded(
-              child: ListView.separated(
-                itemCount: products.length,
-                separatorBuilder: (_, __) => const Divider(),
-                itemBuilder: (context, index) {
-                  final p = products[index];
-                  return ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    title: Text(p.name, style: const TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: Text('\$${p.price.toStringAsFixed(2)}'),
-                    trailing: ElevatedButton(
-                      onPressed: () => addToCart(p),
-                      child: const Text('Buy'),
-                    ),
-                  );
-                },
-              ),
+            const Text('You have pushed the button this many times:'),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget cartCard() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Cart', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            if (cart.isEmpty)
-              const Expanded(
-                child: Center(
-                  child: Text('Cart is empty', style: TextStyle(fontSize: 16)),
-                ),
-              )
-            else
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: cart.length,
-                        separatorBuilder: (_, __) => const Divider(),
-                        itemBuilder: (context, idx) {
-                          final item = cart[idx];
-                          return ListTile(
-                            dense: true,
-                            title: Text(item.name),
-                            subtitle: Text('\$${item.price.toStringAsFixed(2)}'),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  tooltip: 'Delete this item',
-                                  onPressed: () => removeFromCartAt(idx),
-                                  icon: const Icon(Icons.delete_outline),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Items: ${cart.length}', style: const TextStyle(fontWeight: FontWeight.w600)),
-                        Text('Total: \$${total.toStringAsFixed(2)}', style: const TextStyle(fontWeight: FontWeight.w600)),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                ElevatedButton.icon(
-                  onPressed: cart.isEmpty ? null : clearCart,
-                  icon: const Icon(Icons.delete_sweep),
-                  label: const Text('Clear Cart'),
-                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10)),
-                ),
-                const SizedBox(width: 12),
-                TextButton(
-                  onPressed: () {
-                    // For demo: show a simple snackbar summary
-                    final message = cart.isEmpty
-                        ? 'Cart is empty'
-                        : 'You have ${cart.length} item(s) — total \$${total.toStringAsFixed(2)}';
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-                  },
-                  child: const Text('Checkout (demo)'),
-                ),
-              ],
-            ),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
