@@ -1,16 +1,25 @@
-# local_search_app
+# Local Search App (Flutter)
 
-A new Flutter project.
+## Description
+Flutter application demonstrating:
+- Clean Architecture
+- Dependency Injection (GetIt)
+- BLoC state management
+- Freezed for immutable states/events
+- Local string search without API
 
-## Getting Started
+## Features
+- Search users by name
+- Clear separation of layers
+- Ready for backend integration
 
-This project is a starting point for a Flutter application.
+## Architecture
+- Data
+- Domain
+- Presentation
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to run
+```bash
+flutter pub get
+flutter pub run build_runner build --delete-conflicting-outputs
+flutter run

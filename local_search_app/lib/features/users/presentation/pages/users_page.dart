@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/di/injection.dart';
 import '../bloc/user_bloc.dart';
+import '../bloc/user_event.dart';
+import '../bloc/user_state.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({super.key});
@@ -10,37 +11,28 @@ class UsersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<UserBloc>()..add(const UserEvent.load()),
+      create: (_) => sl<UserBloc>()..add(const UserEvent.search('')),
       child: Scaffold(
-        appBar: AppBar(title: const Text('User Search')),
+        appBar: AppBar(title: const Text('Local Search')),
         body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
               child: TextField(
+                onChanged: (v) =>
+                    context.read<UserBloc>().add(UserEvent.search(v)),
                 decoration: const InputDecoration(
-                  labelText: 'Search',
-                  border: OutlineInputBorder(),
+                  hintText: 'Search user',
                 ),
-                onChanged: (value) {
-                  context
-                      .read<UserBloc>()
-                      .add(UserEvent.search(value));
-                },
               ),
             ),
             Expanded(
               child: BlocBuilder<UserBloc, UserState>(
-                builder: (_, state) {
-                  return state.when(
-                    initial: () => const SizedBox(),
-                    loaded: (users) => ListView.builder(
-                      itemCount: users.length,
-                      itemBuilder: (_, i) => ListTile(
-                        title: Text(users[i].name),
-                        subtitle: Text(users[i].email),
-                      ),
-                    ),
+                builder: (context, state) {
+                  return ListView.builder(
+                    itemCount: state.users.length,
+                    itemBuilder: (_, i) =>
+                        ListTile(title: Text(state.users[i].name)),
                   );
                 },
               ),
