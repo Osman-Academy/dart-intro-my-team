@@ -22,12 +22,11 @@ Future<void> configureDependencies() async {
     receiveTimeout: const Duration(seconds: 30),
   ));
   
-  // Добавляем interceptor для логирования (опционально)
+  
   dio.interceptors.add(LogInterceptor(
     requestBody: true,
     responseBody: true,
     logPrint: (obj) {
-      // можно использовать logger пакет для более красивого вывода
       print(obj);
     },
   ));
