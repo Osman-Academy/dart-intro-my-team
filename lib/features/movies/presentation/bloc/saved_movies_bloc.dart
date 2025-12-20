@@ -47,10 +47,13 @@ class SavedMoviesBloc extends Bloc<SavedMoviesEvent, SavedMoviesState> {
     
     result.fold(
       (failure) {
-        // можно показать снэкбар или что-то типа того
+        // Логируем ошибку для отладки
+        print('Failed to save movie: ${failure.message}');
+        
+        add(const SavedMoviesEvent.loadSaved());
       },
       (_) {
-        // перезагружаем список
+        // Успешно сохранили - перезагружаем список
         add(const SavedMoviesEvent.loadSaved());
       },
     );
@@ -64,10 +67,13 @@ class SavedMoviesBloc extends Bloc<SavedMoviesEvent, SavedMoviesState> {
     
     result.fold(
       (failure) {
-        // можно показать ошибку
+        // Логируем ошибку
+        print('Failed to remove movie: ${failure.message}');
+        
+        add(const SavedMoviesEvent.loadSaved());
       },
       (_) {
-        // перезагружаем список
+        // Успешно удалили - обновляем список
         add(const SavedMoviesEvent.loadSaved());
       },
     );
