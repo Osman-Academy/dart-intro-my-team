@@ -78,6 +78,9 @@ class _$MovieSearchEventCopyWithImpl<$Res, $Val extends MovieSearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of MovieSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,6 +100,8 @@ class __$$SearchMoviesEventImplCopyWithImpl<$Res>
       $Res Function(_$SearchMoviesEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MovieSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,7 +140,9 @@ class _$SearchMoviesEventImpl implements SearchMoviesEvent {
   @override
   int get hashCode => Object.hash(runtimeType, query);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MovieSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchMoviesEventImplCopyWith<_$SearchMoviesEventImpl> get copyWith =>
@@ -215,7 +222,10 @@ abstract class SearchMoviesEvent implements MovieSearchEvent {
   const factory SearchMoviesEvent(final String query) = _$SearchMoviesEventImpl;
 
   String get query;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MovieSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchMoviesEventImplCopyWith<_$SearchMoviesEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -236,6 +246,9 @@ class __$$LoadPopularMoviesEventImplCopyWithImpl<$Res>
       _$LoadPopularMoviesEventImpl _value,
       $Res Function(_$LoadPopularMoviesEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of MovieSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -345,6 +358,9 @@ class __$$ClearSearchEventImplCopyWithImpl<$Res>
   __$$ClearSearchEventImplCopyWithImpl(_$ClearSearchEventImpl _value,
       $Res Function(_$ClearSearchEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of MovieSearchEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

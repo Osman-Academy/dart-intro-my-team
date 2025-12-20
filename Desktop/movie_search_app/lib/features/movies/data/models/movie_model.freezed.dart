@@ -32,8 +32,12 @@ mixin _$MovieModel {
   @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
 
+  /// Serializes this MovieModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MovieModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MovieModelCopyWith<MovieModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MovieModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,6 +140,8 @@ class __$$MovieModelImplCopyWithImpl<$Res>
       _$MovieModelImpl _value, $Res Function(_$MovieModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MovieModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,12 +245,14 @@ class _$MovieModelImpl extends _MovieModel {
                 other.releaseDate == releaseDate));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, overview, posterPath,
       backdropPath, voteAverage, releaseDate);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MovieModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MovieModelImplCopyWith<_$MovieModelImpl> get copyWith =>
@@ -289,8 +299,11 @@ abstract class _MovieModel extends MovieModel {
   @override
   @JsonKey(name: 'release_date')
   String get releaseDate;
+
+  /// Create a copy of MovieModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MovieModelImplCopyWith<_$MovieModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -308,8 +321,12 @@ mixin _$MovieResponse {
   int get totalPages => throw _privateConstructorUsedError;
   List<MovieModel> get results => throw _privateConstructorUsedError;
 
+  /// Serializes this MovieResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MovieResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MovieResponseCopyWith<MovieResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -337,6 +354,8 @@ class _$MovieResponseCopyWithImpl<$Res, $Val extends MovieResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MovieResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -389,6 +408,8 @@ class __$$MovieResponseImplCopyWithImpl<$Res>
       _$MovieResponseImpl _value, $Res Function(_$MovieResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MovieResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -465,12 +486,14 @@ class _$MovieResponseImpl implements _MovieResponse {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, page, totalResults, totalPages,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MovieResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MovieResponseImplCopyWith<_$MovieResponseImpl> get copyWith =>
@@ -504,8 +527,11 @@ abstract class _MovieResponse implements MovieResponse {
   int get totalPages;
   @override
   List<MovieModel> get results;
+
+  /// Create a copy of MovieResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MovieResponseImplCopyWith<_$MovieResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

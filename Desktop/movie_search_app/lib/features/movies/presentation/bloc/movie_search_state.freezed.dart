@@ -84,6 +84,9 @@ class _$MovieSearchStateCopyWithImpl<$Res, $Val extends MovieSearchState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,6 +103,9 @@ class __$$MovieSearchInitialImplCopyWithImpl<$Res>
   __$$MovieSearchInitialImplCopyWithImpl(_$MovieSearchInitialImpl _value,
       $Res Function(_$MovieSearchInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -214,6 +220,9 @@ class __$$MovieSearchLoadingImplCopyWithImpl<$Res>
   __$$MovieSearchLoadingImplCopyWithImpl(_$MovieSearchLoadingImpl _value,
       $Res Function(_$MovieSearchLoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -331,6 +340,8 @@ class __$$MovieSearchLoadedImplCopyWithImpl<$Res>
       $Res Function(_$MovieSearchLoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -375,7 +386,9 @@ class _$MovieSearchLoadedImpl implements MovieSearchLoaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_movies));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MovieSearchLoadedImplCopyWith<_$MovieSearchLoadedImpl> get copyWith =>
@@ -462,7 +475,10 @@ abstract class MovieSearchLoaded implements MovieSearchState {
       _$MovieSearchLoadedImpl;
 
   List<Movie> get movies;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MovieSearchLoadedImplCopyWith<_$MovieSearchLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -484,6 +500,8 @@ class __$$MovieSearchErrorImplCopyWithImpl<$Res>
       $Res Function(_$MovieSearchErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -522,7 +540,9 @@ class _$MovieSearchErrorImpl implements MovieSearchError {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MovieSearchErrorImplCopyWith<_$MovieSearchErrorImpl> get copyWith =>
@@ -608,7 +628,10 @@ abstract class MovieSearchError implements MovieSearchState {
   const factory MovieSearchError(final String message) = _$MovieSearchErrorImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MovieSearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MovieSearchErrorImplCopyWith<_$MovieSearchErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
