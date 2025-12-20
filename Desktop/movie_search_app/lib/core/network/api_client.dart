@@ -32,7 +32,7 @@ abstract class NetworkModule {
   ApiClient apiClient(Dio dio) => ApiClient(dio);
 }
 
-@RestApi()
+@RestApi(baseUrl: 'https://api.themoviedb.org/3')
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 

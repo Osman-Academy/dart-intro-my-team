@@ -26,11 +26,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color(0xFF1A1A1A),
           elevation: 0,
         ),
-        cardTheme: CardTheme(
-          color: const Color(0xFF1A1A1A),
+        cardTheme: const CardTheme(
+          color: Color(0xFF1A1A1A),
           elevation: 4,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
         ),
       ),
