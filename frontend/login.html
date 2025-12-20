@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Login</h1>
+            <nav>
+                <a href="index.html" class="btn btn-primary">Home</a>
+                <a href="register.html" class="btn">Register</a>
+            </nav>
+        </header>
+
+        <main>
+            <form id="login-form">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const result = await loginUser(username, password); // Use function from auth.js
+                    if (result.success) {
+                        alert('Login successful!');
+                        redirectToDashboard(); // Redirect to the appropriate dashboard
+                    } else {
+                        alert('Login error: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    alert('An error occurred during login. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

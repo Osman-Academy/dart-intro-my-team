@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Online Store!</h1>
+            <nav>
+                <div id="auth-buttons">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <a href="register.html" class="btn">Register</a>
+                </div>
+                <div id="user-greeting" class="hidden">
+                    <span></span>
+                    <a href="customer_dashboard.html" id="customer-dashboard-link" class="btn btn-info hidden">My Cart</a>
+                    <a href="admin_dashboard.html" id="admin-dashboard-link" class="btn btn-warning hidden">Admin Panel</a>
+                    <button id="logout-button" class="btn btn-danger hidden">Logout</button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Our Products</h2>
+            <div id="product-list" class="product-list">
+                <!-- Products will be loaded here by JavaScript -->
+                <p>Loading products...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

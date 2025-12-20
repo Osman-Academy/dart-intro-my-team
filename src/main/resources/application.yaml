@@ -1,0 +1,78 @@
+
+spring:
+  application:
+    name: online-shop
+  profiles:
+    active: "${APP_PROFILE:test}"
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+jwt:
+  secret:
+    key: "${SECRET_KEY: 0a6f544e8e9ae4ad031e755311f6307c2e18eee767c270f3fbcd00834dbb15f4}"
+  token:
+    time: "${TIME_EXPIRED:900000}"
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test_spring_security
+    username: username
+    password: password
+  flyway:
+    locations:
+      - classpath:db/migration/common
+      - classpath:db/migration/dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/online_shop_db
+    username: postgres
+    password: postgres
+  flyway:
+    locations:
+      - classpath:db/migration/common
+      - classpath:db/migration/dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-test
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://172.17.0.2:5432/online_shop_db
+    username: postgres
+    password: postgres
+  flyway:
+    locations:
+      - classpath:db/migration/common
+      - classpath:db/migration/dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: "jdbc:postgresql://${DB_URL:172.17.0.2}:${DB_PORT:5432}/${DB_NAME:online_shop_prod_db}"
+    username: "${DB_USERNAME:postgres}"
+    password: "${DB_PASS:postgres}"
+  flyway:
+    locations:
+      - classpath:db/migration/common

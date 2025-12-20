@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="welcome-message"></h1>
+            <nav>
+                <a href="index.html" class="btn btn-primary">Home</a>
+                <button id="logout-button" class="btn btn-danger">Logout</button>
+            </nav>
+        </header>
+
+        <main>
+            <div class="admin-section">
+                <h2>Order Management</h2>
+                <!-- TODO [Beginner]: Add a form to search orders by user ID or date. -->
+                <div id="orders-list">
+                    <!-- Orders will be loaded here by JavaScript -->
+                    <p>Loading orders...</p>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h2>Product Management</h2>
+                <h3>Add/Edit Product</h3>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div>
+                        <label for="product-name">Product Name:</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div>
+                        <label for="product-description">Description:</label>
+                        <textarea id="product-description"></textarea>
+                    </div>
+                    <div>
+                        <label for="product-price">Price:</label>
+                        <input type="number" id="product-price" step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="product-status">Status:</label>
+                        <select id="product-status" required>
+                            <option value="AVAILABLE">AVAILABLE</option>
+                            <option value="OUT_OF_STOCK">OUT_OF_STOCK</option>
+                            <!-- TODO [Beginner]: Add other statuses if they exist in your Enum Status. -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="product-image-url">Image URL:</label>
+                        <input type="text" id="product-image-url">
+                    </div>
+                    <div>
+                        <label for="product-category">Category:</label>
+                        <select id="product-category" required>
+                            <!-- Categories will be loaded here by JavaScript -->
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" value="Save Product">
+                    </div>
+                </form>
+
+                <h3>Product List</h3>
+                <div id="products-management-list">
+                    <!-- Products will be loaded here by JavaScript -->
+                    <p>Loading products...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin_dashboard.js"></script>
+    <script src="js/product_management.js"></script>
+</body>
+</html>
