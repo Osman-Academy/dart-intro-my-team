@@ -1,7 +1,7 @@
 ### FInal project
-This is my final exam project. It is a simple product store app that gets product data from the DummyJSON REST API and shows it in the app. You can also search for products using the search bar, which filters the results in real time.
+This is our final exam project. It is a simple product store app that gets product data from the DummyJSON REST API and shows it in the app. You can also search for products using the search bar, which filters the results in real time.
 
-I used Dependency Injection with GetIt to make the app structure clean and easy to manage. I also used Freezed to handle data safely and make sure the app state does not change by mistake.
+We used Dependency Injection with GetIt to make the app structure clean and easy to manage. And also used Freezed to handle data safely and make sure the app state does not change by mistake.
 
 ### How to Run
 
@@ -19,4 +19,4 @@ Install the dependencies:
 Run the project:
 
 ```flutter run```
-
+Students: Zharkynbaev Eldar, Nazarmatov Baiymbet, Aliyaan Ahmed
