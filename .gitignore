@@ -44,13 +44,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Generated files - IMPORTANT FOR YOUR PROJECT!
-*.g.dart
-*.freezed.dart
-*.config.dart
-
-# Build artifacts - DO NOT PUSH!
-*.apk
-*.ipa
-*.app
-*.aab
