@@ -127,7 +127,6 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
     }
     emit(state.copyWith(isSubmitting: true, errorMessage: null, success: false));
     try {
-      print(state.currency);
       final transaction = Transaction(
         id: uuid.v4(),
         userId: Supabase.instance.client.auth.currentUser!.id,

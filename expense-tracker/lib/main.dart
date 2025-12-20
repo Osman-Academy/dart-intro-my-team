@@ -8,7 +8,6 @@ import 'package:get_it/get_it.dart';
 import './screens/auth-screen.dart';
 
 Future<void> main() async{
-  print('a');
   WidgetsFlutterBinding.ensureInitialized();
 
   await initializeDateFormatting('ru_RU');
