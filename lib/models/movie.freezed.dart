@@ -21,10 +21,15 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Movie {
+  @JsonKey(name: 'Title')
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Year')
   String get year => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Plot')
   String get plot => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Poster')
   String get poster => throw _privateConstructorUsedError;
+  @JsonKey(name: 'imdbRating')
   String get imdbRating => throw _privateConstructorUsedError;
 
   /// Serializes this Movie to a JSON map.
@@ -42,11 +47,11 @@ abstract class $MovieCopyWith<$Res> {
       _$MovieCopyWithImpl<$Res, Movie>;
   @useResult
   $Res call({
-    String title,
-    String year,
-    String plot,
-    String poster,
-    String imdbRating,
+    @JsonKey(name: 'Title') String title,
+    @JsonKey(name: 'Year') String year,
+    @JsonKey(name: 'Plot') String plot,
+    @JsonKey(name: 'Poster') String poster,
+    @JsonKey(name: 'imdbRating') String imdbRating,
   });
 }
 
@@ -108,11 +113,11 @@ abstract class _$$MovieImplCopyWith<$Res> implements $MovieCopyWith<$Res> {
   @override
   @useResult
   $Res call({
-    String title,
-    String year,
-    String plot,
-    String poster,
-    String imdbRating,
+    @JsonKey(name: 'Title') String title,
+    @JsonKey(name: 'Year') String year,
+    @JsonKey(name: 'Plot') String plot,
+    @JsonKey(name: 'Poster') String poster,
+    @JsonKey(name: 'imdbRating') String imdbRating,
   });
 }
 
@@ -167,25 +172,30 @@ class __$$MovieImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MovieImpl implements _Movie {
   const _$MovieImpl({
-    required this.title,
-    required this.year,
-    required this.plot,
-    required this.poster,
-    required this.imdbRating,
+    @JsonKey(name: 'Title') required this.title,
+    @JsonKey(name: 'Year') required this.year,
+    @JsonKey(name: 'Plot') required this.plot,
+    @JsonKey(name: 'Poster') required this.poster,
+    @JsonKey(name: 'imdbRating') required this.imdbRating,
   });
 
   factory _$MovieImpl.fromJson(Map<String, dynamic> json) =>
       _$$MovieImplFromJson(json);
 
   @override
+  @JsonKey(name: 'Title')
   final String title;
   @override
+  @JsonKey(name: 'Year')
   final String year;
   @override
+  @JsonKey(name: 'Plot')
   final String plot;
   @override
+  @JsonKey(name: 'Poster')
   final String poster;
   @override
+  @JsonKey(name: 'imdbRating')
   final String imdbRating;
 
   @override
@@ -227,24 +237,29 @@ class _$MovieImpl implements _Movie {
 
 abstract class _Movie implements Movie {
   const factory _Movie({
-    required final String title,
-    required final String year,
-    required final String plot,
-    required final String poster,
-    required final String imdbRating,
+    @JsonKey(name: 'Title') required final String title,
+    @JsonKey(name: 'Year') required final String year,
+    @JsonKey(name: 'Plot') required final String plot,
+    @JsonKey(name: 'Poster') required final String poster,
+    @JsonKey(name: 'imdbRating') required final String imdbRating,
   }) = _$MovieImpl;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$MovieImpl.fromJson;
 
   @override
+  @JsonKey(name: 'Title')
   String get title;
   @override
+  @JsonKey(name: 'Year')
   String get year;
   @override
+  @JsonKey(name: 'Plot')
   String get plot;
   @override
+  @JsonKey(name: 'Poster')
   String get poster;
   @override
+  @JsonKey(name: 'imdbRating')
   String get imdbRating;
 
   /// Create a copy of Movie

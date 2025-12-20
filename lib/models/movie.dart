@@ -6,11 +6,11 @@ part 'movie.g.dart';
 @freezed
 class Movie with _$Movie {
   const factory Movie({
-    required String title,
-    required String year,
-    required String plot,
-    required String poster,
-    required String imdbRating,
+    @JsonKey(name: 'Title') required String title,
+    @JsonKey(name: 'Year') required String year,
+    @JsonKey(name: 'Plot') required String plot,
+    @JsonKey(name: 'Poster') required String poster,
+    @JsonKey(name: 'imdbRating') required String imdbRating,
   }) = _Movie;
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
