@@ -20,6 +20,7 @@ mixin _$TaskState {
   List<Task> get allTasks => throw _privateConstructorUsedError;
   List<Task> get filteredTasks => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  String get searchQuery => throw _privateConstructorUsedError;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,12 @@ abstract class $TaskStateCopyWith<$Res> {
   factory $TaskStateCopyWith(TaskState value, $Res Function(TaskState) then) =
       _$TaskStateCopyWithImpl<$Res, TaskState>;
   @useResult
-  $Res call({List<Task> allTasks, List<Task> filteredTasks, bool isLoading});
+  $Res call({
+    List<Task> allTasks,
+    List<Task> filteredTasks,
+    bool isLoading,
+    String searchQuery,
+  });
 }
 
 /// @nodoc
@@ -54,6 +60,7 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
     Object? allTasks = null,
     Object? filteredTasks = null,
     Object? isLoading = null,
+    Object? searchQuery = null,
   }) {
     return _then(
       _value.copyWith(
@@ -69,6 +76,10 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
                 ? _value.isLoading
                 : isLoading // ignore: cast_nullable_to_non_nullable
                       as bool,
+            searchQuery: null == searchQuery
+                ? _value.searchQuery
+                : searchQuery // ignore: cast_nullable_to_non_nullable
+                      as String,
           )
           as $Val,
     );
@@ -84,7 +95,12 @@ abstract class _$$TaskStateImplCopyWith<$Res>
   ) = __$$TaskStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Task> allTasks, List<Task> filteredTasks, bool isLoading});
+  $Res call({
+    List<Task> allTasks,
+    List<Task> filteredTasks,
+    bool isLoading,
+    String searchQuery,
+  });
 }
 
 /// @nodoc
@@ -104,6 +120,7 @@ class __$$TaskStateImplCopyWithImpl<$Res>
     Object? allTasks = null,
     Object? filteredTasks = null,
     Object? isLoading = null,
+    Object? searchQuery = null,
   }) {
     return _then(
       _$TaskStateImpl(
@@ -119,6 +136,10 @@ class __$$TaskStateImplCopyWithImpl<$Res>
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
                   as bool,
+        searchQuery: null == searchQuery
+            ? _value.searchQuery
+            : searchQuery // ignore: cast_nullable_to_non_nullable
+                  as String,
       ),
     );
   }
@@ -131,6 +152,7 @@ class _$TaskStateImpl implements _TaskState {
     required final List<Task> allTasks,
     required final List<Task> filteredTasks,
     required this.isLoading,
+    required this.searchQuery,
   }) : _allTasks = allTasks,
        _filteredTasks = filteredTasks;
 
@@ -152,10 +174,12 @@ class _$TaskStateImpl implements _TaskState {
 
   @override
   final bool isLoading;
+  @override
+  final String searchQuery;
 
   @override
   String toString() {
-    return 'TaskState(allTasks: $allTasks, filteredTasks: $filteredTasks, isLoading: $isLoading)';
+    return 'TaskState(allTasks: $allTasks, filteredTasks: $filteredTasks, isLoading: $isLoading, searchQuery: $searchQuery)';
   }
 
   @override
@@ -169,7 +193,9 @@ class _$TaskStateImpl implements _TaskState {
               _filteredTasks,
             ) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.searchQuery, searchQuery) ||
+                other.searchQuery == searchQuery));
   }
 
   @override
@@ -178,6 +204,7 @@ class _$TaskStateImpl implements _TaskState {
     const DeepCollectionEquality().hash(_allTasks),
     const DeepCollectionEquality().hash(_filteredTasks),
     isLoading,
+    searchQuery,
   );
 
   /// Create a copy of TaskState
@@ -194,6 +221,7 @@ abstract class _TaskState implements TaskState {
     required final List<Task> allTasks,
     required final List<Task> filteredTasks,
     required final bool isLoading,
+    required final String searchQuery,
   }) = _$TaskStateImpl;
 
   @override
@@ -202,6 +230,8 @@ abstract class _TaskState implements TaskState {
   List<Task> get filteredTasks;
   @override
   bool get isLoading;
+  @override
+  String get searchQuery;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.

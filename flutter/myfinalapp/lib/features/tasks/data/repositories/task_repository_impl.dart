@@ -13,4 +13,23 @@ class TaskRepositoryImpl implements TaskRepository {
     final dtos = await remote.getTasks();
     return dtos.map((e) => e.toDomain()).toList();
   }
+
+  @override
+  Future<Task> addTask(Task task) async {
+    final dto = TaskDto.fromDomain(task);
+    final result = await remote.addTask(dto);
+    return result.toDomain();
+  }
+
+  @override
+  Future<Task> updateTask(Task task) async {
+    final dto = TaskDto.fromDomain(task);
+    final result = await remote.updateTask(dto);
+    return result.toDomain();
+  }
+
+  @override
+  Future<void> deleteTask(int id) async {
+    await remote.deleteTask(id);
+  }
 }

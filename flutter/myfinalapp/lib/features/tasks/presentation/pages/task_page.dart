@@ -22,7 +22,7 @@ class TaskPage extends StatelessWidget {
               child: TextField(
                 decoration: const InputDecoration(hintText: 'Search tasks...'),
                 onChanged: (value) {
-                  context.read<TaskBloc>().add(TaskEvent.search(query: value));
+                  context.read<TaskBloc>().add(TaskEvent.search(value));
                 },
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../domain/entities/task.dart';
 
 part 'task_state.freezed.dart';
@@ -9,8 +10,13 @@ class TaskState with _$TaskState {
     required List<Task> allTasks,
     required List<Task> filteredTasks,
     required bool isLoading,
+    required String searchQuery,
   }) = _TaskState;
 
-  factory TaskState.initial() =>
-      const TaskState(allTasks: [], filteredTasks: [], isLoading: false);
+  factory TaskState.initial() => const TaskState(
+    allTasks: [],
+    filteredTasks: [],
+    isLoading: false,
+    searchQuery: '',
+  );
 }

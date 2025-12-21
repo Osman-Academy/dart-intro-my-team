@@ -131,12 +131,12 @@ class __$$TaskDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TaskDtoImpl implements _TaskDto {
+class _$TaskDtoImpl extends _TaskDto {
   const _$TaskDtoImpl({
     required this.id,
     required this.title,
     required this.completed,
-  });
+  }) : super._();
 
   factory _$TaskDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskDtoImplFromJson(json);
@@ -182,12 +182,13 @@ class _$TaskDtoImpl implements _TaskDto {
   }
 }
 
-abstract class _TaskDto implements TaskDto {
+abstract class _TaskDto extends TaskDto {
   const factory _TaskDto({
     required final int id,
     required final String title,
     required final bool completed,
   }) = _$TaskDtoImpl;
+  const _TaskDto._() : super._();
 
   factory _TaskDto.fromJson(Map<String, dynamic> json) = _$TaskDtoImpl.fromJson;
 

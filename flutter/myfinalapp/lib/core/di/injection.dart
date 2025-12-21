@@ -20,5 +20,14 @@ void init() {
 
   sl.registerLazySingleton(() => GetTasksUseCase(sl()));
 
-  sl.registerFactory(() => TaskBloc(sl()));
+  sl.registerFactory(
+    () => TaskBloc(
+      getTasks: sl(),
+      addTask: sl(),
+      updateTask: sl(),
+      deleteTask: sl(),
+    ),
+  );
 }
+
+//test comment
