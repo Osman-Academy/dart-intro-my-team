@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_search/features/bloc/movie_bloc.dart';
 import 'package:movie_search/features/bloc/movie_event.dart';
 import 'package:movie_search/features/bloc/movie_state.dart';
-import 'package:movie_search/features/pages/movie_card.dart';
+import 'package:movie_search/features/widgets/movie_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,10 +50,10 @@ class _HomePageState extends State<HomePage> {
     return ButtonStyle(
       overlayColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.hovered)) {
-          return Colors.white.withAlpha(31); // ~12%
+          return Colors.white.withAlpha(31);
         }
         if (states.contains(WidgetState.pressed)) {
-          return Colors.white.withAlpha(46); // ~18%
+          return Colors.white.withAlpha(46);
         }
         return null;
       }),
@@ -94,7 +94,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-          // Sort + Filters panel
           Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
             child: BlocBuilder<MovieBloc, MovieState>(
@@ -220,7 +219,6 @@ class _HomePageState extends State<HomePage> {
                       subtitle: 'Try changing search / ranges / sort.',
                       onReset: () {
                         _clearSearch();
-                        // Reset ranges + sort by reloading
                         context.read<MovieBloc>().add(MovieLoadEvent());
                       },
                     );
@@ -240,20 +238,26 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Expanded(
-                        child: GridView.builder(
-                          padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            const double maxCardWidth = 220; 
+                            final crossAxisCount = (constraints.maxWidth / maxCardWidth).floor();
+
+                            return GridView.builder(
+                              padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossAxisCount > 0 ? crossAxisCount : 1,
                                 crossAxisSpacing: 12,
                                 mainAxisSpacing: 12,
                                 childAspectRatio: 0.52,
                               ),
-                          itemCount: shown,
-                          itemBuilder: (_, i) =>
-                              MovieCard(movie: state.displayedMovies[i]),
+                              itemCount: shown,
+                              itemBuilder: (_, i) => MovieCard(movie: state.displayedMovies[i]),
+                            );
+                          },
                         ),
                       ),
+
                     ],
                   );
                 }
@@ -303,7 +307,7 @@ class _SearchField extends StatelessWidget {
         onChanged: onChanged,
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
-          hintText: 'Search by title or plot...',
+          hintText: 'Search by title',
           prefixIcon: const Icon(Icons.search),
           suffixIcon: ValueListenableBuilder<TextEditingValue>(
             valueListenable: controller,

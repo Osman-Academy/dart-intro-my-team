@@ -25,8 +25,8 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
           sortMode: SortMode.titleAsc,
           availableYearRange: yearRange,
           availableRatingRange: ratingRange,
-          selectedYearRange: yearRange, // default: whole range
-          selectedRatingRange: ratingRange, // default: whole range
+          selectedYearRange: yearRange,
+          selectedRatingRange: ratingRange,
         );
 
         emit(_recompute(loaded));
@@ -51,7 +51,6 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
       if (state is! MovieStateLoaded) return;
       final s = state as MovieStateLoaded;
 
-      // clamp to available range
       final clamped = _clampRange(event.yearRange, s.availableYearRange);
       emit(_recompute(s.copyWith(selectedYearRange: clamped)));
     });
@@ -60,7 +59,6 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
       if (state is! MovieStateLoaded) return;
       final s = state as MovieStateLoaded;
 
-      // clamp to available range
       final clamped = _clampRange(event.ratingRange, s.availableRatingRange);
       emit(_recompute(s.copyWith(selectedRatingRange: clamped)));
     });
@@ -71,16 +69,13 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
 
     Iterable<Movie> result = s.allMovies;
 
-    // 1) Search
     if (q.isNotEmpty) {
       result = result.where((m) {
         final title = m.title.toLowerCase();
-        final plot = m.plot.toLowerCase();
-        return title.contains(q) || plot.contains(q);
+        return title.contains(q);
       });
     }
 
-    // 2) Year range filter
     final yStart = s.selectedYearRange.start;
     final yEnd = s.selectedYearRange.end;
     result = result.where((m) {
@@ -89,16 +84,14 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
       return y >= yStart && y <= yEnd;
     });
 
-    // 3) Rating range filter
     final rStart = s.selectedRatingRange.start;
     final rEnd = s.selectedRatingRange.end;
     result = result.where((m) {
       final r = _parseRating(m.imdbRating);
-      if (r == 0) return false; // treat N/A as not passing filter
+      if (r == 0) return false;
       return r >= rStart && r <= rEnd;
     });
 
-    // 4) Sort
     final list = result.toList();
 
     switch (s.sortMode) {
@@ -163,7 +156,6 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     final min = ratings.first;
     final max = ratings.last;
 
-    // keep nice bounds inside 0..10
     return RangeValues(min.clamp(0, 10), max.clamp(0, 10));
   }
 
@@ -175,7 +167,6 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   int _parseYearStart(String year) {
-    // year can be "1994" or "2005–2012" -> take first 4 digits
     final digits = RegExp(r'\d{4}').firstMatch(year)?.group(0);
     return int.tryParse(digits ?? '') ?? 0;
   }

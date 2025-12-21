@@ -31,6 +31,34 @@ mixin _$Movie {
   String get poster => throw _privateConstructorUsedError;
   @JsonKey(name: 'imdbRating')
   String get imdbRating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Rated')
+  String? get rated => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Released')
+  String? get released => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Runtime')
+  String? get runtime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Genre')
+  String? get genre => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Director')
+  String? get director => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Writer')
+  String? get writer => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Actors')
+  String? get actors => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Language')
+  String? get language => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Country')
+  String? get country => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Awards')
+  String? get awards => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Metascore')
+  String? get metascore => throw _privateConstructorUsedError;
+  @JsonKey(name: 'imdbVotes')
+  String? get imdbVotes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'imdbID')
+  String get imdbID => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Images')
+  List<String>? get images => throw _privateConstructorUsedError;
 
   /// Serializes this Movie to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,6 +80,20 @@ abstract class $MovieCopyWith<$Res> {
     @JsonKey(name: 'Plot') String plot,
     @JsonKey(name: 'Poster') String poster,
     @JsonKey(name: 'imdbRating') String imdbRating,
+    @JsonKey(name: 'Rated') String? rated,
+    @JsonKey(name: 'Released') String? released,
+    @JsonKey(name: 'Runtime') String? runtime,
+    @JsonKey(name: 'Genre') String? genre,
+    @JsonKey(name: 'Director') String? director,
+    @JsonKey(name: 'Writer') String? writer,
+    @JsonKey(name: 'Actors') String? actors,
+    @JsonKey(name: 'Language') String? language,
+    @JsonKey(name: 'Country') String? country,
+    @JsonKey(name: 'Awards') String? awards,
+    @JsonKey(name: 'Metascore') String? metascore,
+    @JsonKey(name: 'imdbVotes') String? imdbVotes,
+    @JsonKey(name: 'imdbID') String imdbID,
+    @JsonKey(name: 'Images') List<String>? images,
   });
 }
 
@@ -75,6 +117,20 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
     Object? plot = null,
     Object? poster = null,
     Object? imdbRating = null,
+    Object? rated = freezed,
+    Object? released = freezed,
+    Object? runtime = freezed,
+    Object? genre = freezed,
+    Object? director = freezed,
+    Object? writer = freezed,
+    Object? actors = freezed,
+    Object? language = freezed,
+    Object? country = freezed,
+    Object? awards = freezed,
+    Object? metascore = freezed,
+    Object? imdbVotes = freezed,
+    Object? imdbID = null,
+    Object? images = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -98,6 +154,62 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
                 ? _value.imdbRating
                 : imdbRating // ignore: cast_nullable_to_non_nullable
                       as String,
+            rated: freezed == rated
+                ? _value.rated
+                : rated // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            released: freezed == released
+                ? _value.released
+                : released // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            runtime: freezed == runtime
+                ? _value.runtime
+                : runtime // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            genre: freezed == genre
+                ? _value.genre
+                : genre // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            director: freezed == director
+                ? _value.director
+                : director // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            writer: freezed == writer
+                ? _value.writer
+                : writer // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            actors: freezed == actors
+                ? _value.actors
+                : actors // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            language: freezed == language
+                ? _value.language
+                : language // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            country: freezed == country
+                ? _value.country
+                : country // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            awards: freezed == awards
+                ? _value.awards
+                : awards // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            metascore: freezed == metascore
+                ? _value.metascore
+                : metascore // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            imdbVotes: freezed == imdbVotes
+                ? _value.imdbVotes
+                : imdbVotes // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            imdbID: null == imdbID
+                ? _value.imdbID
+                : imdbID // ignore: cast_nullable_to_non_nullable
+                      as String,
+            images: freezed == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                      as List<String>?,
           )
           as $Val,
     );
@@ -118,6 +230,20 @@ abstract class _$$MovieImplCopyWith<$Res> implements $MovieCopyWith<$Res> {
     @JsonKey(name: 'Plot') String plot,
     @JsonKey(name: 'Poster') String poster,
     @JsonKey(name: 'imdbRating') String imdbRating,
+    @JsonKey(name: 'Rated') String? rated,
+    @JsonKey(name: 'Released') String? released,
+    @JsonKey(name: 'Runtime') String? runtime,
+    @JsonKey(name: 'Genre') String? genre,
+    @JsonKey(name: 'Director') String? director,
+    @JsonKey(name: 'Writer') String? writer,
+    @JsonKey(name: 'Actors') String? actors,
+    @JsonKey(name: 'Language') String? language,
+    @JsonKey(name: 'Country') String? country,
+    @JsonKey(name: 'Awards') String? awards,
+    @JsonKey(name: 'Metascore') String? metascore,
+    @JsonKey(name: 'imdbVotes') String? imdbVotes,
+    @JsonKey(name: 'imdbID') String imdbID,
+    @JsonKey(name: 'Images') List<String>? images,
   });
 }
 
@@ -140,6 +266,20 @@ class __$$MovieImplCopyWithImpl<$Res>
     Object? plot = null,
     Object? poster = null,
     Object? imdbRating = null,
+    Object? rated = freezed,
+    Object? released = freezed,
+    Object? runtime = freezed,
+    Object? genre = freezed,
+    Object? director = freezed,
+    Object? writer = freezed,
+    Object? actors = freezed,
+    Object? language = freezed,
+    Object? country = freezed,
+    Object? awards = freezed,
+    Object? metascore = freezed,
+    Object? imdbVotes = freezed,
+    Object? imdbID = null,
+    Object? images = freezed,
   }) {
     return _then(
       _$MovieImpl(
@@ -163,6 +303,62 @@ class __$$MovieImplCopyWithImpl<$Res>
             ? _value.imdbRating
             : imdbRating // ignore: cast_nullable_to_non_nullable
                   as String,
+        rated: freezed == rated
+            ? _value.rated
+            : rated // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        released: freezed == released
+            ? _value.released
+            : released // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        runtime: freezed == runtime
+            ? _value.runtime
+            : runtime // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        genre: freezed == genre
+            ? _value.genre
+            : genre // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        director: freezed == director
+            ? _value.director
+            : director // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        writer: freezed == writer
+            ? _value.writer
+            : writer // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        actors: freezed == actors
+            ? _value.actors
+            : actors // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        language: freezed == language
+            ? _value.language
+            : language // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        country: freezed == country
+            ? _value.country
+            : country // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        awards: freezed == awards
+            ? _value.awards
+            : awards // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        metascore: freezed == metascore
+            ? _value.metascore
+            : metascore // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        imdbVotes: freezed == imdbVotes
+            ? _value.imdbVotes
+            : imdbVotes // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        imdbID: null == imdbID
+            ? _value.imdbID
+            : imdbID // ignore: cast_nullable_to_non_nullable
+                  as String,
+        images: freezed == images
+            ? _value._images
+            : images // ignore: cast_nullable_to_non_nullable
+                  as List<String>?,
       ),
     );
   }
@@ -177,7 +373,21 @@ class _$MovieImpl implements _Movie {
     @JsonKey(name: 'Plot') required this.plot,
     @JsonKey(name: 'Poster') required this.poster,
     @JsonKey(name: 'imdbRating') required this.imdbRating,
-  });
+    @JsonKey(name: 'Rated') this.rated,
+    @JsonKey(name: 'Released') this.released,
+    @JsonKey(name: 'Runtime') this.runtime,
+    @JsonKey(name: 'Genre') this.genre,
+    @JsonKey(name: 'Director') this.director,
+    @JsonKey(name: 'Writer') this.writer,
+    @JsonKey(name: 'Actors') this.actors,
+    @JsonKey(name: 'Language') this.language,
+    @JsonKey(name: 'Country') this.country,
+    @JsonKey(name: 'Awards') this.awards,
+    @JsonKey(name: 'Metascore') this.metascore,
+    @JsonKey(name: 'imdbVotes') this.imdbVotes,
+    @JsonKey(name: 'imdbID') required this.imdbID,
+    @JsonKey(name: 'Images') final List<String>? images,
+  }) : _images = images;
 
   factory _$MovieImpl.fromJson(Map<String, dynamic> json) =>
       _$$MovieImplFromJson(json);
@@ -197,10 +407,59 @@ class _$MovieImpl implements _Movie {
   @override
   @JsonKey(name: 'imdbRating')
   final String imdbRating;
+  @override
+  @JsonKey(name: 'Rated')
+  final String? rated;
+  @override
+  @JsonKey(name: 'Released')
+  final String? released;
+  @override
+  @JsonKey(name: 'Runtime')
+  final String? runtime;
+  @override
+  @JsonKey(name: 'Genre')
+  final String? genre;
+  @override
+  @JsonKey(name: 'Director')
+  final String? director;
+  @override
+  @JsonKey(name: 'Writer')
+  final String? writer;
+  @override
+  @JsonKey(name: 'Actors')
+  final String? actors;
+  @override
+  @JsonKey(name: 'Language')
+  final String? language;
+  @override
+  @JsonKey(name: 'Country')
+  final String? country;
+  @override
+  @JsonKey(name: 'Awards')
+  final String? awards;
+  @override
+  @JsonKey(name: 'Metascore')
+  final String? metascore;
+  @override
+  @JsonKey(name: 'imdbVotes')
+  final String? imdbVotes;
+  @override
+  @JsonKey(name: 'imdbID')
+  final String imdbID;
+  final List<String>? _images;
+  @override
+  @JsonKey(name: 'Images')
+  List<String>? get images {
+    final value = _images;
+    if (value == null) return null;
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Movie(title: $title, year: $year, plot: $plot, poster: $poster, imdbRating: $imdbRating)';
+    return 'Movie(title: $title, year: $year, plot: $plot, poster: $poster, imdbRating: $imdbRating, rated: $rated, released: $released, runtime: $runtime, genre: $genre, director: $director, writer: $writer, actors: $actors, language: $language, country: $country, awards: $awards, metascore: $metascore, imdbVotes: $imdbVotes, imdbID: $imdbID, images: $images)';
   }
 
   @override
@@ -213,13 +472,52 @@ class _$MovieImpl implements _Movie {
             (identical(other.plot, plot) || other.plot == plot) &&
             (identical(other.poster, poster) || other.poster == poster) &&
             (identical(other.imdbRating, imdbRating) ||
-                other.imdbRating == imdbRating));
+                other.imdbRating == imdbRating) &&
+            (identical(other.rated, rated) || other.rated == rated) &&
+            (identical(other.released, released) ||
+                other.released == released) &&
+            (identical(other.runtime, runtime) || other.runtime == runtime) &&
+            (identical(other.genre, genre) || other.genre == genre) &&
+            (identical(other.director, director) ||
+                other.director == director) &&
+            (identical(other.writer, writer) || other.writer == writer) &&
+            (identical(other.actors, actors) || other.actors == actors) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.awards, awards) || other.awards == awards) &&
+            (identical(other.metascore, metascore) ||
+                other.metascore == metascore) &&
+            (identical(other.imdbVotes, imdbVotes) ||
+                other.imdbVotes == imdbVotes) &&
+            (identical(other.imdbID, imdbID) || other.imdbID == imdbID) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, year, plot, poster, imdbRating);
+  int get hashCode => Object.hashAll([
+    runtimeType,
+    title,
+    year,
+    plot,
+    poster,
+    imdbRating,
+    rated,
+    released,
+    runtime,
+    genre,
+    director,
+    writer,
+    actors,
+    language,
+    country,
+    awards,
+    metascore,
+    imdbVotes,
+    imdbID,
+    const DeepCollectionEquality().hash(_images),
+  ]);
 
   /// Create a copy of Movie
   /// with the given fields replaced by the non-null parameter values.
@@ -242,6 +540,20 @@ abstract class _Movie implements Movie {
     @JsonKey(name: 'Plot') required final String plot,
     @JsonKey(name: 'Poster') required final String poster,
     @JsonKey(name: 'imdbRating') required final String imdbRating,
+    @JsonKey(name: 'Rated') final String? rated,
+    @JsonKey(name: 'Released') final String? released,
+    @JsonKey(name: 'Runtime') final String? runtime,
+    @JsonKey(name: 'Genre') final String? genre,
+    @JsonKey(name: 'Director') final String? director,
+    @JsonKey(name: 'Writer') final String? writer,
+    @JsonKey(name: 'Actors') final String? actors,
+    @JsonKey(name: 'Language') final String? language,
+    @JsonKey(name: 'Country') final String? country,
+    @JsonKey(name: 'Awards') final String? awards,
+    @JsonKey(name: 'Metascore') final String? metascore,
+    @JsonKey(name: 'imdbVotes') final String? imdbVotes,
+    @JsonKey(name: 'imdbID') required final String imdbID,
+    @JsonKey(name: 'Images') final List<String>? images,
   }) = _$MovieImpl;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$MovieImpl.fromJson;
@@ -261,6 +573,48 @@ abstract class _Movie implements Movie {
   @override
   @JsonKey(name: 'imdbRating')
   String get imdbRating;
+  @override
+  @JsonKey(name: 'Rated')
+  String? get rated;
+  @override
+  @JsonKey(name: 'Released')
+  String? get released;
+  @override
+  @JsonKey(name: 'Runtime')
+  String? get runtime;
+  @override
+  @JsonKey(name: 'Genre')
+  String? get genre;
+  @override
+  @JsonKey(name: 'Director')
+  String? get director;
+  @override
+  @JsonKey(name: 'Writer')
+  String? get writer;
+  @override
+  @JsonKey(name: 'Actors')
+  String? get actors;
+  @override
+  @JsonKey(name: 'Language')
+  String? get language;
+  @override
+  @JsonKey(name: 'Country')
+  String? get country;
+  @override
+  @JsonKey(name: 'Awards')
+  String? get awards;
+  @override
+  @JsonKey(name: 'Metascore')
+  String? get metascore;
+  @override
+  @JsonKey(name: 'imdbVotes')
+  String? get imdbVotes;
+  @override
+  @JsonKey(name: 'imdbID')
+  String get imdbID;
+  @override
+  @JsonKey(name: 'Images')
+  List<String>? get images;
 
   /// Create a copy of Movie
   /// with the given fields replaced by the non-null parameter values.
