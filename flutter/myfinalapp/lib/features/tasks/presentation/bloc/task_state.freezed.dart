@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskState {
+  bool get isLoading => throw _privateConstructorUsedError;
   List<Task> get allTasks => throw _privateConstructorUsedError;
   List<Task> get filteredTasks => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
   String get searchQuery => throw _privateConstructorUsedError;
 
   /// Create a copy of TaskState
@@ -35,9 +35,9 @@ abstract class $TaskStateCopyWith<$Res> {
       _$TaskStateCopyWithImpl<$Res, TaskState>;
   @useResult
   $Res call({
+    bool isLoading,
     List<Task> allTasks,
     List<Task> filteredTasks,
-    bool isLoading,
     String searchQuery,
   });
 }
@@ -57,13 +57,17 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? allTasks = null,
     Object? filteredTasks = null,
-    Object? isLoading = null,
     Object? searchQuery = null,
   }) {
     return _then(
       _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
             allTasks: null == allTasks
                 ? _value.allTasks
                 : allTasks // ignore: cast_nullable_to_non_nullable
@@ -72,10 +76,6 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
                 ? _value.filteredTasks
                 : filteredTasks // ignore: cast_nullable_to_non_nullable
                       as List<Task>,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
             searchQuery: null == searchQuery
                 ? _value.searchQuery
                 : searchQuery // ignore: cast_nullable_to_non_nullable
@@ -96,9 +96,9 @@ abstract class _$$TaskStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    bool isLoading,
     List<Task> allTasks,
     List<Task> filteredTasks,
-    bool isLoading,
     String searchQuery,
   });
 }
@@ -117,13 +117,17 @@ class __$$TaskStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? allTasks = null,
     Object? filteredTasks = null,
-    Object? isLoading = null,
     Object? searchQuery = null,
   }) {
     return _then(
       _$TaskStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
         allTasks: null == allTasks
             ? _value._allTasks
             : allTasks // ignore: cast_nullable_to_non_nullable
@@ -132,10 +136,6 @@ class __$$TaskStateImplCopyWithImpl<$Res>
             ? _value._filteredTasks
             : filteredTasks // ignore: cast_nullable_to_non_nullable
                   as List<Task>,
-        isLoading: null == isLoading
-            ? _value.isLoading
-            : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
         searchQuery: null == searchQuery
             ? _value.searchQuery
             : searchQuery // ignore: cast_nullable_to_non_nullable
@@ -149,15 +149,19 @@ class __$$TaskStateImplCopyWithImpl<$Res>
 
 class _$TaskStateImpl implements _TaskState {
   const _$TaskStateImpl({
-    required final List<Task> allTasks,
-    required final List<Task> filteredTasks,
-    required this.isLoading,
-    required this.searchQuery,
+    this.isLoading = false,
+    final List<Task> allTasks = const [],
+    final List<Task> filteredTasks = const [],
+    this.searchQuery = '',
   }) : _allTasks = allTasks,
        _filteredTasks = filteredTasks;
 
+  @override
+  @JsonKey()
+  final bool isLoading;
   final List<Task> _allTasks;
   @override
+  @JsonKey()
   List<Task> get allTasks {
     if (_allTasks is EqualUnmodifiableListView) return _allTasks;
     // ignore: implicit_dynamic_type
@@ -166,6 +170,7 @@ class _$TaskStateImpl implements _TaskState {
 
   final List<Task> _filteredTasks;
   @override
+  @JsonKey()
   List<Task> get filteredTasks {
     if (_filteredTasks is EqualUnmodifiableListView) return _filteredTasks;
     // ignore: implicit_dynamic_type
@@ -173,13 +178,12 @@ class _$TaskStateImpl implements _TaskState {
   }
 
   @override
-  final bool isLoading;
-  @override
+  @JsonKey()
   final String searchQuery;
 
   @override
   String toString() {
-    return 'TaskState(allTasks: $allTasks, filteredTasks: $filteredTasks, isLoading: $isLoading, searchQuery: $searchQuery)';
+    return 'TaskState(isLoading: $isLoading, allTasks: $allTasks, filteredTasks: $filteredTasks, searchQuery: $searchQuery)';
   }
 
   @override
@@ -187,13 +191,13 @@ class _$TaskStateImpl implements _TaskState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._allTasks, _allTasks) &&
             const DeepCollectionEquality().equals(
               other._filteredTasks,
               _filteredTasks,
             ) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
             (identical(other.searchQuery, searchQuery) ||
                 other.searchQuery == searchQuery));
   }
@@ -201,9 +205,9 @@ class _$TaskStateImpl implements _TaskState {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    isLoading,
     const DeepCollectionEquality().hash(_allTasks),
     const DeepCollectionEquality().hash(_filteredTasks),
-    isLoading,
     searchQuery,
   );
 
@@ -218,18 +222,18 @@ class _$TaskStateImpl implements _TaskState {
 
 abstract class _TaskState implements TaskState {
   const factory _TaskState({
-    required final List<Task> allTasks,
-    required final List<Task> filteredTasks,
-    required final bool isLoading,
-    required final String searchQuery,
+    final bool isLoading,
+    final List<Task> allTasks,
+    final List<Task> filteredTasks,
+    final String searchQuery,
   }) = _$TaskStateImpl;
 
+  @override
+  bool get isLoading;
   @override
   List<Task> get allTasks;
   @override
   List<Task> get filteredTasks;
-  @override
-  bool get isLoading;
   @override
   String get searchQuery;
 

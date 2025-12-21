@@ -1,91 +1,55 @@
-import '../../domain/entities/task.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/usecases/add_task_usecase.dart';
-import '../../domain/usecases/delete_task_usecase.dart';
-import '../../domain/usecases/get_tasks_usecase.dart';
-import '../../domain/usecases/update_task_usecase.dart';
+import '../../domain/entities/task.dart';
 import 'task_event.dart';
 import 'task_state.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
-  final GetTasksUseCase getTasks;
-  final AddTaskUseCase addTask;
-  final UpdateTaskUseCase updateTask;
-  final DeleteTaskUseCase deleteTask;
-
-  TaskBloc({
-    required this.getTasks,
-    required this.addTask,
-    required this.updateTask,
-    required this.deleteTask,
-  }) : super(TaskState.initial()) {
+  TaskBloc() : super(const TaskState()) {
     on<TaskEvent>((event, emit) async {
-      await event.when(
-        load: () async {
-          emit(state.copyWith(isLoading: true));
-
-          final tasks = await getTasks();
-
+      await event.map(
+        load: (_) async {
           emit(
-            state.copyWith(
-              allTasks: tasks,
-              filteredTasks: _applySearch(tasks, state.searchQuery),
-              isLoading: false,
-            ),
+            state.copyWith(isLoading: false, allTasks: [], filteredTasks: []),
           );
         },
-        search: (query) async {
-          emit(
-            state.copyWith(
-              searchQuery: query,
-              filteredTasks: _applySearch(state.allTasks, query),
-            ),
-          );
-        },
-        add: (task) async {
-          emit(state.copyWith(isLoading: true));
-
-          final newTask = await addTask(task);
-          final updated = [...state.allTasks, newTask];
+        add: (e) async {
+          final updated = List<Task>.from(state.allTasks)..add(e.task);
 
           emit(
             state.copyWith(
               allTasks: updated,
               filteredTasks: _applySearch(updated, state.searchQuery),
-              isLoading: false,
             ),
           );
         },
-        update: (task) async {
-          emit(state.copyWith(isLoading: true));
-
-          final updatedTask = await updateTask(task);
-
-          final updatedList = state.allTasks
-              .map((t) => t.id == updatedTask.id ? updatedTask : t)
+        update: (e) async {
+          final updated = state.allTasks
+              .map((t) => t.id == e.task.id ? e.task : t)
               .toList();
 
           emit(
             state.copyWith(
-              allTasks: updatedList,
-              filteredTasks: _applySearch(updatedList, state.searchQuery),
-              isLoading: false,
+              allTasks: updated,
+              filteredTasks: _applySearch(updated, state.searchQuery),
             ),
           );
         },
-        delete: (id) async {
-          emit(state.copyWith(isLoading: true));
-
-          await deleteTask(id);
-
-          final updatedList = state.allTasks.where((t) => t.id != id).toList();
+        delete: (e) async {
+          final updated = state.allTasks.where((t) => t.id != e.id).toList();
 
           emit(
             state.copyWith(
-              allTasks: updatedList,
-              filteredTasks: _applySearch(updatedList, state.searchQuery),
-              isLoading: false,
+              allTasks: updated,
+              filteredTasks: _applySearch(updated, state.searchQuery),
+            ),
+          );
+        },
+        search: (e) async {
+          emit(
+            state.copyWith(
+              searchQuery: e.query,
+              filteredTasks: _applySearch(state.allTasks, e.query),
             ),
           );
         },
@@ -97,7 +61,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     if (query.isEmpty) return tasks;
 
     final lower = query.toLowerCase();
-
     return tasks.where((t) => t.title.toLowerCase().contains(lower)).toList();
   }
 }

@@ -20,51 +20,51 @@ mixin _$TaskEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String query) search,
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(int id) delete,
+    required TResult Function(String query) search,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String query)? search,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String query)? search,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String query)? search,
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(int id)? delete,
+    TResult Function(String query)? search,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_Search value) search,
     required TResult Function(_Add value) add,
     required TResult Function(_Update value) update,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_Search value) search,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_Search value)? search,
     TResult? Function(_Add value)? add,
     TResult? Function(_Update value)? update,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_Search value)? search,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_Search value)? search,
     TResult Function(_Add value)? add,
     TResult Function(_Update value)? update,
     TResult Function(_Delete value)? delete,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -131,10 +131,10 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String query) search,
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(int id) delete,
+    required TResult Function(String query) search,
   }) {
     return load();
   }
@@ -143,10 +143,10 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String query)? search,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String query)? search,
   }) {
     return load?.call();
   }
@@ -155,10 +155,10 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String query)? search,
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(int id)? delete,
+    TResult Function(String query)? search,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -171,10 +171,10 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_Search value) search,
     required TResult Function(_Add value) add,
     required TResult Function(_Update value) update,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_Search value) search,
   }) {
     return load(this);
   }
@@ -183,10 +183,10 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_Search value)? search,
     TResult? Function(_Add value)? add,
     TResult? Function(_Update value)? update,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_Search value)? search,
   }) {
     return load?.call(this);
   }
@@ -195,10 +195,10 @@ class _$LoadImpl implements _Load {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_Search value)? search,
     TResult Function(_Add value)? add,
     TResult Function(_Update value)? update,
     TResult Function(_Delete value)? delete,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -210,166 +210,6 @@ class _$LoadImpl implements _Load {
 
 abstract class _Load implements TaskEvent {
   const factory _Load() = _$LoadImpl;
-}
-
-/// @nodoc
-abstract class _$$SearchImplCopyWith<$Res> {
-  factory _$$SearchImplCopyWith(
-    _$SearchImpl value,
-    $Res Function(_$SearchImpl) then,
-  ) = __$$SearchImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String query});
-}
-
-/// @nodoc
-class __$$SearchImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$SearchImpl>
-    implements _$$SearchImplCopyWith<$Res> {
-  __$$SearchImplCopyWithImpl(
-    _$SearchImpl _value,
-    $Res Function(_$SearchImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? query = null}) {
-    return _then(
-      _$SearchImpl(
-        null == query
-            ? _value.query
-            : query // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$SearchImpl implements _Search {
-  const _$SearchImpl(this.query);
-
-  @override
-  final String query;
-
-  @override
-  String toString() {
-    return 'TaskEvent.search(query: $query)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchImpl &&
-            (identical(other.query, query) || other.query == query));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, query);
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
-      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-    required TResult Function(String query) search,
-    required TResult Function(Task task) add,
-    required TResult Function(Task task) update,
-    required TResult Function(int id) delete,
-  }) {
-    return search(query);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-    TResult? Function(String query)? search,
-    TResult? Function(Task task)? add,
-    TResult? Function(Task task)? update,
-    TResult? Function(int id)? delete,
-  }) {
-    return search?.call(query);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    TResult Function(String query)? search,
-    TResult Function(Task task)? add,
-    TResult Function(Task task)? update,
-    TResult Function(int id)? delete,
-    required TResult orElse(),
-  }) {
-    if (search != null) {
-      return search(query);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Load value) load,
-    required TResult Function(_Search value) search,
-    required TResult Function(_Add value) add,
-    required TResult Function(_Update value) update,
-    required TResult Function(_Delete value) delete,
-  }) {
-    return search(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Load value)? load,
-    TResult? Function(_Search value)? search,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_Update value)? update,
-    TResult? Function(_Delete value)? delete,
-  }) {
-    return search?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Load value)? load,
-    TResult Function(_Search value)? search,
-    TResult Function(_Add value)? add,
-    TResult Function(_Update value)? update,
-    TResult Function(_Delete value)? delete,
-    required TResult orElse(),
-  }) {
-    if (search != null) {
-      return search(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Search implements TaskEvent {
-  const factory _Search(final String query) = _$SearchImpl;
-
-  String get query;
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -451,10 +291,10 @@ class _$AddImpl implements _Add {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String query) search,
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(int id) delete,
+    required TResult Function(String query) search,
   }) {
     return add(task);
   }
@@ -463,10 +303,10 @@ class _$AddImpl implements _Add {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String query)? search,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String query)? search,
   }) {
     return add?.call(task);
   }
@@ -475,10 +315,10 @@ class _$AddImpl implements _Add {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String query)? search,
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(int id)? delete,
+    TResult Function(String query)? search,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -491,10 +331,10 @@ class _$AddImpl implements _Add {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_Search value) search,
     required TResult Function(_Add value) add,
     required TResult Function(_Update value) update,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_Search value) search,
   }) {
     return add(this);
   }
@@ -503,10 +343,10 @@ class _$AddImpl implements _Add {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_Search value)? search,
     TResult? Function(_Add value)? add,
     TResult? Function(_Update value)? update,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_Search value)? search,
   }) {
     return add?.call(this);
   }
@@ -515,10 +355,10 @@ class _$AddImpl implements _Add {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_Search value)? search,
     TResult Function(_Add value)? add,
     TResult Function(_Update value)? update,
     TResult Function(_Delete value)? delete,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -623,10 +463,10 @@ class _$UpdateImpl implements _Update {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String query) search,
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(int id) delete,
+    required TResult Function(String query) search,
   }) {
     return update(task);
   }
@@ -635,10 +475,10 @@ class _$UpdateImpl implements _Update {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String query)? search,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String query)? search,
   }) {
     return update?.call(task);
   }
@@ -647,10 +487,10 @@ class _$UpdateImpl implements _Update {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String query)? search,
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(int id)? delete,
+    TResult Function(String query)? search,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -663,10 +503,10 @@ class _$UpdateImpl implements _Update {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_Search value) search,
     required TResult Function(_Add value) add,
     required TResult Function(_Update value) update,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_Search value) search,
   }) {
     return update(this);
   }
@@ -675,10 +515,10 @@ class _$UpdateImpl implements _Update {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_Search value)? search,
     TResult? Function(_Add value)? add,
     TResult? Function(_Update value)? update,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_Search value)? search,
   }) {
     return update?.call(this);
   }
@@ -687,10 +527,10 @@ class _$UpdateImpl implements _Update {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_Search value)? search,
     TResult Function(_Add value)? add,
     TResult Function(_Update value)? update,
     TResult Function(_Delete value)? delete,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -783,10 +623,10 @@ class _$DeleteImpl implements _Delete {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String query) search,
     required TResult Function(Task task) add,
     required TResult Function(Task task) update,
     required TResult Function(int id) delete,
+    required TResult Function(String query) search,
   }) {
     return delete(id);
   }
@@ -795,10 +635,10 @@ class _$DeleteImpl implements _Delete {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String query)? search,
     TResult? Function(Task task)? add,
     TResult? Function(Task task)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String query)? search,
   }) {
     return delete?.call(id);
   }
@@ -807,10 +647,10 @@ class _$DeleteImpl implements _Delete {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String query)? search,
     TResult Function(Task task)? add,
     TResult Function(Task task)? update,
     TResult Function(int id)? delete,
+    TResult Function(String query)? search,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -823,10 +663,10 @@ class _$DeleteImpl implements _Delete {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Load value) load,
-    required TResult Function(_Search value) search,
     required TResult Function(_Add value) add,
     required TResult Function(_Update value) update,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_Search value) search,
   }) {
     return delete(this);
   }
@@ -835,10 +675,10 @@ class _$DeleteImpl implements _Delete {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Load value)? load,
-    TResult? Function(_Search value)? search,
     TResult? Function(_Add value)? add,
     TResult? Function(_Update value)? update,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_Search value)? search,
   }) {
     return delete?.call(this);
   }
@@ -847,10 +687,10 @@ class _$DeleteImpl implements _Delete {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Load value)? load,
-    TResult Function(_Search value)? search,
     TResult Function(_Add value)? add,
     TResult Function(_Update value)? update,
     TResult Function(_Delete value)? delete,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -869,5 +709,165 @@ abstract class _Delete implements TaskEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchImplCopyWith<$Res> {
+  factory _$$SearchImplCopyWith(
+    _$SearchImpl value,
+    $Res Function(_$SearchImpl) then,
+  ) = __$$SearchImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$SearchImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$SearchImpl>
+    implements _$$SearchImplCopyWith<$Res> {
+  __$$SearchImplCopyWithImpl(
+    _$SearchImpl _value,
+    $Res Function(_$SearchImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? query = null}) {
+    return _then(
+      _$SearchImpl(
+        null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$SearchImpl implements _Search {
+  const _$SearchImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'TaskEvent.search(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
+    required TResult Function(int id) delete,
+    required TResult Function(String query) search,
+  }) {
+    return search(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
+    TResult? Function(int id)? delete,
+    TResult? Function(String query)? search,
+  }) {
+    return search?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
+    TResult Function(int id)? delete,
+    TResult Function(String query)? search,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Add value) add,
+    required TResult Function(_Update value) update,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Search value) search,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Add value)? add,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Search value)? search,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Add value)? add,
+    TResult Function(_Update value)? update,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Search value)? search,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Search implements TaskEvent {
+  const factory _Search(final String query) = _$SearchImpl;
+
+  String get query;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
