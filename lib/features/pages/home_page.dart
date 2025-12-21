@@ -44,26 +44,28 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: BlocBuilder<MovieBloc, MovieState>(
               builder: (context, state) {
-                if (state is MovieStateLoading) return const Center(child: CircularProgressIndicator());
+                if (state is MovieStateLoading)
+                  return const Center(child: CircularProgressIndicator());
                 if (state is MovieStateLoaded) {
                   if (state.displayedMovies.isEmpty) {
                     return const Center(child: Text('No movies found'));
                   }
                   return GridView.builder(
                     padding: const EdgeInsets.all(12),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      childAspectRatio: 0.55, 
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          childAspectRatio: 0.50,
+                        ),
                     itemCount: state.displayedMovies.length,
-                    itemBuilder: (_, i) => MovieCard(movie: state.displayedMovies[i]),
+                    itemBuilder: (_, i) =>
+                        MovieCard(movie: state.displayedMovies[i]),
                   );
-
-
                 }
-                if (state is MovieStateError) return Center(child: Text(state.message));
+                if (state is MovieStateError)
+                  return Center(child: Text(state.message));
                 return const SizedBox();
               },
             ),
