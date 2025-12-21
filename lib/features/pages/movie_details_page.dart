@@ -31,7 +31,6 @@ class MovieDetailsPage extends StatelessWidget {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  // Background image (cropped is fine as a background)
                   Image.network(
                     movie.safePoster,
                     fit: BoxFit.cover,
@@ -41,7 +40,6 @@ class MovieDetailsPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Dark gradient overlay for readability
                   const DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -56,7 +54,6 @@ class MovieDetailsPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Main poster (fully visible)
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -73,7 +70,7 @@ class MovieDetailsPage extends StatelessWidget {
                             color: Colors.black12,
                             child: Image.network(
                               movie.safePoster,
-                              fit: BoxFit.contain, // ✅ fully visible poster
+                              fit: BoxFit.contain,
                               errorBuilder: (_, __, ___) => Container(
                                 color: Colors.grey[300],
                                 child: const Center(
@@ -87,7 +84,6 @@ class MovieDetailsPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Bottom title + rating badge
                   Positioned(
                     left: 16,
                     right: 16,
