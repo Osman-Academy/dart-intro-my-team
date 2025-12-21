@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_search/features/bloc/movie_bloc.dart';
@@ -34,10 +33,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onSearchChanged(String value) {
-    // cancel previous timer
     _debounceTimer?.cancel();
-
-    // start a new timer
     _debounceTimer = Timer(_debounceDuration, () {
       if (!mounted) return;
       context.read<MovieBloc>().add(MovieSearchEvent(query: value));
@@ -54,10 +50,10 @@ class _HomePageState extends State<HomePage> {
     return ButtonStyle(
       overlayColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.hovered)) {
-          return Colors.white.withOpacity(0.12);
+          return Colors.white.withAlpha(31); // ~12%
         }
         if (states.contains(WidgetState.pressed)) {
-          return Colors.white.withOpacity(0.18);
+          return Colors.white.withAlpha(46); // ~18%
         }
         return null;
       }),
@@ -72,7 +68,6 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Movie Search'),
-        centerTitle: false,
         actions: [
           IconButton(
             tooltip: 'Reload',
@@ -93,11 +88,121 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
             child: _SearchField(
               controller: _searchController,
-              onChanged: _onSearchChanged, // ✅ debounce here
+              onChanged: _onSearchChanged,
               onClear: _clearSearch,
               iconStyle: _hoverIconStyle(),
             ),
           ),
+
+          // Sort + Filters panel
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+            child: BlocBuilder<MovieBloc, MovieState>(
+              builder: (context, state) {
+                if (state is! MovieStateLoaded) return const SizedBox.shrink();
+
+                return Column(
+                  children: [
+                    _DropdownCard(
+                      title: 'Sort',
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<SortMode>(
+                          value: state.sortMode,
+                          isExpanded: true,
+                          items: const [
+                            DropdownMenuItem(
+                              value: SortMode.titleAsc,
+                              child: Text('Title: A → Z'),
+                            ),
+                            DropdownMenuItem(
+                              value: SortMode.titleDesc,
+                              child: Text('Title: Z → A'),
+                            ),
+                            DropdownMenuItem(
+                              value: SortMode.yearAsc,
+                              child: Text('Year: old → new'),
+                            ),
+                            DropdownMenuItem(
+                              value: SortMode.yearDesc,
+                              child: Text('Year: new → old'),
+                            ),
+                            DropdownMenuItem(
+                              value: SortMode.ratingAsc,
+                              child: Text('Rating: low → high'),
+                            ),
+                            DropdownMenuItem(
+                              value: SortMode.ratingDesc,
+                              child: Text('Rating: high → low'),
+                            ),
+                          ],
+                          onChanged: (v) {
+                            if (v == null) return;
+                            context.read<MovieBloc>().add(
+                              MovieSortChangedEvent(sortMode: v),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    _RangeCard(
+                      title: 'Year range',
+                      subtitle:
+                          '${state.selectedYearRange.start.round()} — ${state.selectedYearRange.end.round()}',
+                      child: RangeSlider(
+                        values: state.selectedYearRange,
+                        min: state.availableYearRange.start,
+                        max: state.availableYearRange.end,
+                        divisions:
+                            (state.availableYearRange.end -
+                                    state.availableYearRange.start)
+                                .round()
+                                .clamp(1, 200),
+                        labels: RangeLabels(
+                          state.selectedYearRange.start.round().toString(),
+                          state.selectedYearRange.end.round().toString(),
+                        ),
+                        onChanged: (v) {
+                          context.read<MovieBloc>().add(
+                            MovieYearRangeChangedEvent(yearRange: v),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
+                    _RangeCard(
+                      title: 'Rating range',
+                      subtitle:
+                          '${state.selectedRatingRange.start.toStringAsFixed(1)} — ${state.selectedRatingRange.end.toStringAsFixed(1)}',
+                      child: RangeSlider(
+                        values: state.selectedRatingRange,
+                        min: state.availableRatingRange.start,
+                        max: state.availableRatingRange.end,
+                        divisions:
+                            ((state.availableRatingRange.end -
+                                        state.availableRatingRange.start) *
+                                    10)
+                                .round()
+                                .clamp(1, 100),
+                        labels: RangeLabels(
+                          state.selectedRatingRange.start.toStringAsFixed(1),
+                          state.selectedRatingRange.end.toStringAsFixed(1),
+                        ),
+                        onChanged: (v) {
+                          context.read<MovieBloc>().add(
+                            MovieRatingRangeChangedEvent(ratingRange: v),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+
           Expanded(
             child: BlocBuilder<MovieBloc, MovieState>(
               builder: (context, state) {
@@ -106,26 +211,50 @@ class _HomePageState extends State<HomePage> {
                 }
 
                 if (state is MovieStateLoaded) {
-                  if (state.displayedMovies.isEmpty) {
+                  final total = state.allMovies.length;
+                  final shown = state.displayedMovies.length;
+
+                  if (shown == 0) {
                     return _EmptyState(
                       title: 'No movies found',
-                      subtitle: 'Try another search pattern.',
-                      onReset: _clearSearch,
+                      subtitle: 'Try changing search / ranges / sort.',
+                      onReset: () {
+                        _clearSearch();
+                        // Reset ranges + sort by reloading
+                        context.read<MovieBloc>().add(MovieLoadEvent());
+                      },
                     );
                   }
 
-                  return GridView.builder(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 12,
-                          childAspectRatio: 0.52,
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Showing $shown of $total',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
                         ),
-                    itemCount: state.displayedMovies.length,
-                    itemBuilder: (_, i) =>
-                        MovieCard(movie: state.displayedMovies[i]),
+                      ),
+                      Expanded(
+                        child: GridView.builder(
+                          padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 0.52,
+                              ),
+                          itemCount: shown,
+                          itemBuilder: (_, i) =>
+                              MovieCard(movie: state.displayedMovies[i]),
+                        ),
+                      ),
+                    ],
                   );
                 }
 
@@ -133,9 +262,8 @@ class _HomePageState extends State<HomePage> {
                   return _EmptyState(
                     title: 'Something went wrong',
                     subtitle: state.message,
-                    onReset: () {
-                      context.read<MovieBloc>().add(MovieLoadEvent());
-                    },
+                    onReset: () =>
+                        context.read<MovieBloc>().add(MovieLoadEvent()),
                   );
                 }
 
@@ -199,6 +327,73 @@ class _SearchField extends StatelessWidget {
             horizontal: 12,
             vertical: 14,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DropdownCard extends StatelessWidget {
+  const _DropdownCard({required this.title, required this.child});
+
+  final String title;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Material(
+      elevation: 2,
+      borderRadius: BorderRadius.circular(16),
+      color: theme.colorScheme.surface,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: theme.textTheme.bodySmall),
+            const SizedBox(height: 6),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RangeCard extends StatelessWidget {
+  const _RangeCard({
+    required this.title,
+    required this.subtitle,
+    required this.child,
+  });
+
+  final String title;
+  final String subtitle;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Material(
+      elevation: 2,
+      borderRadius: BorderRadius.circular(16),
+      color: theme.colorScheme.surface,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(child: Text(title, style: theme.textTheme.bodySmall)),
+                Text(subtitle, style: theme.textTheme.bodySmall),
+              ],
+            ),
+            child,
+          ],
         ),
       ),
     );
