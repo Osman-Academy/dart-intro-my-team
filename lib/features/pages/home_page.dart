@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_search/features/bloc/movie_bloc.dart';
@@ -15,6 +17,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
 
+  Timer? _debounceTimer;
+  static const Duration _debounceDuration = Duration(milliseconds: 350);
+
   @override
   void initState() {
     super.initState();
@@ -23,8 +28,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
+    _debounceTimer?.cancel();
     _searchController.dispose();
     super.dispose();
+  }
+
+  void _onSearchChanged(String value) {
+    // cancel previous timer
+    _debounceTimer?.cancel();
+
+    // start a new timer
+    _debounceTimer = Timer(_debounceDuration, () {
+      if (!mounted) return;
+      context.read<MovieBloc>().add(MovieSearchEvent(query: value));
+    });
+  }
+
+  void _clearSearch() {
+    _debounceTimer?.cancel();
+    _searchController.clear();
+    context.read<MovieBloc>().add(MovieSearchEvent(query: ''));
   }
 
   ButtonStyle _hoverIconStyle() {
@@ -55,6 +78,7 @@ class _HomePageState extends State<HomePage> {
             tooltip: 'Reload',
             style: _hoverIconStyle(),
             onPressed: () {
+              _debounceTimer?.cancel();
               _searchController.clear();
               context.read<MovieBloc>().add(MovieLoadEvent());
             },
@@ -69,13 +93,8 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
             child: _SearchField(
               controller: _searchController,
-              onChanged: (value) {
-                context.read<MovieBloc>().add(MovieSearchEvent(query: value));
-              },
-              onClear: () {
-                _searchController.clear();
-                context.read<MovieBloc>().add(MovieSearchEvent(query: ''));
-              },
+              onChanged: _onSearchChanged, // ✅ debounce here
+              onClear: _clearSearch,
               iconStyle: _hoverIconStyle(),
             ),
           ),
@@ -91,12 +110,7 @@ class _HomePageState extends State<HomePage> {
                     return _EmptyState(
                       title: 'No movies found',
                       subtitle: 'Try another search pattern.',
-                      onReset: () {
-                        _searchController.clear();
-                        context.read<MovieBloc>().add(
-                          MovieSearchEvent(query: ''),
-                        );
-                      },
+                      onReset: _clearSearch,
                     );
                   }
 
