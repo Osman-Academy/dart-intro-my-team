@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../screens/add-transaction-screen.dart';
-import '../screens/transactions-screen.dart'; 
+import '../pages/transactions-screen.dart';
+import '../widgets/add-transaction-screen.dart';
 import 'auth-screen.dart'; 
 
 class HomeScreen extends StatefulWidget {

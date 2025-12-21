@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../data/repository/category-repository.dart';
-import '../../data/repository/transaction-repository.dart';
+import '../../features/categories/data/repositories/category-repository.dart';
+import '../../features/transaction/data/repositories/transaction-repository.dart';
 
 GetIt sl = GetIt.instance;
 

@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
-import '../../data/repository/transaction-repository.dart';
-import '../../data/repository/category-repository.dart';
-import '../../domain/category.dart';
-import '../../domain/transaction.dart';
+import '../../../categories/data/models/category.dart';
+import '../../../categories/data/repositories/category-repository.dart';
+import '../../data/models/transaction.dart';
+import '../../data/repositories/transaction-repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../presentation/cubit/add-transaction-cubit.dart';
-import '../presentation/category-icons.dart';
+import '../../categories/presentation/category-icons.dart';
 import '../presentation/transactio-currency.dart';
 
 class AddTransactionScreen extends StatelessWidget {

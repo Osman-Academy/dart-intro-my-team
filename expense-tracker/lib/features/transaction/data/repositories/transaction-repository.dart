@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../domain/transaction.dart';
+import '../models/transaction.dart';
 import 'package:get_it/get_it.dart';
 
 class TransactionRepository {

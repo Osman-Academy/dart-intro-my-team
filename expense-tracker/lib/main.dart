@@ -1,11 +1,11 @@
-import 'package:expensetracker/common/di/service_locator.dart';
-import 'package:expensetracker/screens/home-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-import './screens/auth-screen.dart';
+import 'core/di/service_locator.dart';
+import 'features/transaction/pages/auth-screen.dart';
+import 'features/transaction/pages/home-screen.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../data/repository/transaction-repository.dart';
+import '../data/repositories/transaction-repository.dart';
 import 'package:get_it/get_it.dart';
 
 class TransactionsScreen extends StatefulWidget {

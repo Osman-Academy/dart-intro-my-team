@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get_it/get_it.dart';
-import '../../domain/category.dart';
+import '../models/category.dart';
 
 class CategoryRepository {
   final SupabaseClient supabase = GetIt.instance<SupabaseClient>();
