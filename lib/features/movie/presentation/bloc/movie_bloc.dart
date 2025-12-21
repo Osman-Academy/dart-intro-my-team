@@ -9,7 +9,7 @@ import 'movie_state.dart';
 class MovieBloc extends Bloc<MovieEvent, MovieState> {
   final GetAllMovies getAllMovies;
 
-  MovieBloc({required this.getAllMovies}) : super(MovieStateInitial()) {
+  MovieBloc(this.getAllMovies) : super(MovieStateInitial()) {
     on<MovieLoadEvent>((event, emit) async {
       emit(MovieStateLoading());
       try {

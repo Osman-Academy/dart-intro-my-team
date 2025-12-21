@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_search/core/di/service_locator.dart';
+import 'package:movie_search/features/movie/domain/usecases/get_all_movies.dart';
 import 'package:movie_search/features/movie/presentation/bloc/movie_bloc.dart';
 import 'package:movie_search/features/movie/presentation/pages/home_page.dart';
 
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
       home: BlocProvider(
-        create: (context) => MovieBloc(getAllMovies: sl()),
+        create: (_) => MovieBloc(sl<GetAllMovies>()),
         child: const HomePage(),
       ),
       debugShowCheckedModeBanner: false,
