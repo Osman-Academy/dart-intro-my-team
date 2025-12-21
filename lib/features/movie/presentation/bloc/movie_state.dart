@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:movie_search/features/bloc/movie_event.dart';
-import 'package:movie_search/models/movie.dart';
+import 'package:movie_search/features/movie/domain/entities/movie.dart';
+import 'package:movie_search/features/movie/presentation/bloc/movie_event.dart';
+
 
 abstract class MovieState {}
 
-class MovieStateInitial implements MovieState {}
+class MovieStateInitial extends MovieState {}
 
-class MovieStateLoading implements MovieState {}
+class MovieStateLoading extends MovieState {}
 
-class MovieStateLoaded implements MovieState {
+class MovieStateLoaded extends MovieState {
   final List<Movie> allMovies;
   final List<Movie> displayedMovies;
 
@@ -57,7 +58,7 @@ class MovieStateLoaded implements MovieState {
   }
 }
 
-class MovieStateError implements MovieState {
+class MovieStateError extends MovieState {
   final String message;
   MovieStateError({required this.message});
 }

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_search/features/bloc/movie_bloc.dart';
-import 'package:movie_search/features/bloc/movie_event.dart';
-import 'package:movie_search/features/bloc/movie_state.dart';
-import 'package:movie_search/features/widgets/movie_card.dart';
+import 'package:movie_search/features/movie/presentation/bloc/movie_bloc.dart';
+import 'package:movie_search/features/movie/presentation/bloc/movie_event.dart';
+import 'package:movie_search/features/movie/presentation/bloc/movie_state.dart';
+import 'package:movie_search/features/movie/presentation/widgets/movie_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

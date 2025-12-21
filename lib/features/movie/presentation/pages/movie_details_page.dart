@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_search/models/movie.dart';
+import 'package:movie_search/features/movie/domain/entities/movie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MovieDetailsPage extends StatelessWidget {

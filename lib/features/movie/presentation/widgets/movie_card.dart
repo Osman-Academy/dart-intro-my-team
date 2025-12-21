@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_search/models/movie.dart';
-import 'package:movie_search/features/pages/movie_details_page.dart';
+import 'package:movie_search/features/movie/domain/entities/movie.dart';
+import 'package:movie_search/features/movie/presentation/pages/movie_details_page.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -73,10 +73,7 @@ class MovieCard extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 8,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                 child: Row(
                   children: [
                     const Icon(Icons.calendar_month, size: 16),

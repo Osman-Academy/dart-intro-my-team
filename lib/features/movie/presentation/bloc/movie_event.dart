@@ -11,24 +11,24 @@ enum SortMode {
 
 abstract class MovieEvent {}
 
-class MovieLoadEvent implements MovieEvent {}
+class MovieLoadEvent extends MovieEvent {}
 
-class MovieSearchEvent implements MovieEvent {
+class MovieSearchEvent extends MovieEvent {
   final String query;
   MovieSearchEvent({required this.query});
 }
 
-class MovieSortChangedEvent implements MovieEvent {
+class MovieSortChangedEvent extends MovieEvent {
   final SortMode sortMode;
   MovieSortChangedEvent({required this.sortMode});
 }
 
-class MovieYearRangeChangedEvent implements MovieEvent {
+class MovieYearRangeChangedEvent extends MovieEvent {
   final RangeValues yearRange; // doubles, but represent years
   MovieYearRangeChangedEvent({required this.yearRange});
 }
 
-class MovieRatingRangeChangedEvent implements MovieEvent {
+class MovieRatingRangeChangedEvent extends MovieEvent {
   final RangeValues ratingRange; // e.g. 0..10
   MovieRatingRangeChangedEvent({required this.ratingRange});
 }

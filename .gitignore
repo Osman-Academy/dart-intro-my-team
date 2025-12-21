@@ -25,6 +25,9 @@ macos/
 *.app
 pubspec.lock
 .metadata
+*.g.dart
+*.freezed.dart
+
 
 # IntelliJ related
 *.iml
