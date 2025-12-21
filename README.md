@@ -34,48 +34,48 @@ Dependency Injection with GetIt
 Freezed for states and models
 Error handling and loading states
 
-Architecture:
+## Architecture
 
-├── lib
-│   ├── core
-│   │   ├── di
-│   │   │   └── service_locator.dart
-│   │   └── errors
-│   │       └── failures.dart
-│   │       └── utils
-│   │
-│   ├── features
-│   │   └── movie
-│   │       ├── data
-│   │       │   ├── datasources
-│   │       │   │   ├── movie_remote_datasource_impl.dart
-│   │       │   │   └── movie_remote_datasource.dart
-│   │       │   └── models
-│   │       │       ├── movie_model.dart
-│   │       │       ├── movie_model.g.dart
-│   │       │       └── movie_model.freezed.dart
-│   │       │
-│   │       ├── domain
-│   │       │   ├── entities
-│   │       │   │   └── movie.dart
-│   │       │   └── repositories
-│   │       │       └── movie_repository.dart
-│   │       │
-│   │       └── usecases
-│   │           └── get_all_movies.dart
-│   │
-│   └── presentation
-│       ├── bloc
-│       │   ├── movie_bloc.dart
-│       │   ├── movie_event.dart
-│       │   └── movie_state.dart
+```text
+lib/
+├── core/
+│   ├── di/
+│   │   └── service_locator.dart
+│   └── errors/
+│       ├── failures.dart
+│       └── utils/
+│
+├── features/
+│   └── movie/
+│       ├── data/
+│       │   ├── datasources/
+│       │   │   ├── movie_remote_datasource.dart
+│       │   │   └── movie_remote_datasource_impl.dart
+│       │   └── models/
+│       │       ├── movie_model.dart
+│       │       ├── movie_model.freezed.dart
+│       │       └── movie_model.g.dart
 │       │
-│       ├── pages
-│       │   ├── home_page.dart
-│       │   └── movie_details_page.dart
+│       ├── domain/
+│       │   ├── entities/
+│       │   │   └── movie.dart
+│       │   ├── repositories/
+│       │   │   └── movie_repository.dart
+│       │   └── usecases/
+│       │       └── get_all_movies.dart
 │       │
-│       └── widgets
-│           └── movie_card.dart
+│       └── presentation/
+│           ├── bloc/
+│           │   ├── movie_bloc.dart
+│           │   ├── movie_event.dart
+│           │   └── movie_state.dart
+│           │
+│           ├── pages/
+│           │   ├── home_page.dart
+│           │   └── movie_details_page.dart
+│           │
+│           └── widgets/
+│               └── movie_card.dart
 │
 └── main.dart
 
