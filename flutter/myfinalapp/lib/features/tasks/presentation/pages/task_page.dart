@@ -1,5 +1,7 @@
+import '../widgets/highlight_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myfinalapp/features/tasks/presentation/widgets/highlight_text.dart';
 
 import '../../../../core/di/injection.dart';
 import '../../domain/entities/task.dart';
@@ -15,19 +17,30 @@ class TaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => sl<TaskBloc>()..add(const TaskEvent.load()),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Task Manager')),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _showAddDialog(context),
-          child: const Icon(Icons.add),
-        ),
-        body: const _TaskBody(),
+      child: Builder(
+        // 👇 THIS Builder gives us the CORRECT context
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Task Manager')),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => _showAddDialog(context),
+              child: const Icon(Icons.add),
+            ),
+            body: const _TaskBody(),
+          );
+        },
       ),
     );
   }
 
   void _showAddDialog(BuildContext context) {
-    showDialog(context: context, builder: (_) => const AddTaskDialog());
+    final bloc = context.read<TaskBloc>();
+
+    showDialog(
+      context: context,
+      builder: (_) =>
+          BlocProvider.value(value: bloc, child: const AddTaskDialog()),
+    );
   }
 }
 
@@ -44,7 +57,6 @@ class _TaskBody extends StatelessWidget {
 
         return Column(
           children: [
-            // 🔍 SEARCH BAR
             Padding(
               padding: const EdgeInsets.all(12),
               child: TextField(
@@ -58,8 +70,6 @@ class _TaskBody extends StatelessWidget {
                 },
               ),
             ),
-
-            // 📋 TASK LIST
             Expanded(
               child: state.filteredTasks.isEmpty
                   ? const Center(child: Text('No tasks found'))
@@ -86,7 +96,10 @@ class _TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(task.title),
+      title: HighlightText(
+        text: task.title,
+        query: context.select((TaskBloc bloc) => bloc.state.searchQuery),
+      ),
       leading: Checkbox(
         value: task.completed,
         onChanged: (_) {
