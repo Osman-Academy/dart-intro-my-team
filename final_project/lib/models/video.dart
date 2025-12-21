@@ -1,10 +1,12 @@
-class Video {
-  String title;
-  String author;
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'video.freezed.dart';
+part 'video.g.dart';
+@freezed
+class Video with _$Video{
+  factory Video(
+  {required String title,
+  required String author,}
+      ) = _Video;
 
-  Video(this.title, this.author);
-
-  factory Video.fromJson(Map<String, dynamic> json) {
-    return Video(json["title"], json["author"]);
-  }
+  factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
 }
