@@ -1,3 +1,3 @@
 Project for Mobile Development
 
-Team Members: Tolaliev Eldar COMSE-23, Minbaev Sanzhar COMSE-23 230104009.
+Team Members: Tolaliev Eldar COMSE-23 230104056, Minbaev Sanzhar COMSE-23 230104009.
