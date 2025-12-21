@@ -1,4 +1,4 @@
 class ApiConstants {
-  static const baseUrl = 'https://6942f3ee69b12460f3135fbe.mockapi.io/mobile/api/tasks';
+  static const baseUrl = 'https://694803eb1ee66d04a44e7b6c.mockapi.io/ulans/api';
   static const tasksPath = '/tasks';
 }
