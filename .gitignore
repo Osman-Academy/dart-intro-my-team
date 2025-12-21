@@ -44,15 +44,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-.gitignore
-.metadata
-analysis_options.yaml
-android/
-final_project/
-ios/
-linux/
-macos/
-pubspec.lock
-test/
-web/
-windows/
