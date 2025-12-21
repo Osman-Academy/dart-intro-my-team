@@ -32,7 +32,7 @@ class BudgetScreenState extends State<BudgetScreen> {
     super.dispose();
   }
 
-  // 🔥 ТОЛЬКО ЗАГРУЗКА БЮДЖЕТОВ (без транзакций)
+  
   Future<void> _loadBudgetsOnly() async {
     try {
       final userId = _supabase.auth.currentUser?.id;
