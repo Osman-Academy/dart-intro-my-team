@@ -1,4 +1,4 @@
-Task Manager (Nova Tasks UI) 📝✨
+Task Manager (Ulan Tasks UI) 📝✨
 A simple task manager app built with Flutter using Clean Architecture, BLoC, DI (GetIt), Dio for networking, and Freezed for immutable models and JSON serialization.
 
 Table of Contents
