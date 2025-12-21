@@ -1,4 +1,5 @@
 
+import 'package:final_project/pages/detail.dart';
 import 'package:final_project/pages/home.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,6 @@ var app = MaterialApp(
   home: const Home(),
   routes: {
     "home": (context) => const Home(),
-    // "video": (context) => Detail(),
+    "video": (context) => Detail(),
   },
 );

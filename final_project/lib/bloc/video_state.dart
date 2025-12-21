@@ -7,3 +7,7 @@ class VideoStateSuccess implements VideoState {
   final List<Video> videos;
   VideoStateSuccess({required this.videos});
 }
+class VideoStateView implements VideoState {
+  final List<Video> videos;
+  VideoStateView({required this.videos});
+}

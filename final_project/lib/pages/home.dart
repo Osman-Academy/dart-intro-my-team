@@ -23,7 +23,13 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(title: const Text("Videos")),
+          appBar: AppBar(
+            title: TextField(
+            decoration: InputDecoration(hintText: "Search videos..."),
+            onSubmitted: (query) {
+              context.read<VideoBloc>().add(VideoViewEvent(query: query));
+            }
+          )),
           body: BlocBuilder<VideoBloc, VideoState>(
               builder: (context, state) {
                 if (state is VideoStateLoading) return Center(child: CircularProgressIndicator());

@@ -12,11 +12,10 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
       emit(VideoStateSuccess(videos: result));
     });
 
-    // on<ProductEventView>((event, emit) async {
-    //   emit(ProductStateLoading());
-    //   var result =
-    //   await repository.view(ProductDto(productId: event.productId));
-    //   emit(ProductStateView(product: result));
-    // });
+    on<VideoViewEvent>((event, emit) async {
+      emit(VideoStateLoading());
+      var result = await repository.searchVideos(event.query);
+      emit(VideoStateSuccess(videos : result));
+    });
   }
 }
