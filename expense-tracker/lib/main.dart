@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale('ru', 'RU'),
       supportedLocales: const [
         Locale('ru', 'RU'),
-        Locale('en', 'US'), 
+        Locale('en', 'US'),
       ],
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -49,8 +49,8 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/auth',
       routes: {
-        '/auth': (context) => AuthScreen(),
-        '/home': (context) => HomeScreen(),
+        '/auth': (context) => const AuthScreen(),
+        '/home': (context) => const HomeScreen(),
       },
     );
   }

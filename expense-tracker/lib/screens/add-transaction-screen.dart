@@ -29,7 +29,7 @@ class AddTransactionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Row(children: 
+                  Row(children:
                   [Expanded(
                         child: TypeButton(
                           isSelected: state.isExpense,
@@ -126,7 +126,7 @@ class AddTransactionScreen extends StatelessWidget {
                       backgroundColor: state.isExpense ? const Color.fromARGB(255, 235, 123, 31) : Colors.green,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
-                    child: state.isSubmitting? const CircularProgressIndicator(color: Colors.white): 
+                    child: state.isSubmitting? const CircularProgressIndicator(color: Colors.white):
                       Text(
                         'Добавить ${state.isExpense ? 'расход' : 'доход'}',
                         style: const TextStyle(fontSize: 18),

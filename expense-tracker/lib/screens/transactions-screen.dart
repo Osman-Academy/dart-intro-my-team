@@ -230,7 +230,7 @@ class TransactionsScreenState extends State<TransactionsScreen> {
             Icon(Icons.receipt_long, size: 64, color: Colors.grey),
             SizedBox(height: 16),
             Text(
-              'Ваши транзакции будут здесь\n(пока пусто)',
+              'Твои транзакции будут здесь\n(пока пусто)',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18, color: Colors.grey),
             ),
