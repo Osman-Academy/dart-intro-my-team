@@ -1,0 +1,13 @@
+Final Project Requirements
+
+Clean Architecture
+
+Dependency Injection (DI)
+
+BLoC (Business Logic Component)
+
+Freezed annotations
+
+String Search by Pattern App
+
+a. The app must be connected to a server and retrieve data from the backend (backend integration).
