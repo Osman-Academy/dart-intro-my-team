@@ -11,20 +11,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:task_manager_clean_arch/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('App shows title and Add user sheet opens',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Check app title
+    expect(find.text('Team Manager'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // FAB present
+    final fab = find.byIcon(Icons.person_add);
+    expect(fab, findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Tap FAB and expect Add user sheet to appear (check for form label)
+    await tester.tap(fab);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Full name'), findsOneWidget);
   });
 }
