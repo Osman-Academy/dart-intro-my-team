@@ -1,0 +1,25 @@
+Гайд по запуску (Windows, чистая машина):
+
+Установки:
+Docker Desktop: скачайте с docker.com и включите WSL2/virtualization, перезагрузите.
+Flutter SDK: скачайте zip с https://docs.flutter.dev → распакуйте, добавьте flutter/bin в PATH, выполните flutter doctor и установите недостающие компоненты (Chrome SDK, Android SDK по желанию).
+Dart SDK отдельно не нужен — идёт с Flutter.
+PowerShell 5+ (стандартно есть).
+Клонирование проекта:
+powershell
+git clone <repo-url> "C:\New Mobile"
+cd "C:\New Mobile"
+Зависимости Flutter:
+powershell
+flutter pub get
+flutter pub run build_runner build --delete-conflicting-outputs
+(генерирует файлы Freezed, без этого сборка упадёт).
+
+Запуск бэкенда + БД:
+powershell
+docker compose up --build
+Дождитесь строки Team Flow Dart API running on http://0.0.0.0:8080.
+
+Запуск фронта (Web): В новом терминале в корне:
+powershell
+flutter run -d chrome

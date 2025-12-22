@@ -1,0 +1,4 @@
+- [ ] Add Postgres user repository (create/findByEmail/findById/all)
+- [ ] Wire server to Postgres (connection params from env)
+- [ ] Migrate auth service to use PG repo instead of in-memory
+- [ ] (Optional) tasks to Postgres? keep in-memory unless requested
