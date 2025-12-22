@@ -274,4 +274,3 @@ void setupLocator() {
 
 ---
 
-Made with ❤️ using Flutter
