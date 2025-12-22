@@ -1,0 +1,387 @@
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+
+const products = [
+  // face
+  {
+    id: "face_01",
+    title: "Airbrush Flawless Foundation",
+    category: "FACE",
+    price: 49.0,
+    description: "Full coverage foundation with a flawless finish.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/5mShVgP5OvDYce8GG6OfDT/8b1c9c69d224af92a4450cf8870a8d68/AFF_FOUNDATION_OPEN_1N.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_02",
+    title: "Hollywood Flawless Filter",
+    category: "FACE",
+    price: 49.0,
+    description: "Glow booster for a lit-from-within look.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/1HOiSkLJtufllA6vHJQeXN/79547b53d3a3d87b5c89b3928b207ad1/HFF-PACKSHOT-OPEN-1.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_03",
+    title: "Airbrush Flawless Finish",
+    category: "FACE",
+    price: 48.0,
+    description: "Smoothing powder for a soft-focus finish.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/6ileyoGfVFJlandkVZfwIa/c78adef575452a1a97f781ca914af3ba/airbrush-flawless-light-packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_04",
+    title: "Airbrush Flawless Setting Spray",
+    category: "FACE",
+    price: 38.0,
+    description: "Setting spray that locks makeup for longer wear.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/23p4TKjqpeC3zePOLb2HpY/ae91f8c6bbcc0f83e23ed28bced282dd/DROP-SHADOW-TEMPLATE_copy.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_05",
+    title: "Beautiful Skin Foundation",
+    category: "FACE",
+    price: 49.0,
+    description: "Hydrating foundation with a healthy-looking glow.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/hYwVpwUAma7RfPcgNrxnJ/ba89c11351271d859e1c41b2ca682ff2/BEAUTIFUL_SKIN_FOUNDATION_SHADE_1_LID_SIDE.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_06",
+    title: "Beautiful Skin Concealer",
+    category: "FACE",
+    price: 33.0,
+    description: "Creamy concealer for brightening and smoothing.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/5rD9s4aW0aBkcclGyXqm5R/26c5515ac0bb4978b55f2299f35c9979/BSC-Packshot-2.5-Open.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_07",
+    title: "Wonderglow Face Primer",
+    category: "FACE",
+    price: 55.0,
+    description: "Primer for a smoother, radiant base.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/1mkrZP5b99XSmZZcQXdJIH/50e6c1ee057b782fc0c4e7978582e045/wonderglow-packshot-40ML.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_08",
+    title: "Magic Cream",
+    category: "FACE",
+    price: 100.0,
+    description: "Iconic moisturizer that preps skin for makeup.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/6YWcbLwbDwwh5mQwhq55M7/dbcec885160e646c93d3b8b048b5dbef/MWC-50ML-PACKSHOTS-AW.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_09",
+    title: "Magic Serum Crystal Elixir",
+    category: "FACE",
+    price: 80.0,
+    description: "Serum for a plumper-looking complexion.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/34KohRSEus5tUHnMW9QxUa/469311cab6e89c7330f5daa9e5c6301b/MAGIC-SERUM-8ML-PACKSHOT.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "face_10",
+    title: "Hollywood Glow Glide Face Architect Highlighter",
+    category: "FACE",
+    price: 49.0,
+    description: "Powder highlighter for a candlelit glow.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/3L4qtRUvqS9s7X9VwodQql/45b25d448bdaa238198a7b9c3193e422/Hollywood-Highlighter-Champagne-Glow-Packshots.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+
+  // cheek
+  {
+    id: "cheek_01",
+    title: "Beauty Light Wand (Pinkgasm)",
+    category: "CHEEK",
+    price: 42.0,
+    description: "Liquid blush-highlighter wand with radiant finish.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/3zgTWuuxB1Ei6Rw4MffN1a/c62b9f33d73e550f25fccf3cde11370a/039_220183_PILLOW_TALK_PLUMP_P_PINKGASM_BLW_CLOSED_RJ_2404.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_02",
+    title: "Beauty Light Wand (Spotlight)",
+    category: "CHEEK",
+    price: 42.0,
+    description: "Liquid highlighter wand for glowing cheekbones.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/VFAutDxoMYkLFGg4ij3ds/d79216924776b898f759472fa64e6868/HOLLYWOOD-BEAUTY-LIGHT-WAND---PACKSHO---CLOSED.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_03",
+    title: "Hollywood Contour Wand",
+    category: "CHEEK",
+    price: 42.0,
+    description: "Easy contour wand for sculpted-looking cheeks.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/1A8Tm1HP1bCkNjJ3AuQK5i/d26225732d6d66374f232cacab087ac3/HCW-FAIR-LEGENDARY-PDP.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_04",
+    title: "Cheek to Chic Blush",
+    category: "CHEEK",
+    price: 42.0,
+    description: "Two-tone blush for a lifted, flattering finish.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/2aHb7qGhW4IEUEUQfNK0gb/2a2666234ea4fb7751eed34cadc8472e/CHEEK-TO-CHIC-PILLOW-TALK-PACKSHOT.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_05",
+    title: "Filmstar Bronze & Glow",
+    category: "CHEEK",
+    price: 68.0,
+    description: "Contour + highlight duo for a bronzed glow.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/7saErQpyHkswJJeyDybg32/746c691261e09792eaf85cb2ac60c66f/FILMSTAR-BRONZE-_-GLOW---PACKSHOT---OPEN-NEW.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_06",
+    title: "Airbrush Bronzer",
+    category: "CHEEK",
+    price: 58.0,
+    description: "Soft-focus bronzer for a sun-kissed look.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/WxDJPKUVXMMi80A4zkm0w/65124d0b96ed9b1e558b238b268e4786/AFF_Bronzer_Medium_Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_07",
+    title: "Matte Beauty Blush Wand",
+    category: "CHEEK",
+    price: 42.0,
+    description: "Matte liquid blush wand for a dreamy flush.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/5R5XNzubUWNqYbVYxNUCeE/b7d7a9b1b4940f60ecff065b1bebddd8/ALLURE_PT_BBW_PDP.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_08",
+    title: "Pillow Talk Lip & Cheek Glow",
+    category: "CHEEK",
+    price: 35.0,
+    description: "Multi-use color for lips and cheeks.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/6BVTBs7nduHj93T99xYNVD/3a3df3cd0f4be46ee7ca3f8db9530b92/Colour-of-dreams-Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_09",
+    title: "Pillow Talk Multi-Glow",
+    category: "CHEEK",
+    price: 45.0,
+    description: "Highlighting powder for a luminous look.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/1gtIQHI6dLInmp2HQZ6Hr0/0e7ebc0b1102d6f7a4bc9671db25dcf8/Hollywood-Highlighter-Pillowtalk-Glow-Packshots.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "cheek_10",
+    title: "Glowgasm Beauty Light Wand",
+    category: "CHEEK",
+    price: 42.0,
+    description: "Glow wand for a lit-from-within cheek effect.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/2pwv1Jiw2bOZQ6anGfCfsI/8b01eb4c5fb23027f535d16c67c59ceb/039_220184_PILLOW_TALK_PLUMP_P_GOLDGASM_BLW_CLOSED_RJ_2404.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+
+  // eyes
+  {
+    id: "eyes_01",
+    title: "Pillow Talk Push Up Lashes! Mascara",
+    category: "EYES",
+    price: 29.0,
+    description: "Volumizing + lengthening mascara.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/4JI6zg5nIeSk3UcyXfhnjU/ccd74869d0756061eedcabc67cc52af2/PILLOW_TALK_MASCARA_BACK_OPEN.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_02",
+    title: "Brow Cheat",
+    category: "EYES",
+    price: 26.0,
+    description: "Micro-precision brow pencil for natural brows.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/4BLyYMyW45geNQyn7ZHzZC/f81b4b6d3eb302534c5a42e3c78e1ced/CHEAT_NaturalBrown_OPEN_BOTH_ENDS.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_03",
+    title: "Legendary Brows",
+    category: "EYES",
+    price: 26.0,
+    description: "Tinted brow gel for fuller-looking brows.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/1HLtdsmpNHqTwhSsL9gFDn/44ab099d88cc194bdd461c28383a667c/LEG_Taupe_OPEN.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_04",
+    title: "The Feline Flick",
+    category: "EYES",
+    price: 32.0,
+    description: "Liquid eyeliner for a sharp, sleek flick.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/6ACp5fNpDb7Q390x91C24U/f49d8051e1f865b5d888cce96f15a3de/ECM_Feline_Flick_Brown_Open_Packshots.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_05",
+    title: "Rock 'N' Kohl",
+    category: "EYES",
+    price: 29.0,
+    description: "Eye pencil for smoky, intense definition.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/1ryxUP0PHOe6FPeC0ad4bd/d9fd6c38dc06704d59355c63fffd8bd2/eyecampaign25_p_LH_0225_RNK_HYPNOTIC_PEACOCK-OPEN____.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_06",
+    title: "Eyes to Mesmerise",
+    category: "EYES",
+    price: 35.0,
+    description: "Cream eyeshadow for an effortless eye look.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/4aZiWuGdeJM2VR9Unza2qu/b550b3502cc36235216aa0cd06b68e6b/Oyster-Pearl-Lid-Off-Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_07",
+    title: "Hypnotising Pop Shots",
+    category: "EYES",
+    price: 34.0,
+    description: "Sparkling single eyeshadow topper.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/3Q8KnioUo2g9efSPUegMRp/69bf2691f6856ffc27df3e799ac9b4ad/20240404_CT_HOLIDAY_S12_POP_SHOT_0159_PT_DIANOND.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_08",
+    title: "Luxury Palette",
+    category: "EYES",
+    price: 55.0,
+    description: "Quad eyeshadow palette for day-to-night looks.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/3aju6v572jCWEUWJIueG8u/4be4d0bf5a5139901e0a55ad7702fddd/LUXURY-PALETTE-WALK-OF-NO-SHAME.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_09",
+    title: "Super Nudes Easy Eye Palette",
+    category: "EYES",
+    price: 60.0,
+    description: "Neutral palette for easy everyday glam.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/3Z82EWpFDxqYjCCROdHqmn/c5df55058268ccb298aa5bc0373ad879/SUPER-NUDES-EASY-EYE-PALETTE.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "eyes_10",
+    title: "Pillow Talk Eyeliner",
+    category: "EYES",
+    price: 29.0,
+    description: "Eyeliner that enhances and defines the eyes.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/3x1xSOUCRFkumjdoulSVyZ/287b720c052884d60ca56dda7437bc78/Eyeliner-Pillowtalk-Open-Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+
+  // lips
+  {
+    id: "lips_01",
+    title: "Matte Revolution Lipstick (Pillow Talk)",
+    category: "LIPS",
+    price: 35.0,
+    description: "Iconic matte lipstick in a cult-favorite shade.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/4cMV6sOtcKl1x2oNNIBgAt/4bf563fb529324c12d7a8561f2611125/Gracefully-Pink-packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_02",
+    title: "K.I.S.S.I.N.G Lipstick",
+    category: "LIPS",
+    price: 35.0,
+    description: "Creamy lipstick with a softly glossy look.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/5WgBucW5A9uNhtyL3vXPzw/307135678740b2886ec98006e0ee455f/ICON-BABY-PACKSHOT.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_03",
+    title: "Lip Cheat Lip Liner (Pillow Talk)",
+    category: "LIPS",
+    price: 26.0,
+    description: "Lip liner for fuller-looking definition.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/7GYiPDvwBvEmZXlRn2Y4Gq/37a74cade14714a985b6b9d8c5bf46e4/37_220101_HOLLYWOOD-PINK-REDS_P_LIP_CHEAT_90-S_PINK_RJ_2308.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_04",
+    title: "Collagen Lip Bath (Pillow Talk)",
+    category: "LIPS",
+    price: 35.0,
+    description: "Plumping lip gloss with juicy shine.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/43af5GgGtIwAbKTUtlRB7l/e260eacf7b86d7125723c7d1532223a6/Collagen-Lip-Bath-Open-Packshot_Rose.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_05",
+    title: "Lip Lustre",
+    category: "LIPS",
+    price: 25.0,
+    description: "High-shine lip gloss topper.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/rjbyS5GnYXFCI7rxwVbOn/327d09e5166bd5668b51299cfb0bbc0e/Pillow-Talk-Lid-Off-Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_06",
+    title: "Hyaluronic Happikiss (Pillow Talk)",
+    category: "LIPS",
+    price: 35.0,
+    description: "Hydrating lipstick balm with a flattering tint.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/30BMwlS0YAwwnpEv4pRbTy/57600894559ad63b27b41014c63ec33f/Crystal-Open-Happikiss-Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_07",
+    title: "Charlotte's Magic Lip Oil Crystal Elixir",
+    category: "LIPS",
+    price: 40.0,
+    description: "Nourishing lip oil for a glossy finish.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/15wuQmcTObBgJiDf4yoxCp/51e653de4b5e23d22418bb5c397c0a45/Lip-Oil-Closed-Packshot.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_08",
+    title: "Pillow Talk Lip Kit",
+    category: "LIPS",
+    price: 49.0,
+    description: "Lip liner + lipstick combo set.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/5qNfvWt59qdvM1D2eNZjwp/81b539901268e11c9c50f4d90c20aa86/PILLOW_TALK_LIP_KIT-BUNDLE.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_09",
+    title: "Lip Cheat Lip Liner (Pillow Talk Medium)",
+    category: "LIPS",
+    price: 26.0,
+    description: "Lip liner in a deeper Pillow Talk tone.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/4u1ITH0RgmCdu1eWG7dYVg/70ad815f5b9680a9697e3d653e4682e7/LIPCHEAT-PTMEDIUM-LEGENDARY-PDP.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+  {
+    id: "lips_10",
+    title: "Lip Cheat Lip Liner (Pillow Talk Deep)",
+    category: "LIPS",
+    price: 26.0,
+    description: "Lip liner in a deeper, richer tone.",
+    imageUrl:
+      "https://images.ctfassets.net/wlke2cbybljx/5w26i39vR96mQkbaqsg0xE/115a41333e2d39398dede056301758be/LIPCHEAT-PTINTENSE-LEGENDARY-PDP.png?q=80&w=660&h=660&fit=fill&bg=&fm=webp",
+  },
+];
+
+
+app.get("/products", (req, res) => {
+  res.json(products);
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
