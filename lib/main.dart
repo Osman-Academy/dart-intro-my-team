@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'dart:html';
 
 import 'package:flutter/material.dart';
@@ -20,17 +21,46 @@ class MyApp extends StatelessWidget {
       ),
       // A widget which will be started on application startup
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+=======
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/product/product_cubit.dart';
+import 'bloc/product/product_state.dart';
+import 'data/product_repository.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        create: (_) => ProductCubit(ProductRepository()),
+        child: const ProductPage(),
+      ),
+>>>>>>> 5681d64 (Initial Flutter product search app)
     );
   }
 }
 
+<<<<<<< HEAD
 class MyHomePage extends StatelessWidget {
   final String title;
   const MyHomePage({super.key, required this.title});
+=======
+class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
+>>>>>>> 5681d64 (Initial Flutter product search app)
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       appBar: AppBar(
         // The title text which will be shown on the action bar
         title: Text(title),
@@ -41,10 +71,45 @@ class MyHomePage extends StatelessWidget {
           painter: DrawingPainter(),
           size: Size.infinite,
         )),
+=======
+      appBar: AppBar(title: const Text('Products')),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: 'Search product...',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                context.read<ProductCubit>().search(value);
+              },
+            ),
+          ),
+          Expanded(
+            child: BlocBuilder<ProductCubit, ProductState>(
+              builder: (context, state) {
+                return ListView.builder(
+                  itemCount: state.filteredProducts.length,
+                  itemBuilder: (context, index) {
+                    final product = state.filteredProducts[index];
+                    return ListTile(
+                      leading: Text(product.id.toString()),
+                      title: Text(product.title),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+>>>>>>> 5681d64 (Initial Flutter product search app)
       ),
     );
   }
 }
+<<<<<<< HEAD
 
 class DrawingPainter extends CustomPainter {
   @override
@@ -66,3 +131,5 @@ class DrawingPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
+=======
+>>>>>>> 5681d64 (Initial Flutter product search app)
