@@ -12,8 +12,7 @@ part of 'product_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProductState {
@@ -32,16 +31,14 @@ mixin _$ProductState {
 /// @nodoc
 abstract class $ProductStateCopyWith<$Res> {
   factory $ProductStateCopyWith(
-    ProductState value,
-    $Res Function(ProductState) then,
-  ) = _$ProductStateCopyWithImpl<$Res, ProductState>;
+          ProductState value, $Res Function(ProductState) then) =
+      _$ProductStateCopyWithImpl<$Res, ProductState>;
   @useResult
-  $Res call({
-    List<ProductModel> products,
-    List<ProductModel> filteredProducts,
-    String query,
-    bool isLoading,
-  });
+  $Res call(
+      {List<ProductModel> products,
+      List<ProductModel> filteredProducts,
+      String query,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -64,27 +61,24 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
     Object? query = null,
     Object? isLoading = null,
   }) {
-    return _then(
-      _value.copyWith(
-            products: null == products
-                ? _value.products
-                : products // ignore: cast_nullable_to_non_nullable
-                      as List<ProductModel>,
-            filteredProducts: null == filteredProducts
-                ? _value.filteredProducts
-                : filteredProducts // ignore: cast_nullable_to_non_nullable
-                      as List<ProductModel>,
-            query: null == query
-                ? _value.query
-                : query // ignore: cast_nullable_to_non_nullable
-                      as String,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      filteredProducts: null == filteredProducts
+          ? _value.filteredProducts
+          : filteredProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
   }
 }
 
@@ -92,17 +86,15 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
 abstract class _$$ProductStateImplCopyWith<$Res>
     implements $ProductStateCopyWith<$Res> {
   factory _$$ProductStateImplCopyWith(
-    _$ProductStateImpl value,
-    $Res Function(_$ProductStateImpl) then,
-  ) = __$$ProductStateImplCopyWithImpl<$Res>;
+          _$ProductStateImpl value, $Res Function(_$ProductStateImpl) then) =
+      __$$ProductStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    List<ProductModel> products,
-    List<ProductModel> filteredProducts,
-    String query,
-    bool isLoading,
-  });
+  $Res call(
+      {List<ProductModel> products,
+      List<ProductModel> filteredProducts,
+      String query,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -110,9 +102,8 @@ class __$$ProductStateImplCopyWithImpl<$Res>
     extends _$ProductStateCopyWithImpl<$Res, _$ProductStateImpl>
     implements _$$ProductStateImplCopyWith<$Res> {
   __$$ProductStateImplCopyWithImpl(
-    _$ProductStateImpl _value,
-    $Res Function(_$ProductStateImpl) _then,
-  ) : super(_value, _then);
+      _$ProductStateImpl _value, $Res Function(_$ProductStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of ProductState
   /// with the given fields replaced by the non-null parameter values.
@@ -124,39 +115,37 @@ class __$$ProductStateImplCopyWithImpl<$Res>
     Object? query = null,
     Object? isLoading = null,
   }) {
-    return _then(
-      _$ProductStateImpl(
-        products: null == products
-            ? _value._products
-            : products // ignore: cast_nullable_to_non_nullable
-                  as List<ProductModel>,
-        filteredProducts: null == filteredProducts
-            ? _value._filteredProducts
-            : filteredProducts // ignore: cast_nullable_to_non_nullable
-                  as List<ProductModel>,
-        query: null == query
-            ? _value.query
-            : query // ignore: cast_nullable_to_non_nullable
-                  as String,
-        isLoading: null == isLoading
-            ? _value.isLoading
-            : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
+    return _then(_$ProductStateImpl(
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      filteredProducts: null == filteredProducts
+          ? _value._filteredProducts
+          : filteredProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$ProductStateImpl implements _ProductState {
-  const _$ProductStateImpl({
-    final List<ProductModel> products = const [],
-    final List<ProductModel> filteredProducts = const [],
-    this.query = '',
-    this.isLoading = false,
-  }) : _products = products,
-       _filteredProducts = filteredProducts;
+  const _$ProductStateImpl(
+      {final List<ProductModel> products = const [],
+      final List<ProductModel> filteredProducts = const [],
+      this.query = '',
+      this.isLoading = false})
+      : _products = products,
+        _filteredProducts = filteredProducts;
 
   final List<ProductModel> _products;
   @override
@@ -195,10 +184,8 @@ class _$ProductStateImpl implements _ProductState {
         (other.runtimeType == runtimeType &&
             other is _$ProductStateImpl &&
             const DeepCollectionEquality().equals(other._products, _products) &&
-            const DeepCollectionEquality().equals(
-              other._filteredProducts,
-              _filteredProducts,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredProducts, _filteredProducts) &&
             (identical(other.query, query) || other.query == query) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
@@ -206,12 +193,11 @@ class _$ProductStateImpl implements _ProductState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_products),
-    const DeepCollectionEquality().hash(_filteredProducts),
-    query,
-    isLoading,
-  );
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      const DeepCollectionEquality().hash(_filteredProducts),
+      query,
+      isLoading);
 
   /// Create a copy of ProductState
   /// with the given fields replaced by the non-null parameter values.
@@ -223,12 +209,11 @@ class _$ProductStateImpl implements _ProductState {
 }
 
 abstract class _ProductState implements ProductState {
-  const factory _ProductState({
-    final List<ProductModel> products,
-    final List<ProductModel> filteredProducts,
-    final String query,
-    final bool isLoading,
-  }) = _$ProductStateImpl;
+  const factory _ProductState(
+      {final List<ProductModel> products,
+      final List<ProductModel> filteredProducts,
+      final String query,
+      final bool isLoading}) = _$ProductStateImpl;
 
   @override
   List<ProductModel> get products;

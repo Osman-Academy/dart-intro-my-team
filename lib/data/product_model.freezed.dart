@@ -12,8 +12,7 @@ part of 'product_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
   return _ProductModel.fromJson(json);
@@ -37,9 +36,8 @@ mixin _$ProductModel {
 /// @nodoc
 abstract class $ProductModelCopyWith<$Res> {
   factory $ProductModelCopyWith(
-    ProductModel value,
-    $Res Function(ProductModel) then,
-  ) = _$ProductModelCopyWithImpl<$Res, ProductModel>;
+          ProductModel value, $Res Function(ProductModel) then) =
+      _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call({int id, String title});
 }
@@ -58,20 +56,20 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? title = null}) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int,
-            title: null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -79,9 +77,8 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
 abstract class _$$ProductModelImplCopyWith<$Res>
     implements $ProductModelCopyWith<$Res> {
   factory _$$ProductModelImplCopyWith(
-    _$ProductModelImpl value,
-    $Res Function(_$ProductModelImpl) then,
-  ) = __$$ProductModelImplCopyWithImpl<$Res>;
+          _$ProductModelImpl value, $Res Function(_$ProductModelImpl) then) =
+      __$$ProductModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String title});
@@ -92,27 +89,27 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     extends _$ProductModelCopyWithImpl<$Res, _$ProductModelImpl>
     implements _$$ProductModelImplCopyWith<$Res> {
   __$$ProductModelImplCopyWithImpl(
-    _$ProductModelImpl _value,
-    $Res Function(_$ProductModelImpl) _then,
-  ) : super(_value, _then);
+      _$ProductModelImpl _value, $Res Function(_$ProductModelImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? id = null, Object? title = null}) {
-    return _then(
-      _$ProductModelImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int,
-        title: null == title
-            ? _value.title
-            : title // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+  }) {
+    return _then(_$ProductModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -157,7 +154,9 @@ class _$ProductModelImpl implements _ProductModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProductModelImplToJson(this);
+    return _$$ProductModelImplToJson(
+      this,
+    );
   }
 }
 

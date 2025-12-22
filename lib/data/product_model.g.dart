@@ -13,4 +13,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
-    <String, dynamic>{'id': instance.id, 'title': instance.title};
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+    };
