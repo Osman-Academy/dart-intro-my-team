@@ -13,6 +13,5 @@ class ProductDto with _$ProductDto {
     required String thumbnail,
   }) = _ProductDto;
 
-  factory ProductDto.fromJson(Map<String, dynamic> json) =>
-      _$ProductDtoFromJson(json);
+  factory ProductDto.fromJson(Map<String, dynamic> json) => _$ProductDtoFromJson(json);
 }
