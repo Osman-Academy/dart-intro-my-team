@@ -1,3 +1,9 @@
+Team members:
+Nursultan Akbekov 
+230104010
+Marlen Zharkybai uly 
+230104044
+
 Movie Search App 🎬
 
 A Flutter application that searches and displays movies using a backend API.
