@@ -19,4 +19,19 @@ class ProductCubit extends Cubit<ProductState>{
       emit(ProductError("Unexpected error"));
     }
   }
+
+  void searchProducts(String keyword) {
+    if (state is! ProductLoaded) return;
+
+    final currentProducts = (state as ProductLoaded).products;
+
+    final filtered = currentProducts.where((product) {
+      final lower = keyword.toLowerCase();
+      return product.title.toLowerCase().contains(lower) ||
+            product.description.toLowerCase().contains(lower);
+    }).toList();
+
+    emit(ProductLoaded(filtered));
+  }
+
 }

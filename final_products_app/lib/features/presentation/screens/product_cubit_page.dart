@@ -22,6 +22,12 @@ class _ProductCubitPageState extends State<ProductCubitPage> {
       body:
         Column(
           children: [
+            TextField(
+              decoration: InputDecoration(hintText: 'Search'),
+              onChanged: (value) {
+                context.read<ProductCubit>().searchProducts(value);
+              },
+            ),
             Expanded(
               child: BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
