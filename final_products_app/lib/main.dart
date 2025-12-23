@@ -4,6 +4,8 @@ import 'package:final_products_app/features/data/repository/product_repository_i
 import 'package:final_products_app/features/domain/repository/product_repository.dart';
 import 'package:final_products_app/features/presentation/bloc/product_bloc.dart';
 import 'package:final_products_app/features/presentation/bloc/product_event.dart';
+import 'package:final_products_app/features/presentation/cubit/product_cubit.dart';
+import 'package:final_products_app/features/presentation/screens/product_cubit_page.dart';
 import 'package:final_products_app/features/presentation/screens/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,8 +34,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (_) => ProductBloc(productRepository)..add(LoadProducts()),
-        child: ProductPage(),
+        // create: (_) => ProductBloc(productRepository)..add(LoadProducts()),
+        create: (_) => ProductCubit(productRepository)..getProducts(),
+        child: ProductCubitPage(),
       ),
     );
   }

@@ -34,7 +34,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   equatable: ^2.0.5
   get_it: ^9.1.1
-  freezed_annotation: ^3.1.0  # Change this from ^3.2.0
+  # freezed_annotation: ^3.1.0  # Change this from ^3.2.0
   json_annotation: ^4.9.0
   collection: ^1.19.0
   dio: ^5.9.0
@@ -43,9 +43,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.11  # You can update to latest ^2.6.x if you want
-  freezed: ^3.2.3
-  json_serializable: ^6.9.0  # Or update to ^6.10.x
+  build_runner: ^2.4.13
+  freezed: ^2.5.8
+  json_serializable: ^6.9.0
   flutter_lints: ^6.0.0
 
 

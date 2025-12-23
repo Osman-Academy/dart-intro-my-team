@@ -12,10 +12,15 @@ class DummyProductRemoteDataSource {
 
       final productsJson = response.data['products'];
 
-      return productsJson
-          .map((json) => ProductDto.fromJson(json as Map<String, dynamic>))
-          .cast<ProductDto>()
-          .toList();
+      return productsJson.map((product) {
+        final dto = ProductDto.fromJson(product);
+
+        print('product runtimeType: ${product.runtimeType}');
+        print('dto runtimeType: ${dto.runtimeType}');
+        print('dto: $dto');
+
+        return dto;
+      }).cast<ProductDto>().toList();
     } on DioException catch (e) {
       throw e;
     }
