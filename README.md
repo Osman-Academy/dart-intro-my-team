@@ -51,6 +51,14 @@ Effective communication and task management remain challenging in small teams:
 **Need:** A simplified, intuitive, and user-friendly task management system suitable for both technical and non-technical users.
 
 ---
+## Запуск
+
+```bash
+flutter pub get
+flutter run
+```
+
+По умолчанию открывается экран каталога товаров (`HomeScreen`).
 
 ## 💡 Problem Solution
 
