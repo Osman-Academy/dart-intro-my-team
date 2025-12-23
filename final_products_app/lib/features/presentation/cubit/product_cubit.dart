@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCubit extends Cubit<ProductState>{
   final ProductRepository productRepository;
+  List<Product> _allProducts  = [];
 
   ProductCubit(this.productRepository): super(ProductInitial()) {
     emit(ProductLoading());
@@ -14,18 +15,22 @@ class ProductCubit extends Cubit<ProductState>{
   void getProducts() async {
     final products = await productRepository.getProducts();
     if (products is DataSuccess<List<Product>>) {
+      _allProducts = products.data!;
       emit(ProductLoaded(products.data!));
     } else {
       emit(ProductError("Unexpected error"));
     }
   }
 
-  void searchProducts(String keyword) {
+  void searchProducts(String keyword) async {
     if (state is! ProductLoaded) return;
 
-    final currentProducts = (state as ProductLoaded).products;
+    if (keyword == "") {
+      emit(ProductLoaded(_allProducts));
+      return;
+    }
 
-    final filtered = currentProducts.where((product) {
+    final filtered = _allProducts.where((product) {
       final lower = keyword.toLowerCase();
       return product.title.toLowerCase().contains(lower) ||
             product.description.toLowerCase().contains(lower);
@@ -33,5 +38,4 @@ class ProductCubit extends Cubit<ProductState>{
 
     emit(ProductLoaded(filtered));
   }
-
 }
