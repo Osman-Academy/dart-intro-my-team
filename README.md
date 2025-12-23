@@ -52,17 +52,20 @@ Effective communication and task management remain challenging in small teams:
 
 ---
 ## Запуск
+
+
 ## Заранее скачайте Docker по этой ссылке docker.com и включите WSL2/virtualization, перезагрузите.
 ```bash
 docker compose up --build
 ```
+
+
 ```bash
 flutter clean
 flutter pub get
 flutter run
 ```
 
-По умолчанию открывается экран каталога товаров (`HomeScreen`).
 
 ## 💡 Problem Solution
 
