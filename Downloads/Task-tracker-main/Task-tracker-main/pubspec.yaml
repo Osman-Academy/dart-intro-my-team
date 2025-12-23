@@ -1,0 +1,35 @@
+name: team_flow
+description: Student Project Management System - Team Flow (Flutter + Clean Architecture)
+publish_to: "none"
+version: 0.0.1+1
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.4
+  get_it: ^7.7.0
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  shelf: ^1.4.1
+  shelf_router: ^1.1.4
+  uuid: ^4.2.2
+  http: ^1.1.0
+  postgres: ^3.1.0
+  crypto: ^3.0.3
+  dart_jsonwebtoken: ^2.14.0
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.8
+  freezed: ^2.5.7
+  json_serializable: ^6.7.1
+
+flutter:
+  uses-material-design: true

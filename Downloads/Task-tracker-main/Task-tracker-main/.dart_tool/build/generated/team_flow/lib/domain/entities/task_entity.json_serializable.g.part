@@ -1,0 +1,25 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$TaskEntityImpl _$$TaskEntityImplFromJson(Map<String, dynamic> json) =>
+    _$TaskEntityImpl(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      status: taskStatusFromJson(json['status'] as String),
+      projectId: json['projectId'] as String,
+      assignee: json['assignee'] == null
+          ? null
+          : UserEntity.fromJson(json['assignee'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$TaskEntityImplToJson(_$TaskEntityImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'description': instance.description,
+      'status': taskStatusToJson(instance.status),
+      'projectId': instance.projectId,
+      'assignee': instance.assignee,
+    };
