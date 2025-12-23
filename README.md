@@ -118,7 +118,7 @@ The project focuses on **Project Management & Collaboration Systems**, specifica
 |----------|----------------|--------|
 | Programming Language | Dart | Backend & Frontend development |
 | Framework | Flutter | Cross-platform application structure |
-| Database | MySQL | Data storage |
+| Database | PostgreSQL | Data storage |
 | Version Control | GitHub | Source code management |
 | Communication | Telegram | Team coordination |
 
