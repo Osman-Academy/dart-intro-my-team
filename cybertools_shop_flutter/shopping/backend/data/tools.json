@@ -1,0 +1,341 @@
+[
+  {
+    "id": 1,
+    "title": "Nmap",
+    "category": "Recon",
+    "description": "Network discovery and security auditing.",
+    "price": 3.22,
+    "thumbnail": "https://picsum.photos/seed/nmap/400/300"
+  },
+  {
+    "id": 2,
+    "title": "Wireshark",
+    "category": "Traffic Analysis",
+    "description": "Packet analyzer for network troubleshooting.",
+    "price": 12,
+    "thumbnail": "https://picsum.photos/seed/wireshark/400/300"
+  },
+  {
+    "id": 3,
+    "title": "Burp Suite",
+    "category": "Web Testing",
+    "description": "Web security testing platform.",
+    "price": 99,
+    "thumbnail": "https://picsum.photos/seed/burp/400/300"
+  }
+  ,{
+    "id": 4,
+    "title": "Gobuster",
+    "description": "Fast directory, DNS and virtual host brute-forcing tool for web enumeration.",
+    "price": 11,
+    "discountPercentage": 0,
+    "rating": 4.6,
+    "stock": 999,
+    "brand": "Open Source",
+    "category": "Recon",
+    "thumbnail": "https://picsum.photos/seed/gobuster-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/gobuster-1/900/600",
+      "https://picsum.photos/seed/gobuster-2/900/600",
+      "https://picsum.photos/seed/gobuster-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Aida", "rating": 5, "comment": "Perfect for quick wordlist scans. Simple and fast." },
+      { "user": "Timur", "rating": 4, "comment": "Good for vhost discovery. Would love more built-in wordlists." }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "ffuf",
+    "description": "Web fuzzer written in Go. Great for content discovery and parameter fuzzing.",
+    "price": 5,
+    "discountPercentage": 22,
+    "rating": 4.8,
+    "stock": 999,
+    "brand": "Open Source",
+    "category": "Web Testing",
+    "thumbnail": "https://picsum.photos/seed/ffuf-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/ffuf-1/900/600",
+      "https://picsum.photos/seed/ffuf-2/900/600",
+      "https://picsum.photos/seed/ffuf-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Nurs", "rating": 5, "comment": "Best fuzzer for discovery. Super configurable." },
+      { "user": "Madina", "rating": 4, "comment": "Fast and clean output. Took time to learn filters." }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Metasploit Framework",
+    "description": "Exploit development and penetration testing framework with modules for common vulnerabilities.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.7,
+    "stock": 999,
+    "brand": "Rapid7",
+    "category": "Exploitation",
+    "thumbnail": "https://picsum.photos/seed/msf-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/msf-1/900/600",
+      "https://picsum.photos/seed/msf-2/900/600",
+      "https://picsum.photos/seed/msf-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Ermek", "rating": 5, "comment": "Classic tool. Payload options are insane." },
+      { "user": "Aigerim", "rating": 4, "comment": "Powerful but heavy. Needs good OPSEC." }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "OWASP ZAP",
+    "description": "Open-source web application security scanner for finding vulnerabilities in web apps.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.5,
+    "stock": 999,
+    "brand": "OWASP",
+    "category": "Web Testing",
+    "thumbnail": "https://picsum.photos/seed/zap-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/zap-1/900/600",
+      "https://picsum.photos/seed/zap-2/900/600",
+      "https://picsum.photos/seed/zap-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Rasul", "rating": 4, "comment": "Great for learning and quick scans." },
+      { "user": "Dana", "rating": 5, "comment": "Proxy mode + automation scripts = ❤️" }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "SQLmap",
+    "description": "Automatic SQL injection and database takeover tool.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.7,
+    "stock": 999,
+    "brand": "Open Source",
+    "category": "Web Testing",
+    "thumbnail": "https://picsum.photos/seed/sqlmap-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/sqlmap-1/900/600",
+      "https://picsum.photos/seed/sqlmap-2/900/600",
+      "https://picsum.photos/seed/sqlmap-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Samat", "rating": 5, "comment": "Saved me hours during labs. Very reliable." },
+      { "user": "Elina", "rating": 4, "comment": "Needs careful tuning to avoid noisy requests." }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "John the Ripper",
+    "description": "Password cracking tool for auditing password strength and recovering hashes.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.4,
+    "stock": 999,
+    "brand": "Open Source",
+    "category": "Password Auditing",
+    "thumbnail": "https://picsum.photos/seed/john-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/john-1/900/600",
+      "https://picsum.photos/seed/john-2/900/600",
+      "https://picsum.photos/seed/john-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Bek", "rating": 4, "comment": "Solid classic. Jumbo features are useful." },
+      { "user": "Amina", "rating": 5, "comment": "Works great with custom rules and wordlists." }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Hashcat",
+    "description": "High-performance GPU password recovery tool supporting hundreds of hash types.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.9,
+    "stock": 999,
+    "brand": "Open Source",
+    "category": "Password Auditing",
+    "thumbnail": "https://picsum.photos/seed/hashcat-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/hashcat-1/900/600",
+      "https://picsum.photos/seed/hashcat-2/900/600",
+      "https://picsum.photos/seed/hashcat-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Ulan", "rating": 5, "comment": "Fastest cracker I’ve used. GPU rocks." },
+      { "user": "Kanykei", "rating": 5, "comment": "Amazing docs. Masks + rules are powerful." }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Hydra",
+    "description": "Fast network logon cracker supporting many protocols (SSH, FTP, HTTP auth, etc.).",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.3,
+    "stock": 999,
+    "brand": "THC",
+    "category": "Bruteforce",
+    "thumbnail": "https://picsum.photos/seed/hydra-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/hydra-1/900/600",
+      "https://picsum.photos/seed/hydra-2/900/600",
+      "https://picsum.photos/seed/hydra-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Nazgul", "rating": 4, "comment": "Useful for labs. Be careful with rate limits." },
+      { "user": "Maksat", "rating": 4, "comment": "Lots of modules. Output could be cleaner." }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Nikto",
+    "description": "Web server scanner for dangerous files, outdated software, and misconfigurations.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.1,
+    "stock": 999,
+    "brand": "Open Source",
+    "category": "Web Testing",
+    "thumbnail": "https://picsum.photos/seed/nikto-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/nikto-1/900/600",
+      "https://picsum.photos/seed/nikto-2/900/600",
+      "https://picsum.photos/seed/nikto-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Alina", "rating": 4, "comment": "Quick baseline check for servers." },
+      { "user": "Sultan", "rating": 4, "comment": "Noisy but still useful for first look." }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Nuclei",
+    "description": "Fast vulnerability scanner based on community templates. Great for automation.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.7,
+    "stock": 999,
+    "brand": "ProjectDiscovery",
+    "category": "Vulnerability Scanning",
+    "thumbnail": "https://picsum.photos/seed/nuclei-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/nuclei-1/900/600",
+      "https://picsum.photos/seed/nuclei-2/900/600",
+      "https://picsum.photos/seed/nuclei-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Dastan", "rating": 5, "comment": "Templates ecosystem is huge. Super fast." },
+      { "user": "Mira", "rating": 4, "comment": "Need to manage templates carefully to reduce false positives." }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Amass",
+    "description": "In-depth attack surface mapping and subdomain enumeration framework.",
+    "price": 12,
+    "discountPercentage": 0,
+    "rating": 4.5,
+    "stock": 999,
+    "brand": "OWASP",
+    "category": "Recon",
+    "thumbnail": "https://picsum.photos/seed/amass-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/amass-1/900/600",
+      "https://picsum.photos/seed/amass-2/900/600",
+      "https://picsum.photos/seed/amass-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Aibek", "rating": 5, "comment": "Best recon depth. Great for serious enumeration." },
+      { "user": "Luna", "rating": 4, "comment": "Powerful but needs config/API keys for full potential." }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "BloodHound",
+    "description": "Active Directory attack path analysis using graph theory. Visualizes privilege escalation paths.",
+    "price": 23,
+    "discountPercentage": 0,
+    "rating": 4.8,
+    "stock": 999,
+    "brand": "SpecterOps",
+    "category": "Active Directory",
+    "thumbnail": "https://picsum.photos/seed/bloodhound-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/bh-1/900/600",
+      "https://picsum.photos/seed/bh-2/900/600",
+      "https://picsum.photos/seed/bh-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Emil", "rating": 5, "comment": "Game changer for AD assessments." },
+      { "user": "Zarina", "rating": 5, "comment": "Makes complex AD relationships easy to understand." }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Kali NetHunter",
+    "description": "Mobile penetration testing platform for Android devices (wireless attacks, HID, etc.).",
+    "price": 32,
+    "discountPercentage": 0,
+    "rating": 4.2,
+    "stock": 999,
+    "brand": "Kali Linux",
+    "category": "Mobile Security",
+    "thumbnail": "https://picsum.photos/seed/nethunter-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/nethunter-1/900/600",
+      "https://picsum.photos/seed/nethunter-2/900/600",
+      "https://picsum.photos/seed/nethunter-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Nurlan", "rating": 4, "comment": "Very cool for demos, but device support varies." },
+      { "user": "Khadicha", "rating": 4, "comment": "Good toolkit. Setup takes patience." }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Ghidra",
+    "description": "Software reverse engineering suite for analyzing binaries and malware samples.",
+    "price": 44,
+    "discountPercentage": 0,
+    "rating": 4.6,
+    "stock": 999,
+    "brand": "NSA",
+    "category": "Reverse Engineering",
+    "thumbnail": "https://picsum.photos/seed/ghidra-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/ghidra-1/900/600",
+      "https://picsum.photos/seed/ghidra-2/900/600",
+      "https://picsum.photos/seed/ghidra-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Rinat", "rating": 5, "comment": "Great alternative to paid RE tools. Powerful decompiler." },
+      { "user": "Sofia", "rating": 4, "comment": "UI feels heavy, but features are top." }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "YARA",
+    "description": "Pattern matching tool for malware classification and detection rules.",
+    "price": 1,
+    "discountPercentage": 0,
+    "rating": 4.7,
+    "stock": 999,
+    "brand": "VirusTotal",
+    "category": "Malware Analysis",
+    "thumbnail": "https://picsum.photos/seed/yara-thumb/800/500",
+    "images": [
+      "https://picsum.photos/seed/yara-1/900/600",
+      "https://picsum.photos/seed/yara-2/900/600",
+      "https://picsum.photos/seed/yara-3/900/600"
+    ],
+    "reviews": [
+      { "user": "Ainura", "rating": 5, "comment": "Perfect for detection rules. Easy to maintain." },
+      { "user": "Dias", "rating": 4, "comment": "Needs good rule hygiene, but very effective." }
+    ]
+  }
+]
