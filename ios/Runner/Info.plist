@@ -5,7 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
+<<<<<<< HEAD
 	<string>String Search App</string>
+=======
+	<string>Hello World</string>
+>>>>>>> 7e64f7aef3c19c2f6330f77de2b662882cb375e9
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +17,13 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+<<<<<<< HEAD
 	<string>string_search_app</string>
+=======
+	<string>navigation</string>
+<key>CFBundleDisplayName</key>
+<string>navigation</string>
+>>>>>>> 7e64f7aef3c19c2f6330f77de2b662882cb375e9
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "name": "string_search_app",
     "short_name": "string_search_app",
+=======
+    "name": "hello_world",
+    "short_name": "hello_world",
+>>>>>>> 7e64f7aef3c19c2f6330f77de2b662882cb375e9
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

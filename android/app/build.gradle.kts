@@ -6,7 +6,11 @@ plugins {
 }
 
 android {
+<<<<<<< HEAD
     namespace = "com.example.string_search_app"
+=======
+    namespace = "com.example.navigation"
+>>>>>>> 7e64f7aef3c19c2f6330f77de2b662882cb375e9
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +25,11 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+<<<<<<< HEAD
         applicationId = "com.example.string_search_app"
+=======
+        applicationId = "com.example.navigation"
+>>>>>>> 7e64f7aef3c19c2f6330f77de2b662882cb375e9
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

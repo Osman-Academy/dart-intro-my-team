@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # String Search by Pattern App
 
 A Flutter application that demonstrates Clean Architecture, Dependency Injection, BLoC state management, and Freezed for immutable data modeling. The app retrieves user data from a REST API and allows real-time string pattern searching through user names.
@@ -95,3 +96,24 @@ Run `flutter pub run build_runner build` after making changes to annotated class
 ## Contributing
 
 This is a final project submission. No external contributions accepted.
+=======
+# navigation
+
+A new Flutter project created with FlutLab - https://flutlab.io
+
+## Getting Started
+
+A few resources to get you started if this is your first Flutter project:
+
+- https://flutter.dev/docs/get-started/codelab
+- https://flutter.dev/docs/cookbook
+
+For help getting started with Flutter, view our
+https://flutter.dev/docs, which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+
+## Getting Started: FlutLab - Flutter Online IDE
+
+- How to use FlutLab? Please, view our https://flutlab.io/docs
+- Join the discussion and conversation on https://flutlab.io/residents
+>>>>>>> 7e64f7aef3c19c2f6330f77de2b662882cb375e9
